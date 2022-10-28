@@ -1,0 +1,18 @@
+:root {
+  --praimery-text-color: #2c2c2c;
+  --praimery-bg-color: #fefefe;
+  --secondary-bg-color: #ffffff;
+  --green: #bbf330;
+  --dark-green: #7eb101;
+  --accent-green: #b5ff00;
+  --yellow: #ffe550;
+  --eror-color: #ff705d;
+  --bg-gradient: radial-gradient(
+    50% 50% at 50% 50%,
+    #2f583f 0%,
+    rgba(105, 105, 105, 0) 100%
+  );
+  --backdrop-color: rgba(94, 99, 99, 0.7);
+
+  --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}

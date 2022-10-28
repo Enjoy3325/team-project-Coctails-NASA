@@ -1,2 +1,14 @@
-@import './common';
-@import './example';
+// Base styles
+@import './base/reset';
+@import './base/global';
+@import './base/common';
+
+// Utils styles
+@import './utils/brackpoints';
+
+@import './utils/mixins';
+@import './utils/vars';
+
+// components styles
+
+// Layout styles
