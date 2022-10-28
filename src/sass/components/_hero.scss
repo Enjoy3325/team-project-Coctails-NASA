@@ -14,7 +14,7 @@
     margin-right: auto;
     // background-color: #c4c4c4;
     background-image: url('../images/hero-bg-mob.png');
-    // background-image: url('../images/hero/hero-bg-mob.webp');
+    background-image: url('../images/hero-bg-mob.webp');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -22,30 +22,28 @@
     text-align: center;
 
     @include retina {
-      //   background-image: url('../../images/hero-bg-mob-2x.png');
-      //   background-image: $bg-gradient, url('../images/hero/hero-bg-mob-2x.webp');
+      background-image: url('../images/hero-bg-mob-2x.png');
+      background-image: url('../images/hero-bg-mob-2x.webp');
     }
 
-    // @include media-min($tablet) {
-    //   background-image: $bg-gradient, url('../images/hero/hero-bg-tab.jpg');
-    //   background-image: $bg-gradient, url('../images/hero/hero-bg-tab.webp');
+    @include media-min($tablet) {
+      background-image: url('../images/hero-bg-tab.png');
+      background-image: url('../images/hero-bg-tab.webp');
 
-    //   @include retina {
-    //     background-image: $bg-gradient, url('../images/hero/hero-bg-tab-2x.jpg');
-    //     background-image: $bg-gradient, url('../images/hero/hero-bg-tab-2x.webp');
-    //   }
-    // }
+      @include retina {
+        background-image: url('../images/hero-bg-tab-2x.png');
+        background-image: url('../images/hero-bg-tab-2x.webp');
+      }
+    }
+    @include media-min($tablet) {
+      background-image: url('../images/hero-bg-desc.png');
+      background-image: url('../images/hero-bg-desc.webp');
 
-    // @include media-min($desktop) {
-    //   height: 600px;
-    //   background-image: $bg-gradient, url('../images/hero/hero-bg.jpg');
-    //   background-image: $bg-gradient, url('../images/hero/hero-bg.webp');
-
-    //   @include retina {
-    //     background-image: $bg-gradient, url('../images/hero/hero-bg-2x.jpg');
-    //     background-image: $bg-gradient, url('../images/hero/hero-bg-2x.webp');
-    //   }
-    // }
+      @include retina {
+        background-image: url('../images/hero-bg-desc-2x.png');
+        background-image: url('../images/hero-bg-desc-2x.webp');
+      }
+    }
   }
 
   &__title {
