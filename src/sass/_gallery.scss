@@ -1,0 +1,27 @@
+.gallery {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  &__item {
+    border: 1px solid var(--grapefruit);
+    border-radius: 4px;
+  }
+  &__link {
+    display: block;
+    margin-bottom: 16px;
+  }
+  &__img {
+    margin-bottom: 48px;
+  }
+  &__subtitle {
+    font-size: 26px;
+    line-height: 1.62;
+    text-align: center;
+  }
+  &__btns {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 0 42px 24px;
+  }
+}
