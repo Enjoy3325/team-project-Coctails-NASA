@@ -5,10 +5,12 @@
 
 // Utils styles
 @import './utils/brackpoints';
-
+@import './utils/colormap';
+@import './utils/utils';
 @import './utils/mixins';
-@import './utils/vars';
 
 // components styles
+@import './components/buttons';
+@import './components/gallery';
 
 // Layout styles
