@@ -10,6 +10,7 @@
   overflow: hidden;
 }
 .backdrop {
+  position: relative;
   position: fixed;
   display: flex;
   width: 100%;
@@ -21,7 +22,7 @@
   left: 0;
   z-index: 40;
 
-  background: rgba(255, 255, 255, 0.2);
+  background: rgb(248, 246, 246, 0.7);
   overflow-y: scroll;
   transition: opacity 250ms time-distribution,
     visibility 250ms time-distribution;
@@ -44,7 +45,7 @@
   font-weight: 900;
   font-size: 32px;
   line-height: 1.18;
-  color: #202025;
+  color: var(--black);
   margin-top: 40px;
   margin-right: auto;
 }
@@ -55,7 +56,7 @@
   font-size: 16px;
   line-height: 1.6;
   margin-top: 20px;
-  color: #202025;
+  color: var(--black);
 }
 .modal-coctails__text {
   display: block;
@@ -63,7 +64,7 @@
   font-size: 16px;
   line-height: 1.8;
   margin-top: 20px;
-  color: #5f6775;
+  color: var(--gray);
 }
 .modal-coctails__image {
   width: 280px;
@@ -71,7 +72,7 @@
   display: block;
   margin-top: 32px;
 }
-.ingridients__list {
+.ingridients__subtitle {
   display: block;
   width: 103px;
   font-weight: 600;
@@ -80,6 +81,19 @@
   margin-top: 20px;
   list-style-type: none;
   color: #000917;
+}
+.ingridients__subtext {
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-top: 8px;
+  color: var(--black);
+}
+.ingridients__list {
+  margin-top: 8px;
+}
+.ingridients__item span::before {
+  content: '\2736 \0020 \0020';
 }
 .modal-coctails__closeModal {
   display: flex;
@@ -95,28 +109,24 @@
   border: none;
   cursor: pointer;
 }
-
+.modal-coctails__add {
+  font-family: 'Roboto';
+  width: 185px;
+  height: 48px;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  background-color: var(--grapefruit);
+  color: var(--white);
+  margin-top: 8px;
+  padding: 12px, 24px;
+}
 .modal-ingridients__body {
   position: absolute;
   padding: 40px;
 }
 
-.modal-ingridients__closeModa {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-
-  width: 30px;
-  height: 30px;
-  right: 8px;
-  top: 8px;
-
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 50%;
-  cursor: pointer;
-}
 .modal-ingridients__header {
   position: relative;
   font-weight: 700;

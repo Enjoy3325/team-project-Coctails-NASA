@@ -4,6 +4,7 @@ export const refs = {
   modal: document.querySelector('[data-modal]'),
   modal2: document.querySelector('[data-modal-ingridients]'),
   backdrop: document.querySelector('.backdrop'),
+  body: document.querySelector('body'),
   btnAddFavorie: document.querySelector('.modal-coctails__add'),
   ingridientsLink: document.querySelector('.ingridients__link'),
   //   btnRemove: document.querySelector('.modal-coctails__remove'),
@@ -21,7 +22,7 @@ window.addEventListener('keydown', handleCloseModal);
 // Открытие 1й модалки с галереи
 function toggleModal() {
   refs.modal.classList.toggle('is-hidden');
-  console.log('hi');
+  refs.body.classList.toggle('no-scroll');
   refs.modal2.classList.add('is-hidden');
 }
 //  Закрытие модалки по кнопке
