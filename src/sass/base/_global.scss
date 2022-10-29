@@ -8,7 +8,23 @@ body {
   margin: 0;
 
   //font-family: 'Roboto', sans-serif;
-   font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif;
+}
+
+main {
+  padding-top: 54px;
+  @include media-min($tablet) {
+    padding-top: 63px;
+  }
+  @include media-min($desktop) {
+    padding-top: 71px;
+  }
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .no-scroll {
