@@ -3,9 +3,6 @@
   opacity: 0;
   pointer-events: none;
 }
-/* .ingridients {
-
-} */
 .modal-open {
   overflow: hidden;
 }
@@ -27,111 +24,103 @@
   transition: opacity 250ms time-distribution,
     visibility 250ms time-distribution;
 }
-.ingridients {
-  z-index: 50;
-}
-.modal-coctails__body {
+
+.modal-coctails {
   max-width: 320px;
   background-color: #fff;
   position: relative;
   padding: 40px 20px;
-}
-.modal-coctails__header {
-  display: block;
-  font-family: 'Roboto';
-  position: relative;
-  width: 129px;
-  height: 37px;
-  font-weight: 900;
-  font-size: 32px;
-  line-height: 1.18;
-  color: var(--black);
-  margin-top: 40px;
-  margin-right: auto;
-}
-.modal-coctails__title {
-  display: block;
-  width: 122px;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 1.6;
-  margin-top: 20px;
-  color: var(--black);
-}
-.modal-coctails__text {
-  display: block;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.8;
-  margin-top: 20px;
-  color: var(--gray);
-}
-.modal-coctails__image {
-  width: 280px;
-  height: 280px;
-  display: block;
-  margin-top: 32px;
-}
-.ingridients__subtitle {
-  display: block;
-  width: 103px;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 1.5;
-  margin-top: 20px;
-  list-style-type: none;
-  color: #000917;
-}
-.ingridients__subtext {
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 1.5;
-  margin-top: 8px;
-  color: var(--black);
-}
-.ingridients__list {
-  margin-top: 8px;
-}
-.ingridients__item span::before {
-  content: '\2736 \0020 \0020';
-}
-.modal-coctails__closeModal {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
+  &__header {
+    display: block;
+    font-family: 'Roboto';
+    position: relative;
+    width: 129px;
+    height: 37px;
+    font-weight: 900;
+    font-size: 32px;
+    line-height: 1.18;
+    color: var(--black);
+    margin-top: 40px;
+    margin-right: auto;
+  }
+  &__title {
+    display: block;
+    width: 122px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-top: 20px;
+    color: var(--black);
+  }
+  &__text {
+    display: block;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.8;
+    margin-top: 20px;
+    color: var(--gray);
+  }
+  &__image {
+    width: 280px;
+    height: 280px;
+    display: block;
+    margin-top: 32px;
+  }
+  &__add {
+    font-family: 'Roboto';
+    width: max-content;
+    height: 48px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    background-color: var(--grapefruit);
+    color: var(--white);
+    margin-top: 32px;
+    padding: 12px, 24px;
+    &:hover,
+    &:focus {
+      background-color: #f5f5f5;
+      color: var(--grapefruit);
+    }
+  }
+  &__closeModal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
 
-  width: 32px;
-  height: 32px;
-  right: 16px;
-  top: 16px;
-  background-color: #fff;
-  border: none;
-  cursor: pointer;
+    width: 32px;
+    height: 32px;
+    right: 16px;
+    top: 16px;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+  }
 }
-.modal-coctails__add {
-  font-family: 'Roboto';
-  width: 185px;
-  height: 48px;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 1.2;
-  letter-spacing: 0.02em;
-  background-color: var(--grapefruit);
-  color: var(--white);
-  margin-top: 8px;
-  padding: 12px, 24px;
-}
-.modal-ingridients__body {
-  position: absolute;
-  padding: 40px;
-}
-
-.modal-ingridients__header {
-  position: relative;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 1.15;
-  text-align: center;
-  margin-bottom: 12px;
+.ingridients {
+  &__subtitle {
+    display: block;
+    width: 103px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-top: 20px;
+    list-style-type: none;
+    color: #000917;
+  }
+  &__subtext {
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-top: 8px;
+    color: var(--black);
+  }
+  &__list {
+    margin-top: 8px;
+  }
+  &__item span::before {
+    content: '\2736 \0020 \0020';
+  }
 }
