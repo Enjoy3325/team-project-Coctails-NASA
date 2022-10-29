@@ -46,7 +46,7 @@ function renderOptions() {
         }</option>`
     )
     .join('');
-  //   console.log(document.querySelector('#letter'), markup);
+  console.log(document.querySelector('#letter'), markup);
   document.querySelector('#letter').insertAdjacentHTML('beforeend', markup);
 }
 
