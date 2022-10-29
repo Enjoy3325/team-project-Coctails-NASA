@@ -17,6 +17,8 @@
       font-weight: 700;
     }
     @include media-min($desktop) {
+      max-width: 500px;
+      margin: 0 auto;
       font-size: 48px;
       font-family: 'Poppins', sans-serif;
       line-height: 1.5;

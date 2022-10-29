@@ -1,5 +1,4 @@
 import { getRandomCocktail } from './requests-api';
-import { arrLetters } from './select';
 
 const gallery = document.querySelector('.gallery');
 
@@ -33,7 +32,7 @@ function getRandCocktails(number) {
 }
 
 // renderCoctails відмальовує галерею
-function renderCocktails(arr) {
+export function renderCocktails(arr) {
   const markUp = arr
     .map(
       cocktail => `
@@ -72,24 +71,24 @@ getRandCocktails(numberOfGalleryItems());
 
 
 
-// document
-//   .querySelector('.hero__letter-box')
-//   .addEventListener('click', onCheckLetter);
+const heroFilters = document
+  .querySelector('.hero__letter-box')
+  .addEventListener('click', onCheckLetter);
 
-// function onCheckLetter(e) {
-//   const isHeroLetter = e.target.classList.contains('hero__letter');
-//   if (!isHeroLetter) {
-//     return;
-//   }
+function onCheckLetter(e) {
+  const isHeroLetter = e.target.classList.contains('hero__letter');
+  if (!isHeroLetter) {
+    return;
+  }
 
-//   const value = e.target.dataset.letter;
-//   const targetEl = e.target;
-//   const currentActiveEl = document.querySelector('.hero__letter.active');
+  const value = e.target.dataset.letter;
+  const targetEl = e.target;
+  const currentActiveEl = document.querySelector('.hero__letter.active');
 
-//   if (currentActiveEl) {
-//     currentActiveEl.classList.remove('active');
-//   }
+  if (currentActiveEl) {
+    currentActiveEl.classList.remove('active');
+  }
 
-//   targetEl.classList.add('active');
-//   requestApi(value, 'letter').then(data => console.log('data', data));
-// }
+  targetEl.classList.add('active');
+  requestApi(value, 'letter').then(data => console.log('data', data));
+}
