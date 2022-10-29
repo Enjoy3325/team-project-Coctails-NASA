@@ -1,3 +1,5 @@
+import { requestApi } from './requests-api.js';
+
 const arrLetters = [
   'a',
   'b',
@@ -25,6 +27,7 @@ const arrLetters = [
   'x',
   'y',
   'z',
+
   1,
   2,
   3,
@@ -37,6 +40,11 @@ const arrLetters = [
   0,
 ];
 
+const refs = {
+  letterBox: document.querySelector('.hero__letter-box'),
+  selectLetter: document.querySelector('#letter'),
+};
+
 function renderOptions() {
   const markup = arrLetters
     .map(
@@ -46,27 +54,23 @@ function renderOptions() {
         }</option>`
     )
     .join('');
-  console.log(document.querySelector('#letter'), markup);
-  document.querySelector('#letter').insertAdjacentHTML('beforeend', markup);
+
+  refs.selectLetter.insertAdjacentHTML('beforeend', markup);
 }
 
 function renderLetterButtons() {
   let arr = arrLetters;
-  arr.splice(-10, 1, ' ');
-  console.log(arr);
+  arr.splice(-10, 0, ' ');
   const markup = arr
     .map(
       letter =>
-        `<button type="button" class="hero__letter" data-letter="${letter}">${
+        `<div class="hero__letter " data-letter="${letter}">${
           !isNaN(letter) ? letter : letter.toUpperCase()
-        }</button>`
+        }</div>`
     )
     .join('');
-  document
-    .querySelector('.hero__letter-box')
-    .insertAdjacentHTML('beforeend', markup);
+  refs.letterBox.insertAdjacentHTML('beforeend', markup);
 }
-console.log(window.innerWidth, window.innerWidth > 479);
 
 function checkWindowWidth() {
   if (window.innerWidth > 767) {
@@ -78,5 +82,22 @@ function checkWindowWidth() {
 
 checkWindowWidth();
 
-import { requestApi } from './requests-api.js';
-requestApi('a', 'letter').then(data => console.log('data', data));
+refs.letterBox.addEventListener('click', onCheckLetter);
+
+function onCheckLetter(e) {
+  const isHeroLetter = e.target.classList.contains('hero__letter');
+  if (!isHeroLetter) {
+    return;
+  }
+
+  const value = e.target.dataset.letter;
+  const targetEl = e.target;
+  const currentActiveEl = document.querySelector('.hero__letter.active');
+
+  if (currentActiveEl) {
+    currentActiveEl.classList.remove('active');
+  }
+
+  targetEl.classList.add('active');
+  requestApi(value, 'letter').then(data => console.log('data', data));
+}
