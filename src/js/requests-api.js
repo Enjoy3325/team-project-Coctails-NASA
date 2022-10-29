@@ -36,12 +36,12 @@ const createCocktailArray = res => {
       img: strDrinkThumb,
     };
   });
-  console.log(newDrinks);
+  // console.log(newDrinks);
 
   return newDrinks;
 };
 
-function requestApi(query, name = 'name') {
+export function requestApi(query, name = 'name') {
   switch (name) {
     case 'letter':
       return getCocktailsByFirstLetter(query);
@@ -52,7 +52,7 @@ function requestApi(query, name = 'name') {
   }
 }
 
-export { requestApi };
+// export { requestApi };
 
 // getCocktailsByName(query)
 //   .then(res => createCocktailArray(res))

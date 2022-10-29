@@ -1,4 +1,4 @@
-const arrLetters = [
+export const arrLetters = [
   'a',
   'b',
   'c',
@@ -46,14 +46,14 @@ function renderOptions() {
         }</option>`
     )
     .join('');
-  console.log(document.querySelector('#letter'), markup);
+  // console.log(document.querySelector('#letter'), markup);
   document.querySelector('#letter').insertAdjacentHTML('beforeend', markup);
 }
 
 function renderLetterButtons() {
   let arr = arrLetters;
   arr.splice(-10, 1, ' ');
-  console.log(arr);
+  // console.log(arr);
   const markup = arr
     .map(
       letter =>
@@ -66,7 +66,7 @@ function renderLetterButtons() {
     .querySelector('.hero__letter-box')
     .insertAdjacentHTML('beforeend', markup);
 }
-console.log(window.innerWidth, window.innerWidth > 479);
+// console.log(window.innerWidth, window.innerWidth > 479);
 
 function checkWindowWidth() {
   if (window.innerWidth > 767) {
