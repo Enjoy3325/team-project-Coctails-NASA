@@ -1,9 +1,11 @@
-<div class='anchor' id='home' data-section='home'></div>
-<header class='header'>
+<header class='header' id='home'>
   <div class='container container-header'>
     <a class='logo' href='#home'>
       <img src='./images/logo.png' alt='main-logo'>
     </a>
+    <form class='mob-menu-form' type='submit'>
+      <input type='text' id='search-box1' placeholder='Search |'>
+    </form>
     <button type='button' class='menu-btn' data-menu-open>
       <svg width='28' height='28' aria-label='Вмикач меню'>
         <use class='menu-btn__icon' href='./images/sprite.svg#burgermenu'></use>
@@ -12,29 +14,29 @@
     <div class='menu-container'>
       <div class='mob-menu is-hidden'>
         <button class='mob-menu__btn' type='button' data-menu-close>
-          <svg class='mob-menu__btn-img' width='12' height='12'>
+          <svg class='mob-menu__btn-img' width='32' height='32'>
             <use href='./images/sprite.svg#cross'></use>
           </svg>
         </button>
         <form class='mob-menu-form' type='submit'>
-          <input type="text" id="search-box" placeholder='Search |'>
+          <input type='text' id='search-box' placeholder='Search |'>
         </form>
         <nav class='mob-menu-nav'>
           <ul class='mob-menu-nav__list'>
             <li class='mob-menu-nav__item'>
-              <a class='mob-menu-nav__link mob-menu-nav__link--current' href='#home'>Home</a></li>
-            <li class='mob-menu-nav__item'>
-              <a class='mob-menu-nav__link' href='#favorites'>Favorites</a>
-              <button type='button'>
-                <svg class='mob-menu__btn-img' width='12' height='12'>
+              <a class='mob-menu-nav__link' href='#home'>Home</a></li>
+            <li class='mob-menu-nav__item fav'>
+              <a class='mob-menu-nav__link' href='#favorites-ul'>
+Favorites
+                <svg class='mob-menu__btn-img' width='24' height='24'>
                   <use href='./images/sprite.svg#arrow-down'></use>
                 </svg>
-              </button>
-              <ul class='is-hidden'>
-                <li>
+              </a>
+              <ul class='favorites' id='favorites-ul'>
+                <li class='favorites__item'>
                   <a class='mob-menu-nav__link' href='#favorites-cocktails'>Favorite cocktails</a>
                 </li>
-                <li>
+                <li class='favorites__item'>
                   <a class='mob-menu-nav__link' href='#favorites-ingredients'>Favorite ingredients</a>
                 </li>
               </ul>
@@ -43,6 +45,7 @@
         </nav>
       </div>
     </div>
+
     <nav class='nav'>
       <ul class='nav__list'>
         <li class='nav__item'><a class='nav__link' href='#home' data-section='home'>Home</a></li>
