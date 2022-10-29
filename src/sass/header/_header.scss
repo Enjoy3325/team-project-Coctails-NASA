@@ -1,0 +1,52 @@
+// Header styles
+.header {
+  //display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-top: 20px;
+  //background-color: var(--white);
+  //box-shadow: 0 4px 24px rgba(105, 105, 105, 0.1);
+  //z-index: 5;
+}
+
+.logo {
+  width: 124px;
+  //height: 34px;
+  //background-color: orange;
+  margin-right: auto;
+}
+
+.container-header {
+  display: flex;
+  //align-items: center;
+}
+
+.menu-btn {
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  //background-image: url('../images/icons/sprite.svg#burgermenu');
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+
+  @include tablet {
+    display: none;
+  }
+}
+
+.menu-btn__icon {
+  fill: var(--black);
+  //transition: fill $hover-focus-decor-func;
+
+  .menu-btn:active & {
+    fill: var(--grapefruit);
+  }
+}
+
+@import '../header/mob-menu';
+@import '../header/nav';
