@@ -6,17 +6,15 @@ export const refs = {
   backdrop: document.querySelector('.backdrop'),
   body: document.querySelector('body'),
   btnAddFavorie: document.querySelector('.modal-coctails__add'),
-  ingridientsLink: document.querySelector('.ingridients__link'),
-  //   btnRemove: document.querySelector('.modal-coctails__remove'),
+  ingridientsItems: document.querySelectorAll('.ingridients__item'),
 };
+
 let flag = true;
+//Слушатели
 refs.openModalBtn.addEventListener('click', toggleModal);
 refs.closeModalBtn.addEventListener('click', toggleModal);
 refs.backdrop.addEventListener('click', onBakdropClick);
 refs.btnAddFavorie.addEventListener('click', onCangeBtn);
-// refs.btnRemove.addEventListener('click', onClickRemoveHiden),
-refs.ingridientsLink.addEventListener('click', onClickModalIngridientsTwo);
-
 window.addEventListener('keydown', handleCloseModal);
 
 // Открытие 1й модалки с галереи
@@ -32,43 +30,39 @@ function onCloseModal() {
     refs.modal2.classList.add('is-hidden');
   }
 }
-// Закрітие по
+
+// Закрытие по бекдропу
 function onBakdropClick(e) {
   if (e.currentTarget === e.target) {
     onCloseModal();
   }
 }
+// Смена кнопок с Add на Remove + добавить innerHTML
 function onCangeBtn() {
   if (flag) {
-    console.log('Yes');
     refs.btnAddFavorie.innerHTML = 'Remove from favorite';
   } else {
-    console.log('0');
     refs.btnAddFavorie.innerHTML = 'Add to favorite';
   }
   flag = !flag;
 }
-// Добавление is-hidden на кнопку Add и снятие  is-hidden с кнопки Remove
-function onAddFavorite() {
-  refs.btnRemove.classList.remove('is-hidden');
-  console.log('---> Add');
-  refs.btnAddFavorie.classList.add('is-hidden');
-}
-// Добавление is-hidden на кнопку Remove и снятие  is-hidden с кнопки Add
-function onClickRemoveHiden() {
-  refs.btnRemove.classList.add('is-hidden');
-  refs.btnAddFavorie.classList.remove('is-hidden');
-}
-// Вызов модалки 2 по ссылке
-function onClickModalIngridientsTwo() {
-  if ('click') {
-    refs.modal2.classList.remove('is-hidden');
-    refs.modal.classList.add('is-hidden');
-  }
-}
+
 // Закрытие по ЕСК
 function handleCloseModal(e) {
   if (e.key === 'Escape') {
     refs.modal.classList.add('is-hidden');
   }
 }
+
+// ___________Вызов модалки 2 ______________
+
+function onClickModalIngridientsTwo() {
+  if ('click') {
+    refs.modal2.classList.remove('is-hidden');
+    refs.modal.classList.add('is-hidden');
+  }
+  console.log('----> click');
+}
+refs.ingridientsItems.forEach(ingridientsItem => {
+  ingridientsItem.addEventListener('click', onClickModalIngridientsTwo);
+});
