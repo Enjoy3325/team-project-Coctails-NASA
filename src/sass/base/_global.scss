@@ -7,7 +7,7 @@ body {
   color: var(--praimery-text-color);
   margin: 0;
 
-  //font-family: 'Roboto', sans-serif;
+  // font-family: 'Roboto', sans-serif;
   font-family: 'Poppins', sans-serif;
 }
 
@@ -49,12 +49,4 @@ button {
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
-}
-
-.section__title {
-    padding-bottom: 60px;
-    font-size: 22px;
-    font-weight: 700;
-    line-height: 1.91;
-    text-align: center;
 }

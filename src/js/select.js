@@ -82,22 +82,22 @@ function checkWindowWidth() {
 
 checkWindowWidth();
 
-refs.letterBox.addEventListener('click', onCheckLetter);
+// refs.letterBox.addEventListener('click', onCheckLetter);
 
-function onCheckLetter(e) {
-  const isHeroLetter = e.target.classList.contains('hero__letter');
-  if (!isHeroLetter) {
-    return;
-  }
+// function onCheckLetter(e) {
+//   const isHeroLetter = e.target.classList.contains('hero__letter');
+//   if (!isHeroLetter) {
+//     return;
+//   }
 
-  const value = e.target.dataset.letter;
-  const targetEl = e.target;
-  const currentActiveEl = document.querySelector('.hero__letter.active');
+//   const value = e.target.dataset.letter;
+//   const targetEl = e.target;
+//   const currentActiveEl = document.querySelector('.hero__letter.active');
 
-  if (currentActiveEl) {
-    currentActiveEl.classList.remove('active');
-  }
+//   if (currentActiveEl) {
+//     currentActiveEl.classList.remove('active');
+//   }
 
-  targetEl.classList.add('active');
-  requestApi(value, 'letter').then(data => console.log('data', data));
-}
+//   targetEl.classList.add('active');
+//   requestApi(value, 'letter').then(data => console.log('data', data));
+// }

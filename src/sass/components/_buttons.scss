@@ -1,14 +1,16 @@
 .btn {
   display: flex;
-  align-content: center;
   justify-content: center;
   align-items: center;
-  width: 110px;
-  height: 40px;
-  outline: none;
-  border: none;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.7;
   border-radius: 4px;
   cursor: pointer;
+  @include media-min($tablet) {
+    font-size: 20px;
+    line-height: 1.2;
+  }
 
   &__icon-wrap {
     width: 19px;
@@ -22,12 +24,32 @@
       fill: var(--white);
     }
   &--orange {
+    padding: 8px 16px;
+    min-width: 110px;
     color: var(--white);
     background-color: var(--auxiliary-orange);
+    @include media-min($tablet) {
+      padding: 12px 27px;
+      min-width: 160px;
+    }
+    @include media-min($desktop) {
+      padding: 12px 38px;
+      min-width: 182px;
+    }
   }
   &--white {
+    padding: 8px 16px;
+    min-width: 110px;
     color: var(--grapefruit);
     background-color: var(--white);
     border: 1px solid var(--grapefruit);
+    @include media-min($tablet) {
+      padding: 12px 13px;
+      min-width: 123px;
+    }
+    @include media-min($desktop) {
+      padding: 12px 22px;
+      min-width: 140px;
+    }
   }
 }

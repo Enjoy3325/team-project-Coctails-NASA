@@ -1,13 +1,13 @@
-import { requestApi } from './requests-api';
+import { getRandomCocktail } from './requests-api';
 import { arrLetters } from './select';
 
 const gallery = document.querySelector('.gallery');
 
 // функція randomEl повертає довільний елемент з масиву arr;
-function randomEl(arr) {
-  const RandIndex = Math.floor(Math.random() * arr.length);
-  return (randValue = arr[RandIndex]);
-}
+// function randomEl(arr) {
+//   const RandIndex = Math.floor(Math.random() * arr.length);
+//   return (randValue = arr[RandIndex]);
+// }
 
 // функція numberOfGalleryItems повертає кількість коктейлів,
 // що мають з'явитись в галереї (відповідно до ширини екрану);
@@ -26,19 +26,17 @@ const numberOfGalleryItems = () => {
 function getRandCocktails(number) {
   let promiseArray = [];
   for (i = 1; i <= number; i += 1) {
-    promiseArray.push(
-      requestApi(randomEl(arrLetters), 'letter').then(data => randomEl(data))
-    );
+    promiseArray.push(getRandomCocktail().then(data => data));
   }
-  console.log('масив промісів:', promiseArray);
   Promise.all(promiseArray)
-    .then(cocktails => renderCoctails(cocktails));
+    .then(cocktails => renderCocktails(cocktails));
 }
- 
+
 // renderCoctails відмальовує галерею
-function renderCoctails(arr) {
+function renderCocktails(arr) {
   const markUp = arr
-    .map((cocktail) => `
+    .map(
+      cocktail => `
       <li class="gallery__item">
         <img
             class="gallery__img"
@@ -47,7 +45,7 @@ function renderCoctails(arr) {
             width="280px"
             height="280px"
           />
-          <h3 class="gallery__subtitle">Negroni</h3>
+          <h3 class="gallery__subtitle">${cocktail.name}</h3>
         <div class="gallery__btns">
           <button class="btn btn--orange" type="button">Learn more</button>
           <button class="btn btn--white" type="button">
@@ -63,10 +61,35 @@ function renderCoctails(arr) {
             <span class="btn__icon-wrap"> </span>
           </button>
         </div>
-      </li>`)
+      </li>`
+    )
     .join('');
 
   gallery.innerHTML = markUp;
 }
  
 getRandCocktails(numberOfGalleryItems());
+
+
+
+// document
+//   .querySelector('.hero__letter-box')
+//   .addEventListener('click', onCheckLetter);
+
+// function onCheckLetter(e) {
+//   const isHeroLetter = e.target.classList.contains('hero__letter');
+//   if (!isHeroLetter) {
+//     return;
+//   }
+
+//   const value = e.target.dataset.letter;
+//   const targetEl = e.target;
+//   const currentActiveEl = document.querySelector('.hero__letter.active');
+
+//   if (currentActiveEl) {
+//     currentActiveEl.classList.remove('active');
+//   }
+
+//   targetEl.classList.add('active');
+//   requestApi(value, 'letter').then(data => console.log('data', data));
+// }

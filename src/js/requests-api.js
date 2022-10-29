@@ -21,6 +21,20 @@ const getIngredientInfo = query => {
     .catch();
 };
 
+export const getRandomCocktail = () => {
+  return axios
+    .get('https://www.thecocktaildb.com/api/json/v1/1/random.php')
+    .then(res => res.data.drinks[0])
+    .then(obj => {
+      return {
+        name: obj.strDrink,
+        instruction: obj.strInstructions,
+        img: obj.strDrinkThumb,
+      };
+    })
+    .catch();
+}
+
 const createCocktailArray = res => {
   const newDrinks = res.data.drinks.map(drink => {
     const { strDrink, strInstructions, strDrinkThumb } = drink;
