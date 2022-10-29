@@ -1,0 +1,74 @@
+.hero {
+  //   background-color: antiquewhite;
+  margin-top: 60px;
+
+  &__overlay {
+    margin-bottom: 60px;
+
+    display: flex;
+    align-items: center;
+    padding: 0;
+    height: 245px;
+    max-width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
+    // background-color: #c4c4c4;
+    background-image: url('../images/hero-bg-mob.png');
+    // background-image: url('../images/hero/hero-bg-mob.webp');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    text-align: center;
+
+    @include retina {
+      //   background-image: url('../../images/hero-bg-mob-2x.png');
+      //   background-image: $bg-gradient, url('../images/hero/hero-bg-mob-2x.webp');
+    }
+
+    // @include media-min($tablet) {
+    //   background-image: $bg-gradient, url('../images/hero/hero-bg-tab.jpg');
+    //   background-image: $bg-gradient, url('../images/hero/hero-bg-tab.webp');
+
+    //   @include retina {
+    //     background-image: $bg-gradient, url('../images/hero/hero-bg-tab-2x.jpg');
+    //     background-image: $bg-gradient, url('../images/hero/hero-bg-tab-2x.webp');
+    //   }
+    // }
+
+    // @include media-min($desktop) {
+    //   height: 600px;
+    //   background-image: $bg-gradient, url('../images/hero/hero-bg.jpg');
+    //   background-image: $bg-gradient, url('../images/hero/hero-bg.webp');
+
+    //   @include retina {
+    //     background-image: $bg-gradient, url('../images/hero/hero-bg-2x.jpg');
+    //     background-image: $bg-gradient, url('../images/hero/hero-bg-2x.webp');
+    //   }
+    // }
+  }
+
+  &__title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 1.9;
+    color: var(--grapefruit);
+
+    @include media-min($desktop) {
+      font-size: 44px;
+      line-height: 1.36;
+    }
+  }
+
+  &__text {
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 2;
+    letter-spacing: 0.02em;
+    color: #000000;
+    opacity: 0.8;
+  }
+}
