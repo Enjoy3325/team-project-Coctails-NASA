@@ -1,13 +1,13 @@
-// Base styles
-@import './base/reset';
-@import './base/global';
-@import './base/common';
-
 // Utils styles
 @import './utils/brackpoints';
 @import './utils/colormap';
 @import './utils/mixins';
 @import './utils/utils';
+
+// Base styles
+@import './base/common';
+@import './base/reset';
+@import './base/global';
 
 // components styles
 @import './components/buttons';

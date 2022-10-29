@@ -1,24 +1,31 @@
 .hero {
-  //   background-color: antiquewhite;
   margin-top: 60px;
+  @include media-min($tablet) {
+    margin-top: 77px;
+  }
+  @include media-min($desktop) {
+    margin-top: 89px;
+  }
 
   &__container {
     display: flex;
     flex-direction: column;
+
+    @include media-min($tablet) {
+      flex-direction: row;
+      gap: 32px;
+    }
   }
 
   &__overlay {
     margin-bottom: 60px;
-
     display: flex;
     align-items: center;
     padding: 0;
     height: 245px;
     width: 280px;
-    // max-width: 1600px;
     margin-left: auto;
     margin-right: auto;
-    // background-color: #c4c4c4;
     background-image: url('../images/hero-bg-mob.png');
     background-image: url('../images/hero-bg-mob.webp');
     background-repeat: no-repeat;
@@ -33,6 +40,9 @@
     }
 
     @include media-min($tablet) {
+      height: 294px;
+      min-width: 336px;
+      width: 336px;
       background-image: url('../images/hero-bg-tab.png');
       background-image: url('../images/hero-bg-tab.webp');
 
@@ -53,12 +63,17 @@
   }
 
   &__title {
-    font-family: 'Poppins', sans-serif;
+    // font-family: 'Poppins', sans-serif;
     font-weight: 600;
     font-size: 22px;
     line-height: 1.9;
     color: var(--grapefruit);
 
+    @include media-min($tablet) {
+      font-size: 26px;
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
     @include media-min($desktop) {
       font-size: 44px;
       line-height: 1.36;
@@ -67,18 +82,55 @@
 
   &__text {
     margin-bottom: 20px;
-    font-family: 'Poppins', sans-serif;
+    // font-family: 'Poppins', sans-serif;
     font-weight: 500;
     font-size: 14px;
     line-height: 2;
     letter-spacing: 0.02em;
     color: #000000;
     opacity: 0.8;
+
+    @include media-min($tablet) {
+      margin-bottom: 40px;
+    }
   }
 
   &__select-box {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @include media-min($tablet) {
+      display: none;
+    }
+  }
+
+  &__letter-box {
+    display: none;
+    @include media-min($tablet) {
+      display: flex;
+      flex-wrap: wrap;
+
+      // justify-content: center;
+      // gap: 1px;
+    }
+  }
+}
+
+.hero__letter {
+  width: 24px;
+  height: 25px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--gray);
+  margin-right: 1px;
+
+  &.active {
+    color: #fd5103;
+    stroke-width: 1px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: var(--gray);
+    text-shadow: 0px 4px 4px rgba(95, 103, 117, 0.25);
   }
 }
