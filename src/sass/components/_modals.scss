@@ -1,0 +1,96 @@
+.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+/* .ingridients {
+
+} */
+.modal-open {
+  overflow: hidden;
+}
+img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.backdrop {
+  position: fixed;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+
+  top: 0;
+  left: 0;
+  z-index: 80;
+
+  background: rgba(0, 0, 0, 0.2);
+  overflow-y: scroll;
+  transition: opacity 250ms time-distribution,
+    visibility 250ms time-distribution;
+}
+.ingridients {
+  z-index: 10;
+}
+.modal-coctails__body {
+  width: 320px;
+  position: absolute;
+  padding: 40px;
+}
+
+.modal-coctails__closeModa {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+
+  width: 30px;
+  height: 30px;
+  right: 16px;
+  top: 16px;
+
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.modal-coctails__header {
+  position: relative;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.15;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.modal-ingridients__body {
+  position: absolute;
+  padding: 40px;
+}
+
+.modal-ingridients__closeModa {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+
+  width: 30px;
+  height: 30px;
+  right: 8px;
+  top: 8px;
+
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.modal-ingridients__header {
+  position: relative;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.15;
+  text-align: center;
+  margin-bottom: 12px;
+}

@@ -1,0 +1,62 @@
+<!----- Modal coctails ----->
+<div class="backdrop is-hidden" data-modal>
+  <div class="modal-coctails__body">
+    <button data-modal-close class="modal-coctails__closeModal" type="button">
+      <svg width="18" height="18">
+        <use href="./images/sprite.svg#cross"></use>
+      </svg>
+    </button>
+
+    <h2 class="modal-coctails__header">Negroni</h2>
+
+    <b class="modal-coctails__instraction">INSTRACTIONS:</b>
+    <p class="modal-coctails__text">
+      Add the gin, Campari and sweet vermouth to a mixing glass filled with ice,
+      and stir until well-chilled. Strain into a rocks glass filled with large
+      ice cubes. Garnish with an orange peel.
+    </p>
+    <img class="modal-coctails__image" src="./images/test.jpeg" alt="" />
+
+    <div class="ingridients">
+      <ul class="ingridients__list">
+        INGREDIENTS
+        <li class="ingridients__item">
+          Per cocktail
+          <a href="" class="ingridients__link">Ice</a>
+        </li>
+      </ul>
+      <button data-modal-open class="modal-coctails__add btn" type="button">
+        Add to favorite
+      </button>
+    </div>
+  </div>
+</div>
+<!-- Modal 2 -->
+<div class="backdrop--ingridients is-hidden" data-modal-ingridients>
+  <div class="modal-ingridients__body">
+    <button data-modal-close class="modal-coctails__closeModal" type="button">
+      <svg width="18" height="18">
+        <use href="./images/sprite.svg#cross"></use>
+      </svg>
+    </button>
+    <h2 class="modal-ingridients__header">Campari</h2>
+    <b class="modal-ingridients__sort">Liqueur</b>
+    <span>Campari</span>
+    <p>
+      is an Italian alcoholic liqueur, considered an apéritif (20.5%, 21%, 24%,
+      25%, or 28.5% ABV, depending on the country in which it is sold), obtained
+      from the infusion of herbs and fruit (including chinotto and cascarilla)
+      in alcohol and water. It is a bitters, characterised by its dark red
+      colour.
+    </p>
+  </div>
+  <div class="characteristics">
+    <ul class="characteristics__list">
+      <li class="characteristics__item">Type: Bitters</li>
+      <li class="characteristics__item">Country of origin: Italy</li>
+      <li class="characteristics__item">Alcohol by volume: 20.5–28.5</li>
+      <li class="characteristics__item">Flavour: Bitter, spicy and sweet</li>
+    </ul>
+  </div>
+  <button class="characteristics__btn" type="button">Add to favorite</button>
+</div>
