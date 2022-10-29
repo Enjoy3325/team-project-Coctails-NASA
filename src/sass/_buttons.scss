@@ -13,6 +13,7 @@
   &__icon-wrap {
     width: 19px;
     height: 17px;
+<<<<<<< Updated upstream:src/sass/_buttons.scss
     background-image: url(./images/svg/heart.svg);
     background-repeat: no-repeat;
     background-size: contain;
@@ -20,6 +21,17 @@
 //   &__icon {
 //   }
   --orange {
+=======
+    background-image: url(../images/orangeheart.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+    &__icon {
+      padding-top: 2px;
+      fill: var(--white);
+    }
+  &--orange {
+>>>>>>> Stashed changes:src/sass/components/_buttons.scss
     color: var(--white);
     background-color: var(--auxiliary-orange);
   }
