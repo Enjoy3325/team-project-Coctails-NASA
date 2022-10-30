@@ -50,8 +50,8 @@ const createCocktailArray = res => {
       img: strDrinkThumb,
     };
   });
-  console.log(newDrinks);
-
+  // console.log(newDrinks);
+  localStorage.setItem('cocktails', JSON.stringify(newDrinks))
   return newDrinks;
 };
 
