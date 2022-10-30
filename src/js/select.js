@@ -1,5 +1,5 @@
 import { requestApi } from './requests-api.js';
-
+import { renderCocktails } from './render-gallery';
 const arrLetters = [
   'a',
   'b',
@@ -99,5 +99,16 @@ function onCheckLetter(e) {
   }
 
   targetEl.classList.add('active');
-  requestApi(value, 'letter').then(data => console.log('data', data));
+  requestApi(value, 'letter').then(cocktails => {
+    console.log(cocktails.length);
+    if (cocktails.length !== 0) {
+      document.querySelector('.cocktails__title').innerHTML = 'Searching results';
+      renderCocktails(cocktails);
+      return;
+    }  
+      document.querySelector('.cocktails__title').innerHTML = "Sorry, we didn't find any cocktail for you";
+      document.querySelector('.gallery').innerHTML = `<img
+            <div class="ooops-img"></div>`;
+    
+  });
 }

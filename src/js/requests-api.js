@@ -4,22 +4,36 @@ const getCocktailsByName = query => {
   return axios
     .get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${query}`)
     .then(res => createCocktailArray(res))
-    .catch();
+    .catch(Error => []);
 };
 
 const getCocktailsByFirstLetter = query => {
   return axios
     .get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${query}`)
     .then(res => createCocktailArray(res))
-    .catch();
+    .catch(Error => []);
 };
 
 const getIngredientInfo = query => {
   return axios
     .get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?i=${query}`)
     .then(res => res.data.ingredients[0])
-    .catch();
+    .catch(Error => []);
 };
+
+export const getRandomCocktail = () => {
+  return axios
+    .get('https://www.thecocktaildb.com/api/json/v1/1/random.php')
+    .then(res => res.data.drinks[0])
+    .then(obj => {
+      return {
+        name: obj.strDrink,
+        instruction: obj.strInstructions,
+        img: obj.strDrinkThumb,
+      };
+    })
+    .catch();
+}
 
 const createCocktailArray = res => {
   const newDrinks = res.data.drinks.map(drink => {
@@ -36,12 +50,12 @@ const createCocktailArray = res => {
       img: strDrinkThumb,
     };
   });
-  console.log(newDrinks);
+  // console.log(newDrinks);
 
   return newDrinks;
 };
 
-function requestApi(query, name = 'name') {
+export function requestApi(query, name = 'name') {
   switch (name) {
     case 'letter':
       return getCocktailsByFirstLetter(query);
@@ -52,7 +66,7 @@ function requestApi(query, name = 'name') {
   }
 }
 
-export { requestApi };
+// export { requestApi };
 
 // getCocktailsByName(query)
 //   .then(res => createCocktailArray(res))
