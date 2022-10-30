@@ -3,8 +3,8 @@ html {
 }
 
 body {
-  background-color: var(--praimery-bg-color);
-  color: var(--praimery-text-color);
+  background-color: var(--white);
+  color: var(--black);
   margin: 0;
 
   // font-family: 'Roboto', sans-serif;
@@ -15,9 +15,6 @@ main {
   padding-top: 54px;
   @include media-min($tablet) {
     padding-top: 63px;
-  }
-  @include media-min($desktop) {
-    padding-top: 71px;
   }
 }
 
@@ -35,6 +32,12 @@ button {
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
+}
+
+.text-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .visually-hidden {

@@ -2,8 +2,9 @@
 .header {
   position: fixed;
   width: 100%;
-  padding-top: 20px;
+  padding: 20px 0;
   z-index: 1;
+  background-color: var(--white);
 }
 
 .container-header {
@@ -38,25 +39,25 @@
   }
 }
 
-.form-btn{
+.form-btn {
   padding: 7px;
-  border: 1px solid #FD5103;
+  border: 1px solid #fd5103;
   border-radius: 4px 0 0 4px;
   width: 40px;
   height: 40px;
   fill: var(--grapefruit);
   transition: fill 400ms cubic-bezier(0.4, 0, 0.2, 1),
-  background-color 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    background-color 400ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  &:hover{
+  &:hover {
     background-color: var(--grapefruit);
     fill: var(--white);
   }
 }
 
-.form-input{
+.form-input {
   padding: 8px;
-  border: 1px solid #FD5103;
+  border: 1px solid #fd5103;
   border-left: none;
   border-radius: 0 4px 4px 0;
   width: 240px;

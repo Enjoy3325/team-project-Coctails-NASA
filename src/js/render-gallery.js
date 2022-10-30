@@ -27,8 +27,7 @@ function getRandCocktails(number) {
   for (i = 1; i <= number; i += 1) {
     promiseArray.push(getRandomCocktail().then(data => data));
   }
-  Promise.all(promiseArray)
-    .then(cocktails => renderCocktails(cocktails));
+  Promise.all(promiseArray).then(cocktails => renderCocktails(cocktails));
 }
 
 // renderCoctails відмальовує галерею
@@ -44,7 +43,7 @@ export function renderCocktails(arr) {
             width="280px"
             height="280px"
           />
-          <h3 class="gallery__subtitle">${cocktail.name}</h3>
+          <h3 class="gallery__subtitle text-truncate">${cocktail.name}</h3>
         <div class="gallery__btns">
           <button class="btn btn--orange" type="button">Learn more</button>
           <button class="btn btn--white" type="button">
@@ -66,10 +65,8 @@ export function renderCocktails(arr) {
 
   gallery.innerHTML = markUp;
 }
- 
+
 getRandCocktails(numberOfGalleryItems());
-
-
 
 const heroFilters = document
   .querySelector('.hero__letter-box')
