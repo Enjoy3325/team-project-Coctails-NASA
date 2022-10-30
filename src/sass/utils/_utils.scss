@@ -15,8 +15,8 @@
     width: $tablet;
   }
   @include media-min($desktop) {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 16px;
+    padding-right: 16px;
     width: $desktop;
   }
 }

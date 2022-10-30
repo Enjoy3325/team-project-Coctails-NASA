@@ -12,7 +12,8 @@
       width: 335px;
     }
     @include media-min($desktop) {
-      width: 395px;
+      // width: 395px;
+      width: calc((100% - 64px) / 3);
     }
   }
   &__img {
@@ -24,11 +25,13 @@
   }
   &__subtitle {
     margin-bottom: 16px;
+    padding: 0 20px;
     font-family: 'Roboto', sans-serif;
     font-size: 26px;
     font-weight: 900;
     line-height: 1.62;
     text-align: center;
+    width: 100%;
     @include media-min($tablet) {
       font-size: 28px;
       line-height: 1.18;
