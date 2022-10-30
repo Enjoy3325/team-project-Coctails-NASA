@@ -115,6 +115,11 @@
     }
   }
 
+  &__select-wrap {
+    width: 93px;
+    height: 34px;
+  }
+
   &__letter-box {
     display: none;
     @include media-min($tablet) {
