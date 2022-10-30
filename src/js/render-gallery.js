@@ -1,8 +1,6 @@
 import { getRandomCocktail } from './requests-api';
 
 const gallery = document.querySelector('.gallery');
-const btnMore = document.querySelector('[data-modal-open]');
-
 
 // функція randomEl повертає довільний елемент з масиву arr;
 // function randomEl(arr) {
@@ -49,9 +47,9 @@ export function renderCocktails(arr) {
             width="280px"
             height="280px"
           />
-          <h3 class="gallery__subtitle">${cocktail.name}</h3>
+          <h3 class="gallery__subtitle text-truncate">${cocktail.name}</h3>
         <div class="gallery__btns">
-          <button data-modal-open data-cocktail='${cocktail.name}'  class="btn btn--orange" type="button">Learn more</button>
+          <button class="btn btn--orange" type="button">Learn more</button>
           <button class="btn btn--white" type="button">
             Add to &nbsp
             <span class="btn__icon-wrap">
@@ -68,8 +66,11 @@ export function renderCocktails(arr) {
       </li>`
     )
     .join('');
+
   gallery.innerHTML = markUp;
 }
+
+getRandCocktails(numberOfGalleryItems());
 
   // console.log('ghghgh', btnMore)
 
