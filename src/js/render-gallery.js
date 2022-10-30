@@ -43,7 +43,7 @@ export function renderCocktails(arr) {
             width="280px"
             height="280px"
           />
-          <h3 class="gallery__subtitle">${cocktail.name}</h3>
+          <h3 class="gallery__subtitle text-truncate">${cocktail.name}</h3>
         <div class="gallery__btns">
           <button data-modal-open class="btn btn--orange" type="button">Learn more</button>
           <button class="btn btn--white" type="button">
