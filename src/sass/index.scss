@@ -1,16 +1,27 @@
-// Base styles
-@import './base/reset';
-@import './base/global';
-@import './base/common';
-
 // Utils styles
 @import './utils/brackpoints';
 @import './utils/colormap';
 @import './utils/mixins';
 @import './utils/utils';
 
+// Base styles
+@import './base/common';
+@import './base/reset';
+@import './base/global';
+
 // components styles
 @import './components/buttons';
 @import './components/gallery';
 @import './components/hero';
+<<<<<<< HEAD
 @import './components/modals'; // Layout styles
+=======
+@import './components/cocktails';
+@import './components/footer';
+
+@import './header/header';
+@import './header/mob-menu';
+@import './header/nav';
+
+// Layout styles
+>>>>>>> main

@@ -1,0 +1,27 @@
+.cocktails {
+  padding-top: 40px;
+  padding-bottom: 60px;
+  @include media-min($tablet) {
+      padding-top: 60px;
+    }
+  &__title {
+    padding-bottom: 60px;
+    font-size: 22px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    line-height: 1.9;
+    text-align: center;
+    @include media-min($tablet) {  
+      font-size: 32px;
+      line-height: 1.3;
+      font-weight: 700;
+    }
+    @include media-min($desktop) {
+      max-width: 500px;
+      margin: 0 auto;
+      font-size: 48px;
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.5;
+    }
+  }
+}
