@@ -1,10 +1,11 @@
 import { getRandomCocktail } from './requests-api';
+import { getPagination } from './pagination';
 
 const gallery = document.querySelector('.gallery');
 
 // функція numberOfGalleryItems повертає кількість коктейлів,
 // що мають з'явитись в галереї (відповідно до ширини екрану);
-const numberOfGalleryItems = () => {
+export const numberOfGalleryItems = () => {
   if (window.innerWidth >= 1280) {
     return (number = 9);
   } else if ((window.innerWidth < 1280) & (window.innerWidth >= 480)) {
@@ -30,9 +31,10 @@ function getRandCocktails(number) {
 
 // renderCoctails відмальовує галерею
 export function renderCocktails(arr) {
-  const markUp = arr
-    .map(
-      cocktail => `
+  if(arr.length !== 0) {
+    const markUp = arr
+      .map(
+        cocktail => `
       <li class="gallery__item">
         <img
             class="gallery__img"
@@ -54,42 +56,22 @@ export function renderCocktails(arr) {
           </button>
           <button class="btn btn--white visually-hidden" type="button">
             Remove &nbsp
-            <span class="btn__icon-wrap"> </span>
+            <span class="btn__icon-wrap"></span>
           </button>
         </div>
       </li>`
-    )
-    .join('');
+      )
+      .join('');
 
-  gallery.innerHTML = markUp;
+    gallery.innerHTML = markUp;
+  } else if (arr.length === 0) {
+        document.querySelector('.cocktails__title').innerHTML =
+          "Sorry, we didn't find any cocktail for you";
+        document.querySelector(
+          '.gallery'
+        ).innerHTML = `<div class="ooops-img"></div>`;
+  }
   getPagination(arr, numberOfGalleryItems());
 }
 
 getRandCocktails(numberOfGalleryItems());
-
-// функція додає кнопки пагінації внизу галареї.
-// приймає масив коктейлів для рендера (arr)
-// і кількість коктейлів на одній сторінці (number)
-const pagRefs = {
-  box: document.querySelector('.pagination'),
-  prev: document.querySelector('.pagination__previous'),
-  next: document.querySelector('.pagination__next'),
-  list: document.querySelector('.pagination__list'),
-};
-console.log('посилання на пагінацію: ', pagRefs);
-function getPagination(arr, number) {
-  if (arr.length <= number) {
-    pagRefs.box.classList.add('visually-hidden');
-    return;
-  }
-  pagRefs.box.classList.remove('visually-hidden');
-  const numOfItems = Math.ceil(arr.length / number);
-  let markup = [];
-  for (i = 1; i <= numOfItems; i += 1) {
-    markup.push(`<li class="pagination__item">${i}</li>`);
-  };
-  pagRefs.list.innerHTML = markup.join('');
-  document
-    .querySelector('.pagination__item')
-    .classList.add('pagination--active');
-}
