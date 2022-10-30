@@ -26,7 +26,8 @@
 }
 //* ___________________Тело модалки_______________________*
 .modal-coctails {
-  max-width: 320px;
+  min-width: 320px;
+  min-height: 956px;
   background-color: #fff;
   position: relative;
   padding: 40px 20px;
@@ -39,31 +40,35 @@
     display: block;
     font-family: 'Roboto';
     position: relative;
-    width: 129px;
-    height: 37px;
     font-weight: 900;
     font-size: 32px;
     line-height: 1.18;
     color: var(--black);
     // margin-top: 40px;
     margin-right: auto;
+    @include tablet {
+    }
   }
   &__title {
     display: block;
-    width: 122px;
     font-weight: 600;
     font-size: 16px;
     line-height: 1.6;
     margin-top: 20px;
     color: var(--black);
+    @include tablet {
+    }
   }
   &__text {
     display: block;
-    font-weight: 400;
+    width: 275px;
     font-size: 16px;
     line-height: 1.8;
     margin-top: 20px;
     color: var(--gray);
+    @include tablet {
+      width: 615px;
+    }
   }
   &__image {
     width: 280px;
@@ -72,8 +77,11 @@
     margin-top: 32px;
     background-size: cover;
     @include tablet {
-      display: flex;
-      justify-content: flex-start;
+      // display: flex;
+      // justify-content: flex-start;
+      position: relative;
+      top: -163px;
+      left: -50px;
       min-width: 288px;
       min-height: 320px;
     }
@@ -139,8 +147,8 @@
 // ____________________________________/Тело модалки закончилось__________________________
 
 .ingridients {
-  @media screen and (min-width: 768px) {
-    transform: translate(320px, -250px);
+  @include tablet {
+    // transform: translate(320px, -250px);
   }
   &__subtitle {
     display: block;
