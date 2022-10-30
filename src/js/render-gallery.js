@@ -21,7 +21,11 @@ function getRandCocktails(number) {
   for (i = 1; i <= number; i += 1) {
     promiseArray.push(getRandomCocktail().then(data => data));
   }
-  Promise.all(promiseArray).then(cocktails => renderCocktails(cocktails));
+  Promise.all(promiseArray)
+    .then(cocktails => {
+      localStorage.setItem('cocktails', JSON.stringify(cocktails))
+      renderCocktails(cocktails)
+    });
 }
 
 // renderCoctails відмальовує галерею
