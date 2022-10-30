@@ -50,7 +50,7 @@ const createCocktailArray = res => {
       img: strDrinkThumb,
     };
   });
-  // console.log(newDrinks);
+  console.log(newDrinks);
 
   return newDrinks;
 };
