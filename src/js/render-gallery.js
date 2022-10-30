@@ -45,7 +45,7 @@ export function renderCocktails(arr) {
           />
           <h3 class="gallery__subtitle">${cocktail.name}</h3>
         <div class="gallery__btns">
-          <button class="btn btn--orange" type="button">Learn more</button>
+          <button data-modal-open class="btn btn--orange" type="button">Learn more</button>
           <button class="btn btn--white" type="button">
             Add to &nbsp
             <span class="btn__icon-wrap">
