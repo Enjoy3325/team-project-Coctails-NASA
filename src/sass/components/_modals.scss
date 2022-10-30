@@ -17,7 +17,7 @@
 
   top: 0;
   left: 0;
-  z-index: 40;
+  z-index: 50;
 
   background: rgb(248, 246, 246, 0.7);
   overflow-y: scroll;
@@ -30,6 +30,11 @@
   background-color: #fff;
   position: relative;
   padding: 40px 20px;
+  @include tablet {
+    min-width: 822px;
+    min-height: 598px;
+    padding: 28px;
+  }
   &__header {
     display: block;
     font-family: 'Roboto';
@@ -40,7 +45,7 @@
     font-size: 32px;
     line-height: 1.18;
     color: var(--black);
-    margin-top: 40px;
+    // margin-top: 40px;
     margin-right: auto;
   }
   &__title {
@@ -65,9 +70,16 @@
     height: 280px;
     display: block;
     margin-top: 32px;
+    background-size: cover;
+    @include tablet {
+      display: flex;
+      justify-content: flex-start;
+      min-width: 288px;
+      min-height: 320px;
+    }
   }
   // *___________________________________Кнопка Add || Remove________________________________*
-  &__add {
+  &__button {
     font-family: 'Roboto';
     width: max-content;
     height: 48px;
@@ -80,7 +92,7 @@
     background-color: var(--grapefruit);
     color: var(--white);
     margin-top: 32px;
-    padding: 12px, 24px;
+    padding: 12px 24px;
     cursor: pointer;
     transition: all 0.5, ease;
     &:hover,
@@ -94,8 +106,13 @@
       background-color: var(--grapefruit);
       color: var(--white);
     }
-    // ___________________________________Кнопка Add || Remove закончилось________________________________
+    @include tablet {
+      display: flex;
+      justify-content: right;
+      transform: translateX(609px);
+    }
   }
+  // ___________________________________Кнопка Add || Remove закончилось________________________________
   // *___________________________ Кнопка Крестик закрытие модалки________________________*
   &__closeModal {
     display: flex;
@@ -113,11 +130,18 @@
     &:hover {
       transform: scale(1.2);
     }
+    @include tablet {
+      right: 12px;
+      top: 12px;
+    }
   }
 }
 // ____________________________________/Тело модалки закончилось__________________________
 
 .ingridients {
+  @media screen and (min-width: 768px) {
+    transform: translate(320px, -250px);
+  }
   &__subtitle {
     display: block;
     width: 103px;
