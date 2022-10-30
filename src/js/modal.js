@@ -5,7 +5,7 @@ export const refs = {
   modal2: document.querySelector('[data-modal-ingridients]'),
   backdrop: document.querySelector('.backdrop'),
   body: document.querySelector('body'),
-  btnAddFavorie: document.querySelector('.modal-coctails__add'),
+  btnAddFavorie: document.querySelector('.modal-coctails__button'),
   ingridientsItems: document.querySelectorAll('.ingridients__item'),
 };
 
