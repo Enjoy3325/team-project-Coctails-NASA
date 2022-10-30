@@ -28,8 +28,8 @@
 }
 @media screen and (min-width: 1280px) {
   .container {
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 15px;
+    padding-right: 15px;
     width: 1280px;
   }
 }
@@ -142,58 +142,145 @@ button {
 
 .btn {
   display: flex;
-  align-content: center;
   justify-content: center;
   align-items: center;
-  width: 110px;
-  height: 40px;
-  outline: none;
-  border: none;
+  font-size: 14px;
+  font-family: "Roboto", sans-serif;
+  line-height: 1.7;
   border-radius: 4px;
   cursor: pointer;
+}
+@media screen and (min-width: 768px) {
+  .btn {
+    font-size: 20px;
+    line-height: 1.2;
+  }
 }
 .btn__icon-wrap {
   width: 19px;
   height: 17px;
+  background-image: url(../images/orangeheart.svg);
   background-repeat: no-repeat;
   background-size: contain;
 }
-.btn --orange {
+.btn__icon {
+  padding-top: 2px;
+  fill: var(--white);
+}
+.btn--orange {
+  padding: 8px 16px;
+  min-width: 110px;
   color: var(--white);
   background-color: var(--auxiliary-orange);
 }
+@media screen and (min-width: 768px) {
+  .btn--orange {
+    padding: 12px 27px;
+    min-width: 160px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .btn--orange {
+    padding: 12px 38px;
+    min-width: 182px;
+  }
+}
 .btn--white {
+  padding: 8px 16px;
+  min-width: 110px;
   color: var(--grapefruit);
   background-color: var(--white);
   border: 1px solid var(--grapefruit);
 }
+@media screen and (min-width: 768px) {
+  .btn--white {
+    padding: 12px 13px;
+    min-width: 123px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .btn--white {
+    padding: 12px 22px;
+    min-width: 140px;
+  }
+}
 
 .gallery {
   display: flex;
+  justify-content: center;
   gap: 32px;
   flex-wrap: wrap;
 }
 .gallery__item {
+  width: 280px;
   border: 1px solid var(--grapefruit);
   border-radius: 4px;
 }
-.gallery__link {
-  display: block;
-  margin-bottom: 16px;
+@media screen and (min-width: 768px) {
+  .gallery__item {
+    width: 335px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .gallery__item {
+    width: 395px;
+  }
 }
 .gallery__img {
   margin-bottom: 48px;
+  width: 100%;
+}
+@media screen and (min-width: 768px) {
+  .gallery__img {
+    margin-bottom: 20px;
+  }
 }
 .gallery__subtitle {
+  margin-bottom: 16px;
+  font-family: "Roboto", sans-serif;
   font-size: 26px;
+  font-weight: 900;
   line-height: 1.62;
   text-align: center;
 }
+@media screen and (min-width: 768px) {
+  .gallery__subtitle {
+    font-size: 28px;
+    line-height: 1.18;
+    margin-bottom: 24px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .gallery__subtitle {
+    font-size: 32px;
+    margin-bottom: 28px;
+  }
+}
 .gallery__btns {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   gap: 16px;
-  padding: 0 42px 24px;
+  padding: 0 20px 20px;
+}
+@media screen and (min-width: 1280px) {
+  .gallery__btns {
+    padding: 0 28px 28px;
+  }
+}
+
+.ooops-img {
+  margin: 0 auto;
+  width: 280px;
+  height: 308px;
+  background-image: url("../images/ooops.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+@media screen and (min-width: 768px) {
+  .ooops-img {
+    width: 345px;
+    height: 380px;
+  }
 }
 
 .hero {
@@ -336,6 +423,45 @@ button {
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: var(--gray);
   text-shadow: 0px 4px 4px rgba(95, 103, 117, 0.25);
+}
+
+.cocktails {
+  padding-top: 40px;
+  padding-bottom: 60px;
+}
+@media screen and (min-width: 768px) {
+  .cocktails {
+    padding-top: 60px;
+  }
+}
+.cocktails__title {
+  padding-bottom: 60px;
+  font-size: 22px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  line-height: 1.9;
+  text-align: center;
+}
+@media screen and (min-width: 768px) {
+  .cocktails__title {
+    font-size: 32px;
+    line-height: 1.3;
+    font-weight: 700;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .cocktails__title {
+    max-width: 500px;
+    margin: 0 auto;
+    font-size: 48px;
+    font-family: "Poppins", sans-serif;
+    line-height: 1.5;
+  }
+}
+
+.page-footer {
+  height: 110px;
+  background-color: var(--grapefruit);
 }
 
 .header {
