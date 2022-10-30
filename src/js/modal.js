@@ -8,7 +8,7 @@ export const refs = {
   btnAddFavorie: document.querySelector('.modal-coctails__button'),
   ingridientsItems: document.querySelectorAll('.ingridients__item'),
 };
-
+console.log(refs.openModalBtn);
 let flag = true;
 //Слушатели
 refs.openModalBtn.addEventListener('click', toggleModal);
