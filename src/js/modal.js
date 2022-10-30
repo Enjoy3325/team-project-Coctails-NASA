@@ -7,8 +7,23 @@ export const refs = {
   body: document.querySelector('body'),
   btnAddFavorie: document.querySelector('.modal-coctails__button'),
   ingridientsItems: document.querySelectorAll('.ingridients__item'),
+  gallery: document.querySelector('.gallery')
 };
+<<<<<<< HEAD
 console.log(refs.openModalBtn);
+=======
+
+let selectedObj = ''
+
+refs.gallery.addEventListener('click', e => {
+  let selectedName = e.target.dataset.cocktail
+  selectedObj = JSON.parse(localStorage.getItem('cocktails')).find(el => el.name === selectedName)
+  // console.log(selectedObj);
+})
+
+// console.log(selectedObj);
+
+>>>>>>> main
 let flag = true;
 //Слушатели
 refs.openModalBtn.addEventListener('click', toggleModal);
@@ -17,11 +32,13 @@ refs.backdrop.addEventListener('click', onBakdropClick);
 refs.btnAddFavorie.addEventListener('click', onCangeBtn);
 window.addEventListener('keydown', handleCloseModal);
 
+
 // Открытие 1й модалки с галереи
-function toggleModal() {
+function toggleModal(e) {
+  console.log(refs.modal.classList, e);
   refs.modal.classList.toggle('is-hidden');
-  refs.body.classList.toggle('no-scroll');
-  refs.modal2.classList.add('is-hidden');
+  // refs.body.classList.toggle('no-scroll');
+  // refs.modal2.classList.add('is-hidden');
 }
 //  Закрытие модалки по кнопке
 function onCloseModal() {
@@ -55,7 +72,7 @@ function handleCloseModal(e) {
 }
 
 // ___________Вызов модалки 2 ______________
-
+//
 function onClickModalIngridientsTwo() {
   if ('click') {
     refs.modal2.classList.remove('is-hidden');
