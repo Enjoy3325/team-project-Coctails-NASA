@@ -2,12 +2,6 @@ import { getRandomCocktail } from './requests-api';
 
 const gallery = document.querySelector('.gallery');
 
-// функція randomEl повертає довільний елемент з масиву arr;
-// function randomEl(arr) {
-//   const RandIndex = Math.floor(Math.random() * arr.length);
-//   return (randValue = arr[RandIndex]);
-// }
-
 // функція numberOfGalleryItems повертає кількість коктейлів,
 // що мають з'явитись в галереї (відповідно до ширини екрану);
 const numberOfGalleryItems = () => {
@@ -64,28 +58,34 @@ export function renderCocktails(arr) {
     .join('');
 
   gallery.innerHTML = markUp;
+  getPagination(arr, numberOfGalleryItems());
 }
 
 getRandCocktails(numberOfGalleryItems());
 
-const heroFilters = document
-  .querySelector('.hero__letter-box')
-  .addEventListener('click', onCheckLetter);
-
-function onCheckLetter(e) {
-  const isHeroLetter = e.target.classList.contains('hero__letter');
-  if (!isHeroLetter) {
+// функція додає кнопки пагінації внизу галареї.
+// приймає масив коктейлів для рендера (arr)
+// і кількість коктейлів на одній сторінці (number)
+const pagRefs = {
+  box: document.querySelector('.pagination'),
+  prev: document.querySelector('.pagination__previous'),
+  next: document.querySelector('.pagination__next'),
+  list: document.querySelector('.pagination__list'),
+};
+console.log('посилання на пагінацію: ', pagRefs);
+function getPagination(arr, number) {
+  if (arr.length <= number) {
+    pagRefs.box.classList.add('visually-hidden');
     return;
   }
-
-  const value = e.target.dataset.letter;
-  const targetEl = e.target;
-  const currentActiveEl = document.querySelector('.hero__letter.active');
-
-  if (currentActiveEl) {
-    currentActiveEl.classList.remove('active');
-  }
-
-  targetEl.classList.add('active');
-  requestApi(value, 'letter').then(data => console.log('data', data));
+  pagRefs.box.classList.remove('visually-hidden');
+  const numOfItems = Math.ceil(arr.length / number);
+  let markup = [];
+  for (i = 1; i <= numOfItems; i += 1) {
+    markup.push(`<li class="pagination__item">${i}</li>`);
+  };
+  pagRefs.list.innerHTML = markup.join('');
+  document
+    .querySelector('.pagination__item')
+    .classList.add('pagination--active');
 }

@@ -12,7 +12,6 @@
       width: 335px;
     }
     @include media-min($desktop) {
-      // width: 395px;
       width: calc((100% - 64px) / 3);
     }
   }
