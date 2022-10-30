@@ -2,28 +2,43 @@
   const refs = {
     openMenuBtn: document.querySelector('[data-menu-open]'),
     closeMenuBtn: document.querySelector('[data-menu-close]'),
+    openFavorites: document.querySelector('[data-favorites-open]'),
+    openMobFavorites: document.querySelector('[data-mob-favorites-open]'),
 
     menu: document.querySelector('.mob-menu'),
+    home: document.querySelector('.mob-menu-nav__item'),
+    favorites: document.querySelector('.favorites'),
+    favoritesMob: document.querySelector('.favorites-mob'),
+
+
     body: document.querySelector('body'),
-    menuList: document.querySelector('.mob-menu-nav__list'),
-
-
-    btn: document.querySelector('.btn'),
-    fav: document.querySelector('#favorites-ul'),
   };
+
+
 
   refs.openMenuBtn.addEventListener('click', toggleMenu);
   refs.closeMenuBtn.addEventListener('click', toggleMenu);
-  refs.menuList.addEventListener('click', removeMenu);
-  refs.btn.addEventListener('click', toggleMenu);
+  refs.openFavorites.addEventListener('click', toggleFavorites);
+  refs.openMobFavorites.addEventListener('click', toggleMobFavorites);
+  refs.favoritesMob.addEventListener('click', removeMenu);
+  refs.home.addEventListener('click', removeMenu);
+
+
 
   function toggleMenu() {
     refs.menu.classList.toggle('is-hidden');
-    // refs.fav.classList.toggle('is-hidden');
-    // refs.body.classList.toggle('no-scroll');
+    refs.body.classList.toggle('no-scroll');
+  }
+
+  function toggleFavorites() {
+    refs.favorites.classList.toggle('is-hidden');
+  }
+
+  function toggleMobFavorites() {
+    refs.favoritesMob.classList.toggle('is-hidden');
   }
 
   function removeMenu() {
-    refs.menu.classList.add('is-hidden');
+    refs.menu.classList.toggle('is-hidden');
   }
 })();

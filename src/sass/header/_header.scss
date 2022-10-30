@@ -1,34 +1,71 @@
 // Header styles
 .header {
-  //display: flex;
-  justify-content: center;
   position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   padding-top: 20px;
-  //background-color: var(--white);
-  //box-shadow: 0 4px 24px rgba(105, 105, 105, 0.1);
-  //z-index: 5;
-}
-
-.logo {
-  width: 124px;
-  //height: 34px;
-  //background-color: orange;
-  margin-right: auto;
+  z-index: 1;
 }
 
 .container-header {
   display: flex;
-  //align-items: center;
+}
+
+.logo {
+  width: 124px;
+  height: 34px;
+  display: flex;
+  align-items: flex-end;
+  margin-right: auto;
+
+  @include tablet {
+    width: 156px;
+    height: 43px;
+  }
+  @include desktop {
+    margin-right: 43px;
+  }
+}
+
+.form {
+  display: none;
+  @include tablet {
+    display: flex;
+    align-items: center;
+    margin-right: 43px;
+  }
+  @include desktop {
+    margin-right: auto;
+  }
+}
+
+.form-btn{
+  padding: 7px;
+  border: 1px solid #FD5103;
+  border-radius: 4px 0 0 4px;
+  width: 40px;
+  height: 40px;
+  fill: var(--grapefruit);
+  transition: fill 400ms cubic-bezier(0.4, 0, 0.2, 1),
+  background-color 400ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover{
+    background-color: var(--grapefruit);
+    fill: var(--white);
+  }
+}
+
+.form-input{
+  padding: 8px;
+  border: 1px solid #FD5103;
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+  width: 240px;
+  height: 40px;
 }
 
 .menu-btn {
-  margin-left: auto;
   background: transparent;
   border: none;
-  //background-image: url('../images/icons/sprite.svg#burgermenu');
   display: flex;
   align-items: center;
   justify-content: center;
@@ -41,7 +78,7 @@
 
 .menu-btn__icon {
   fill: var(--black);
-  //transition: fill $hover-focus-decor-func;
+  transition: fill 400ms cubic-bezier(0.4, 0, 0.2, 1);
 
   .menu-btn:active & {
     fill: var(--grapefruit);
