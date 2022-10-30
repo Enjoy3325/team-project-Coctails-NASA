@@ -105,10 +105,9 @@ function onCheckLetter(e) {
       document.querySelector('.cocktails__title').innerHTML = 'Searching results';
       renderCocktails(cocktails);
       return;
-    }  
+    }
       document.querySelector('.cocktails__title').innerHTML = "Sorry, we didn't find any cocktail for you";
-      document.querySelector('.gallery').innerHTML = `<img
-            <div class="ooops-img"></div>`;
-    
+      document.querySelector('.gallery').innerHTML = `<img<div class="ooops-img"></div>`;
+
   });
 }
