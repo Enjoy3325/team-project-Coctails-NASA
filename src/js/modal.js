@@ -31,49 +31,49 @@ let selectedObj = {
 //   console.log('----> onCreateCockteilsMarkup ', selectedObj.name);
 // }
 
-function onCreateCockteilsMarkup() {
-  return ` <div class="modal-coctails">
-    <button data-modal-close class="modal-coctails__closeModal" type="button">
-      <svg width="18" height="18">
-        <use href="./images/sprite.svg#cross"></use>
-      </svg>
-    </button>
-    <h2 class="modal-coctails__header">${selectedObj.name}</h2>
+// function onCreateCockteilsMarkup() {
+//   return ` <div class="modal-coctails">
+//     <button data-modal-close class="modal-coctails__closeModal" type="button">
+//       <svg width="18" height="18">
+//         <use href="./images/sprite.svg#cross"></use>
+//       </svg>
+//     </button>
+//     <h2 class="modal-coctails__header">${selectedObj.name}</h2>
 
-    <b class="modal-coctails__title">INSTRACTIONS:</b>
-    <p class="modal-coctails__text">${selectedObj.instruction}</p>
-    <div class="box-image">
-    <img class="box-image__image" src=${selectedObj.img} alt="${selectedObj.name}" />
-    </div>
-    <div class="ingridients">
-      <h3 class="ingridients__subtitle">INGREDIENTS</h3>
-      <p class="ingridients__subtext">Per cocktail</p>
-      <ul class="ingridients__list">
-        <li class="ingridients__item">
-          <span>Ice</span>
-        </li>
-        <li class="ingridients__item">
-          <span>1 ounce gin</span>
-        </li>
-        <li class="ingridients__item">
-          <span>1 ounce Campari</span>
-        </li>
-        <li class="ingridients__item">
-          <span>1 ounce sweet vermouth</span>
-        </li>
-        <li class="ingridients__item">
-          <span>orange peel</span>
-        </li>
-      </ul>
-    </div>
-    
-    <button class="modal-coctails__button" type="button">
-      Add to favorite
-    </button>
-  </div>`;
-}
-refs.backdrop.insertAdjacentHTML('beforeend', onCreateCockteilsMarkup());
-console.log(cocktailMarkup);
+//     <b class="modal-coctails__title">INSTRACTIONS:</b>
+//     <p class="modal-coctails__text">${selectedObj.instruction}</p>
+//     <div class="box-image">
+//     <img class="box-image__image" src=${selectedObj.img} alt="${selectedObj.name}" />
+//     </div>
+//     <div class="ingridients">
+//       <h3 class="ingridients__subtitle">INGREDIENTS</h3>
+//       <p class="ingridients__subtext">Per cocktail</p>
+//       <ul class="ingridients__list">
+//         <li class="ingridients__item">
+//           <span>Ice</span>
+//         </li>
+//         <li class="ingridients__item">
+//           <span>1 ounce gin</span>
+//         </li>
+//         <li class="ingridients__item">
+//           <span>1 ounce Campari</span>
+//         </li>
+//         <li class="ingridients__item">
+//           <span>1 ounce sweet vermouth</span>
+//         </li>
+//         <li class="ingridients__item">
+//           <span>orange peel</span>
+//         </li>
+//       </ul>
+//     </div>
+
+//     <button class="modal-coctails__button" type="button">
+//       Add to favorite
+//     </button>
+//   </div>`;
+// }
+// refs.backdrop.insertAdjacentHTML('beforeend', onCreateCockteilsMarkup());
+// console.log(cocktailMarkup);
 
 let flag = true;
 //Слушатели
