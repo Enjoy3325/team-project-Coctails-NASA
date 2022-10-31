@@ -13,15 +13,43 @@
   width: 100%;
   justify-content: center;
   align-items: center;
+  // position: relative;
+  // position: fixed;
+  // display: flex;
+  // width: 100vw;
+  // height: 100vh;
+  // justify-content: center;
+  // align-items: center;
 
+  // top: 0;
+  // left: 0;
+  // z-index: 110;
+
+  // background: rgb(248, 246, 246, 0.7);
+  // overflow-y: scroll;
+  // transition: opacity 250ms time-distribution,
+  //   visibility 250ms time-distribution;
+
+  position: fixed;
+  z-index: 110;
   top: 0;
   left: 0;
   z-index: 150;
 
   background: rgb(248, 246, 246, 0.7);
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(94, 99, 99, 0.7);
+  opacity: 1;
+  padding-top: 60px;
   overflow-y: scroll;
-  transition: opacity 250ms time-distribution,
-    visibility 250ms time-distribution;
+
+  transition: opacity 250ms var(--timing-function),
+    visibility 250ms var(--timing-function);
+
+  @include mobile {
+    padding: 31px;
+  }
 }
 //* ___________________Тело модалки_______________________*
 .modal-coctails {
