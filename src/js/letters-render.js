@@ -150,17 +150,9 @@ function onCheckLetter(e) {
 
 function renderCards(value) {
   requestApi(value, 'letter').then(cocktails => {
-    console.log(cocktails.length);
-    if (cocktails.length !== 0) {
-      document.querySelector('.cocktails__title').innerHTML =
+    document.querySelector('.cocktails__title').innerHTML =
         'Searching results';
       renderCocktails(cocktails);
       return;
-    }
-    document.querySelector('.cocktails__title').innerHTML =
-      "Sorry, we didn't find any cocktail for you";
-    document.querySelector(
-      '.gallery'
-    ).innerHTML = `<div class="ooops-img"></div>`;
-  });
+    });
 }
