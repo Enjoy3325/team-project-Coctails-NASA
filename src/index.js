@@ -1,3 +1,4 @@
+import './js/modal';
 import './js/menu';
 import './js/letters-render';
 import './js/requests-api';
