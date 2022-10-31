@@ -16,7 +16,7 @@ export function getPagination(arr, number) {
   pagRefs.box.classList.remove('visually-hidden');
   const numOfItems = Math.ceil(arr.length / number);
   let markup = [];
-  for (i = 1; i <= numOfItems; i += 1) {
+  for (let i = 1; i <= numOfItems; i += 1) {
     markup.push(`<li class="pagination__item">${i}</li>`);
   }
   pagRefs.list.innerHTML = markup.join('');
