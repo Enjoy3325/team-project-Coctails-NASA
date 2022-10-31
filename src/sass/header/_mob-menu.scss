@@ -65,20 +65,21 @@
 
 .mob-menu-nav__link {
   display: flex;
-
 }
 
 .mob-menu-nav__link span {
   margin-right: 8px;
 }
 
-.favorites, .favorites-mob {
+.favorites,
+.favorites-mob {
   position: absolute;
   display: inherit;
   margin-top: 8px;
-  border: 1px solid #FD5103;
+  border: 1px solid #fd5103;
   border-radius: 4px;
   width: 280px;
+  background-color: var(--white);
 
   &.is-hidden {
     transform: translate(50%, -60%);
@@ -100,6 +101,6 @@
 }
 
 .favorites__item:hover {
-  background-color: #FD5103;
+  background-color: #fd5103;
   color: var(--white);
 }

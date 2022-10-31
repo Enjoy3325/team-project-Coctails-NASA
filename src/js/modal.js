@@ -75,7 +75,7 @@ let selectedObj = {
 // refs.backdrop.insertAdjacentHTML('beforeend', onCreateCockteilsMarkup());
 // console.log(cocktailMarkup);
 
-let flag = true;
+// let flag = true;
 //Слушатели
 refs.openModalBtn.addEventListenerAll('click', toggleModal);
 refs.closeModalBtn.addEventListener('click', toggleModal);
@@ -129,7 +129,8 @@ function onBakdropClick(e) {
     onCloseModal();
   }
 }
-// Смена кнопок с Add на Remove + добавить innerHTML
+// let flag = true;
+// // Смена кнопок с Add на Remove + добавить innerHTML
 // function onCangeBtn() {
 //   if (flag) {
 //     refs.btnAddFavorie.innerHTML = 'Remove from favorite';

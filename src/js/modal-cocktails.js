@@ -12,7 +12,7 @@ function modalCocktails() {
   refs.gallery.addEventListener('click', onGalleryClick);
   refs.closeModalBtn.addEventListener('click', toggleModal);
   refs.backdrop.addEventListener('click', onBakdropClick);
-
+  window.addEventListener('keydown', handleCloseModal);
   function toggleModal(e) {
     document.body.classList.toggle('no-scroll');
     refs.modal.classList.toggle('is-hidden');
@@ -22,7 +22,7 @@ function modalCocktails() {
     const { openModal, cocktail } = e.target.dataset;
 
     //   Перевіряємо, щоб клік був на BUTTON і мав  data-open-modal="open",
-    //   тоді видкриваємо модалку і записуємо дані обаного коктейлю
+    //   тоді видкриваємо модалку і записуємо дані обраного коктейлю
     if (e.target.nodeName === 'BUTTON' && openModal === 'open') {
       const data = JSON.parse(localStorage.getItem('cocktails'));
       selectedCocktail = data.find(el => el.name === cocktail);
@@ -37,6 +37,13 @@ function modalCocktails() {
   function onBakdropClick(e) {
     if (e.currentTarget === e.target) {
       onCloseModal();
+    }
+  }
+
+  // Закрытие по ЕСК
+  function handleCloseModal(e) {
+    if (e.key === 'Escape') {
+      refs.modal.classList.add('is-hidden');
     }
   }
 

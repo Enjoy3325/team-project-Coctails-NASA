@@ -11,11 +11,8 @@
     favorites: document.querySelector('.favorites'),
     favoritesMob: document.querySelector('.favorites-mob'),
 
-
     body: document.querySelector('body'),
   };
-
-
 
   refs.openMenuBtn.addEventListener('click', toggleMenu);
   refs.closeMenuBtn.addEventListener('click', toggleMenu);
@@ -23,9 +20,8 @@
   refs.openMobFavorites.addEventListener('click', toggleMobFavorites);
   refs.favoritesMob.addEventListener('click', removeMenu);
   refs.home.addEventListener('click', removeMenu);
+  refs.openFavorites.addEventListener('click', backdropClickClose);
   // refs.submitBtn.addEventListener('click', removeMenu);
-
-
 
   function toggleMenu() {
     refs.menu.classList.toggle('is-hidden');
@@ -39,7 +35,11 @@
   function toggleMobFavorites() {
     refs.favoritesMob.classList.toggle('is-hidden');
   }
-
+  function backdropClickClose(e) {
+    if (e.currentTarget === e.target) {
+      onCloseModal();
+    }
+  }
   function removeMenu() {
     refs.menu.classList.toggle('is-hidden');
   }
