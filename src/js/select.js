@@ -1,5 +1,4 @@
 //Render select template
-
 const getTemplate = (data = [], placeholder, selectedId) => {
   let text = placeholder ?? '';
 
@@ -36,13 +35,6 @@ export class Select {
 
     this.#render();
     this.#setup();
-
-    //    <svg class="select__arrow-down" data-type="arrow">
-    //      <use
-    //        class="form-btn__icon"
-    //        href="/sprite.f14d31f7.svg#icon-arrow-down"
-    //      ></use>
-    //    </svg>;
   }
 
   #render() {
