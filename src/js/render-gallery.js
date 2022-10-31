@@ -20,7 +20,7 @@ export const numberOfGalleryItems = () => {
 // який треба відмалювати в галерею;
 function getRandCocktails(number) {
   let promiseArray = [];
-  for (i = 1; i <= number; i += 1) {
+  for (let i = 1; i <= number; i += 1) {
     promiseArray.push(getRandomCocktail().then(data => data));
   }
   Promise.all(promiseArray)
