@@ -18,10 +18,8 @@ const getTemplate = (data = [], placeholder, selectedId) => {
     <div class="select__backdrop" data-type="backdrop"></div>
   <div class="select__input" data-type="input">
       <span data-type="value">${text}</span>
-    
       <svg class="select__arrow-down" data-type="arrow"  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M5.84302 9.59323L11.5 15.2502L17.157 9.59323L16.45 8.88623L11.5 13.8362L6.55002 8.88623L5.84302 9.59323Z" />
-
+        <path d="M5.84302 9.59323L11.5 15.2502L17.157 9.59323L16.45 8.88623L11.5 13.8362L6.55002 8.88623L5.84302 9.59323Z" />
     </div>
     <div class="select__dropdown">
       <ul class="select__list">
