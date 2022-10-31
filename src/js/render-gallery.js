@@ -34,17 +34,18 @@ getRandCocktails(numberOfGalleryItems());
 
 // візуалізація "пошук не дав результату" (oops image)
 function nosearchingRes() {
-      document.querySelector('.cocktails__title').innerHTML =
-        "Sorry, we didn't find any cocktail for you";
-      document.querySelector(
-        '.gallery'
-      ).innerHTML = `<div class="ooops-img"></div>`;
+  document.querySelector('.cocktails__title').innerHTML =
+    "Sorry, we didn't find any cocktail for you";
+  document.querySelector(
+    '.gallery'
+  ).innerHTML = `<div class="ooops-img"></div>`;
 }
 
 // візуалізація "ви нічого не додали у favorites"
 function noFavItems(items) {
-      document.querySelector('.gallery').innerHTML =
-        `You haven't added any favorites ${items} yet`;
+  document.querySelector(
+    '.gallery'
+  ).innerHTML = `You haven't added any favorites ${items} yet`;
 }
 
 // функція renderCocktailCards відмальовує картки коктейлів
@@ -66,9 +67,10 @@ export function renderCocktailCards(arr) {
           <button class="btn btn--white" type="button">
             Add to &nbsp
             <span class="btn__icon-wrap">
-              <svg class="btn__icon" width="15" height="15">
-                <use href="/sprite.f14d31f7.svg#heart"></use>
-              </svg>
+            <svg class="btn__icon" width="15" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.5 15L7.2675 13.921C2.89 10.1035 0 7.58583 0 4.49591C0 1.9782 2.057 0 4.675 0C6.154 0 7.5735 0.662125 8.5 1.70845C9.4265 0.662125 10.846 0 12.325 0C14.943 0 17 1.9782 17 4.49591C17 7.58583 14.11 10.1035 9.7325 13.9292L8.5 15Z" fill="#FCFCFC"/>
+</svg>
+             
             </span>
           </button>
           <button class="btn btn--white visually-hidden" type="button">
@@ -80,8 +82,8 @@ export function renderCocktailCards(arr) {
     )
     .join('');
 
-    gallery.innerHTML = markUp;
-  }
+  gallery.innerHTML = markUp;
+}
 
 // функція renderIngredientCards відмальовує картки інгредієнтів
 export function renderIngredientCards(arr) {
@@ -104,7 +106,6 @@ export function renderIngredientCards(arr) {
 
   gallery.innerHTML = markUp;
 }
-
 
 // renderCocktails відмальовує галерею коктейлів
 export function renderCocktails(arr) {

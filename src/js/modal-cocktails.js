@@ -37,5 +37,5 @@ function modalCocktails() {
 }
 
 export { modalCocktails };
-    
-    export class modalCocktails
+
+// export class modalCocktails
