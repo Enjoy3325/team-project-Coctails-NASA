@@ -26,12 +26,12 @@
 //* ___________________Тело модалки_______________________*
 .modal-coctails {
   width: 320px;
-  background-color: #fff;
+  min-width: 320px;
+  background-color: var(--white);
   position: relative;
   padding: 40px 20px;
   @include tablet {
     width: 822px;
-
     padding: 28px;
   }
   &__header {
@@ -102,7 +102,6 @@
       @include tablet {
         display: flex;
         justify-content: right;
-        transform: translateX(609px);
       }
     }
     // ___________________________________Кнопка Add || Remove закончилось________________________________
@@ -129,7 +128,7 @@
     }
   }
   // ____________________________________/Тело модалки закончилось__________________________
-  .box-image {
+  .box-content {
     display: block;
 
     @include tablet {
@@ -207,9 +206,14 @@
 --line-height {
   line-height: 1.5;
 }
-.test {
+.div-reverse {
   @include tablet {
     display: flex;
     flex-direction: column-reverse;
+  }
+}
+.box-instractions {
+  @include tablet {
+    display: flex;
   }
 }

@@ -148,15 +148,15 @@ function handleCloseModal(e) {
 
 // ___________Вызов модалки 2 ______________
 
-// function onClickModalIngridientsTwo() {
-//   if ('click') {
-//     refs.modal2.classList.remove('is-hidden');
-//     refs.modal.classList.add('is-hidden');
+function onClickModalIngridientsTwo() {
+  if ('click') {
+    refs.modal2.classList.remove('is-hidden');
+    refs.modal.classList.add('is-hidden');
 
-//     console.log('----> click');
+    console.log('----> click');
 
-//     refs.ingridientsItems.forEach(ingridientsItem => {
-//       ingridientsItem.addEventListener('click', onClickModalIngridientsTwo);
-//     });
-//   }
-// }
+    refs.ingridientsItems.forEach(ingridientsItem => {
+      ingridientsItem.addEventListener('click', onClickModalIngridientsTwo);
+    });
+  }
+}
