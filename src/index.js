@@ -1,4 +1,5 @@
 import './js/menu';
+import './js/favorites';
 import './js/letters-render';
 import './js/requests-api';
 import './js/searchInput';
