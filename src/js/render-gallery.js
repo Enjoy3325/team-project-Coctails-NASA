@@ -49,7 +49,8 @@ export function noFavItems(items) {
 
 // функція renderCocktailCards відмальовує картки коктейлів
 export function renderCocktailCards(arr) {
-  const markUp = arr
+  const sliceArr = arr.slice(0, numberOfGalleryItems());
+  const markUp = sliceArr
     .map(
       cocktail => `
       <li class="gallery__item">
@@ -86,7 +87,8 @@ export function renderCocktailCards(arr) {
 
 // функція renderIngredientCards відмальовує картки інгредієнтів
 export function renderIngredientCards(arr) {
-  const markUp = arr
+  const sliceArr = arr.slice(0, numberOfGalleryItems());
+  const markUp = sliceArr
     .map(
       ingredient => `
       <li class="ingredient">
