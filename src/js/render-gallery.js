@@ -1,5 +1,6 @@
 import { getRandomCocktail } from './requests-api';
 import { getPagination } from './pagination';
+import { modalCocktails } from './modal-cocktails';
 
 const gallery = document.querySelector('.gallery');
 
@@ -26,6 +27,8 @@ function getRandCocktails(number) {
   Promise.all(promiseArray).then(cocktails => {
     localStorage.setItem('cocktails', JSON.stringify(cocktails));
     renderCocktails(cocktails);
+
+    modalCocktails();
   });
 }
 
@@ -45,7 +48,7 @@ export function renderCocktails(arr) {
           />
           <h3 class="gallery__subtitle text-truncate">${cocktail.name}</h3>
         <div class="gallery__btns">
-          <button class="btn btn--orange" type="button">Learn more</button>
+          <button class="btn btn--orange" data-open-modal="open" data-cocktail="${cocktail.name}" type="button">Learn more</button>
           <button class="btn btn--white" type="button">
             Add to &nbsp
             <span class="btn__icon-wrap">
