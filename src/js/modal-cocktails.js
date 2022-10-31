@@ -1,13 +1,17 @@
+import { templateModal } from './modal-template.js';
+
 const refs = {
   closeModalBtn: document.querySelector('[data-modal-closes]'),
   modal: document.querySelector('[data-modal]'),
   gallery: document.querySelector('.gallery'),
+  backdrop: document.querySelector('.backdrop'),
 };
 
 function modalCocktails() {
   let selectedCocktail = {};
   refs.gallery.addEventListener('click', onGalleryClick);
   refs.closeModalBtn.addEventListener('click', toggleModal);
+  refs.backdrop.addEventListener('click', onBakdropClick);
 
   function toggleModal(e) {
     document.body.classList.toggle('no-scroll');
@@ -22,14 +26,24 @@ function modalCocktails() {
     if (e.target.nodeName === 'BUTTON' && openModal === 'open') {
       const data = JSON.parse(localStorage.getItem('cocktails'));
       selectedCocktail = data.find(el => el.name === cocktail);
+      document.querySelector('#modal-section').innerHTML =
+        templateModal(selectedCocktail);
       toggleModal();
     }
     console.log(selectedCocktail);
   }
 
-  //   function closeModal() {
-  //     refs.modal.classList.add('is-hidden');
-  //   }
+  // Закрытие по бекдропу
+  function onBakdropClick(e) {
+    if (e.currentTarget === e.target) {
+      onCloseModal();
+    }
+  }
+
+  function onCloseModal() {
+    refs.modal.classList.add('is-hidden');
+    document.body.classList.toggle('no-scroll');
+  }
 
   //   function onOpenModal() {
   //     refs.modal.classList.remove('is-hidden');
@@ -38,4 +52,6 @@ function modalCocktails() {
 
 export { modalCocktails };
 
-// export class modalCocktails
+// export class modalCocktailsClass {
+//   constructor() {}
+// }

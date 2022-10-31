@@ -26,10 +26,17 @@ export const getRandomCocktail = () => {
     .get('https://www.thecocktaildb.com/api/json/v1/1/random.php')
     .then(res => res.data.drinks[0])
     .then(obj => {
+      let cocktailName = '';
+      let ingredients = [];
+      for (let i = 1; i <= 15; i++) {
+        cocktailName = 'strIngredient' + i;
+        obj[cocktailName] !== null ? ingredients.push(obj[cocktailName]) : '';
+      }
       return {
         name: obj.strDrink,
         instruction: obj.strInstructions,
         img: obj.strDrinkThumb,
+        ingredients: ingredients,
       };
     })
     .catch();
