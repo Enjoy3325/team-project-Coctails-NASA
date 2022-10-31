@@ -33,7 +33,7 @@ export const getRandomCocktail = () => {
       };
     })
     .catch();
-}
+};
 
 const createCocktailArray = res => {
   const newDrinks = res.data.drinks.map(drink => {
@@ -48,10 +48,11 @@ const createCocktailArray = res => {
       name: strDrink,
       instruction: strInstructions,
       img: strDrinkThumb,
+      ingredients: ingredients,
     };
   });
   // console.log(newDrinks);
-  localStorage.setItem('cocktails', JSON.stringify(newDrinks))
+  localStorage.setItem('cocktails', JSON.stringify(newDrinks));
   return newDrinks;
 };
 
