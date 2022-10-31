@@ -98,6 +98,7 @@
 .favorites__item {
   padding: 12px;
   font-size: 24px;
+  background-color: var(--white);
   @include desktop {
     font-size: 17px;
   }
