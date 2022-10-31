@@ -1,44 +1,26 @@
 import { requestApi } from './requests-api';
 
-const input = document.querySelector('.form-input')
-const mobMenuinput = document.querySelector('.mob-form-input')
 const form = document.querySelector('.form')
 const mobMenuForm = document.querySelector('.mob-menu-form')
-const formBtn = document.querySelector('.form-btn')
 
 let inputValue = '';
 
-input.addEventListener('input', (e)=>{
-  inputValue = e.target.value;
-  if (inputValue.length > 0) {
-    formBtn.removeAttribute('disabled');
-  } else {
-    formBtn.setAttribute('disabled', 'disabled');
-  }
-})
-
-mobMenuinput.addEventListener('input', (e)=>{
-  inputValue = e.target.value;
-  if (inputValue.length > 0) {
-    formBtn.removeAttribute('disabled');
-  } else {
-    formBtn.setAttribute('disabled', 'disabled');
-  }
-})
-
 form.addEventListener('submit', e=>{
-  e.preventDefault();
-  requestApi(inputValue)
-  inputValue = ''
-  formBtn.setAttribute('disabled', 'disabled');
+  createSubmit(e)
   form.reset()
 })
 
 mobMenuForm.addEventListener('submit', e=>{
+  createSubmit(e)
+  document.querySelector('.mob-menu').classList.add('is-hidden')
+  mobMenuForm.reset()
+})
+
+const createSubmit = (e) => {
   e.preventDefault();
+  inputValue = e.target.elements[1].value
   requestApi(inputValue)
   inputValue = ''
-  formBtn.setAttribute('disabled', 'disabled');
-  form.reset()
-})
+}
+
 
