@@ -1,4 +1,5 @@
 import { requestApi } from './requests-api';
+import { renderCocktails } from './render-gallery';
 
 const form = document.querySelector('.form')
 const mobMenuForm = document.querySelector('.mob-menu-form')
@@ -13,14 +14,22 @@ form.addEventListener('submit', e=>{
 mobMenuForm.addEventListener('submit', e=>{
   createSubmit(e)
   document.querySelector('.mob-menu').classList.add('is-hidden')
+  document.querySelector('body').classList.toggle('no-scroll');
   mobMenuForm.reset()
 })
 
 const createSubmit = (e) => {
   e.preventDefault();
   inputValue = e.target.elements[1].value
-  requestApi(inputValue)
+  requestApi(inputValue).then(cocktails => {
+    document.querySelector('.cocktails__title').innerHTML =
+      'Searching results';
+    renderCocktails(cocktails);
+    return;
+  });
   inputValue = ''
 }
+
+
 
 
