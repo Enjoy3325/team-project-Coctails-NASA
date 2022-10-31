@@ -5,6 +5,7 @@ const gallery = document.querySelector('.gallery');
 
 // функція numberOfGalleryItems повертає кількість коктейлів,
 // що мають з'явитись в галереї (відповідно до ширини екрану);
+let number;
 export const numberOfGalleryItems = () => {
   if (window.innerWidth >= 1280) {
     return (number = 9);
@@ -50,7 +51,7 @@ export function renderCocktails(arr) {
             Add to &nbsp
             <span class="btn__icon-wrap">
               <svg class="btn__icon" width="15" height="15">
-                <use href="./images/sprite.svg#heart"></use>
+                <use href="/sprite.f14d31f7.svg#heart"></use>
               </svg>
             </span>
           </button>

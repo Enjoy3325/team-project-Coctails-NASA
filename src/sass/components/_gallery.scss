@@ -6,6 +6,7 @@
 
   &__item {
     width: 280px;
+    overflow: hidden;
     border: 1px solid var(--grapefruit);
     border-radius: 4px;
     @include media-min($tablet) {
