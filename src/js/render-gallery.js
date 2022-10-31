@@ -23,16 +23,15 @@ function getRandCocktails(number) {
   for (let i = 1; i <= number; i += 1) {
     promiseArray.push(getRandomCocktail().then(data => data));
   }
-  Promise.all(promiseArray)
-    .then(cocktails => {
-      localStorage.setItem('cocktails', JSON.stringify(cocktails))
-      renderCocktails(cocktails)
-    });
+  Promise.all(promiseArray).then(cocktails => {
+    localStorage.setItem('cocktails', JSON.stringify(cocktails));
+    renderCocktails(cocktails);
+  });
 }
 
 // renderCoctails відмальовує галерею
 export function renderCocktails(arr) {
-  if(arr.length !== 0) {
+  if (arr.length !== 0) {
     const markUp = arr
       .map(
         cocktail => `
@@ -66,11 +65,11 @@ export function renderCocktails(arr) {
 
     gallery.innerHTML = markUp;
   } else if (arr.length === 0) {
-        document.querySelector('.cocktails__title').innerHTML =
-          "Sorry, we didn't find any cocktail for you";
-        document.querySelector(
-          '.gallery'
-        ).innerHTML = `<div class="ooops-img"></div>`;
+    document.querySelector('.cocktails__title').innerHTML =
+      "Sorry, we didn't find any cocktail for you";
+    document.querySelector(
+      '.gallery'
+    ).innerHTML = `<div class="ooops-img"></div>`;
   }
   getPagination(arr, numberOfGalleryItems());
 }
