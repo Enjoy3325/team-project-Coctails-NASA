@@ -42,10 +42,9 @@ function nosearchingRes() {
 }
 
 // візуалізація "ви нічого не додали у favorites"
-function noFavItems(items) {
-  document.querySelector(
-    '.gallery'
-  ).innerHTML = `You haven't added any favorites ${items} yet`;
+export function noFavItems(items) {
+      document.querySelector('.gallery').innerHTML =
+        `You haven't added any favorites ${items} yet`;
 }
 
 // функція renderCocktailCards відмальовує картки коктейлів
