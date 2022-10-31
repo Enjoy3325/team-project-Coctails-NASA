@@ -15,6 +15,10 @@
   display: flex;
 }
 
+.switchBtn:checked + .dark {
+  color: #1224ea;
+}
+
 .logo {
   width: 124px;
   height: 34px;
@@ -66,6 +70,8 @@
   border-radius: 0 4px 4px 0;
   width: 240px;
   height: 40px;
+  background: transparent;
+  color: var(--black);
 }
 
 .menu-btn {
