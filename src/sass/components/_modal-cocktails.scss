@@ -13,46 +13,64 @@
   transition: opacity 250ms var(--timing-function),
     visibility 250ms var(--timing-function);
 
-  @include mobile {
-    padding: 31px;
-  }
+  // @include mobile {
+  //   padding: 31px;
+  // }
 
   &__wrap {
     width: 320px;
     position: relative;
     margin: 0 auto;
+    @include mobile {
+      padding: 31px;
+    }
 
     @include tablet {
-      min-width: 822px;
-      // min-height: 598px;
-      padding: 28px;
+      min-width: 758px;
+      padding: 0;
     }
   }
 }
 
 .modal-coctails {
   position: relative;
-  // margin: 0 auto;
-  max-width: 320px;
   background-color: #fff;
 
-  padding: 40px 20px;
-  @include tablet {
-    min-width: 822px;
-    // min-height: 598px;
-    padding: 28px;
+  &__mobile-section {
+    max-width: 320px;
+    padding: 40px 20px;
+    @include tablet {
+      display: none;
+    }
   }
+  &__tablet-section {
+    display: none;
+    @include tablet {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      padding: 28px;
+    }
+  }
+
+  &__cover-block {
+    display: flex;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    padding-left: 4px;
+  }
+
   &__header {
     display: block;
     font-family: 'Roboto';
     position: relative;
-    width: 129px;
-    height: 37px;
     font-weight: 900;
     font-size: 32px;
     line-height: 1.18;
     color: var(--black);
-    // margin-top: 40px;
     margin-right: auto;
   }
   &__title {
@@ -63,6 +81,9 @@
     line-height: 1.6;
     margin-top: 20px;
     color: var(--black);
+    @include tablet {
+      margin-top: 0;
+    }
   }
   &__text {
     display: block;
@@ -71,6 +92,9 @@
     line-height: 1.8;
     margin-top: 20px;
     color: var(--gray);
+    @include tablet {
+      margin-top: 24px;
+    }
   }
   &__image {
     width: 280px;
@@ -85,6 +109,11 @@
       justify-content: flex-start;
       min-width: 288px;
       min-height: 320px;
+      border-radius: 0;
+      margin: 0;
+      position: relative;
+      top: -28px;
+      left: -28px;
     }
   }
   // *___________________________________Кнопка Add || Remove________________________________*
@@ -116,9 +145,8 @@
       color: var(--white);
     }
     @include tablet {
-      display: flex;
-      justify-content: right;
-      transform: translateX(609px);
+      margin-top: 40pxpx;
+      margin-left: auto;
     }
   }
   // ___________________________________Кнопка Add || Remove закончилось________________________________
@@ -128,6 +156,7 @@
     justify-content: center;
     align-items: center;
     position: absolute;
+    z-index: 1;
 
     width: 32px;
     height: 32px;
@@ -148,9 +177,9 @@
 // ____________________________________/Тело модалки закончилось__________________________
 
 .ingridients {
-  @media screen and (min-width: 768px) {
-    transform: translate(320px, -250px);
-  }
+  // @media screen and (min-width: 768px) {
+  //   transform: translate(320px, -250px);
+  // }
   &__subtitle {
     display: block;
     width: 103px;

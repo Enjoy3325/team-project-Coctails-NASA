@@ -12,9 +12,10 @@ const templateModal = ({ name, instruction, img, ingredients }) => {
 
   console.log(ingridientsList);
 
-  return `<h2 class="modal-coctails__header">Negroni</h2>
+  return `<div class="modal-coctails__mobile-section">
+  <h2 class="modal-coctails__header">${name}</h2>
 
-      <b class="modal-coctails__title">${name}</b>
+       <b class="modal-coctails__title">INSTRACTIONS:</b>
       <p class="modal-coctails__text">${instruction}</p>
       <img class="modal-coctails__image" src="${img}" alt="${name}" />
 
@@ -27,7 +28,32 @@ const templateModal = ({ name, instruction, img, ingredients }) => {
       </div>
       <button data-modal-open class="modal-coctails__button" type="button">
         Add to favorite
-      </button>`;
+      </button>
+      </div>
+      
+      <div class="modal-coctails__tablet-section">
+      <div class="modal-coctails__cover-block">
+        <img class="modal-coctails__image" src="${img}" alt="${name}" />
+        <div class="modal-coctails__content">
+            <h2 class="modal-coctails__header">${name}</h2>
+            <div class="ingridients">
+            <h3 class="ingridients__subtitle">INGREDIENTS</h3>
+            <p class="ingridients__subtext">Per cocktail</p>
+            <ul class="ingridients__list">
+            ${ingridientsList}
+            </ul>
+            </div>
+        </div>
+      </div>
+
+        <div class="modal-coctails__instruction-block">
+      <b class="modal-coctails__title">INSTRACTIONS:</b>
+      <p class="modal-coctails__text">${instruction}</p>
+      </div>
+      <button data-modal-open class="modal-coctails__button" type="button">
+        Add to favorite
+      </button>
+      </div>`;
 };
 
 export { templateModal };
