@@ -66,3 +66,49 @@
     height: 380px;
   }
 }
+
+.ingredient {
+    padding: 20px;
+    width: 280px;
+    overflow: hidden;
+    border: 1px solid var(--grapefruit);
+    border-radius: 4px;
+    @include media-min($tablet) {
+      width: 335px;
+    }
+    @include media-min($desktop) {
+      padding: 28px;
+      width: calc((100% - 64px) / 3);
+    }
+
+  &__name {
+    margin-bottom: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 26px;
+    font-weight: 900;
+    line-height: 1.62;
+    width: 100%;
+    @include media-min($tablet) {
+      margin-bottom: 28px;
+      font-size: 28px;
+      line-height: 1.18;
+    }
+    @include media-min($desktop) {
+      font-size: 32px;
+    }
+  }
+  &__type {
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    @include media-min($tablet) {
+      margin-bottom: 15px;
+      font-size: 16px;
+      line-height: 1.4;
+    }
+  }
+  
+ &__btns {
+    display: flex;
+    justify-content: space-between;
+    }
+}

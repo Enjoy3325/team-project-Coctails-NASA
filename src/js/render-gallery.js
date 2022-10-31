@@ -18,7 +18,6 @@ export const numberOfGalleryItems = () => {
 };
 
 // функція getRandCocktails повертає масив рандомних коктейлів,
-// який треба відмалювати в галерею;
 function getRandCocktails(number) {
   let promiseArray = [];
   for (let i = 1; i <= number; i += 1) {
@@ -31,13 +30,28 @@ function getRandCocktails(number) {
     modalCocktails();
   });
 }
+getRandCocktails(numberOfGalleryItems());
 
-// renderCoctails відмальовує галерею
-export function renderCocktails(arr) {
-  if (arr.length !== 0) {
-    const markUp = arr
-      .map(
-        cocktail => `
+// візуалізація "пошук не дав результату" (oops image)
+function nosearchingRes() {
+      document.querySelector('.cocktails__title').innerHTML =
+        "Sorry, we didn't find any cocktail for you";
+      document.querySelector(
+        '.gallery'
+      ).innerHTML = `<div class="ooops-img"></div>`;
+}
+
+// візуалізація "ви нічого не додали у favorites"
+function noFavItems(items) {
+      document.querySelector('.gallery').innerHTML =
+        `You haven't added any favorites ${items} yet`;
+}
+
+// функція renderCocktailCards відмальовує картки коктейлів
+export function renderCocktailCards(arr) {
+  const markUp = arr
+    .map(
+      cocktail => `
       <li class="gallery__item">
         <img
             class="gallery__img"
@@ -63,18 +77,41 @@ export function renderCocktails(arr) {
           </button>
         </div>
       </li>`
-      )
-      .join('');
+    )
+    .join('');
 
     gallery.innerHTML = markUp;
+  }
+
+// функція renderIngredientCards відмальовує картки інгредієнтів
+export function renderIngredientCards(arr) {
+  const markUp = arr
+    .map(
+      ingredient => `
+      <li class="ingredient">
+        <h2 class="ingredient__name text-truncate">${ingredient.name}</h2>
+        <h3 class="ingredient__type text-truncate">${ingredient.type}</h3>
+        <div class="ingredient__btns">
+          <button class="btn btn--orange" type="button">Learn more</button>
+          <button class="btn btn--white" type="button">
+            Remove &nbsp
+            <span class="btn__icon-wrap"></span>
+          </button>
+        </div>
+      </li>`
+    )
+    .join('');
+
+  gallery.innerHTML = markUp;
+}
+
+
+// renderCocktails відмальовує галерею коктейлів
+export function renderCocktails(arr) {
+  if (arr.length !== 0) {
+    renderCocktailCards(arr);
   } else if (arr.length === 0) {
-    document.querySelector('.cocktails__title').innerHTML =
-      "Sorry, we didn't find any cocktail for you";
-    document.querySelector(
-      '.gallery'
-    ).innerHTML = `<div class="ooops-img"></div>`;
+    nosearchingRes();
   }
   getPagination(arr, numberOfGalleryItems());
 }
-
-getRandCocktails(numberOfGalleryItems());
