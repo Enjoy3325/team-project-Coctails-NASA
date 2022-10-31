@@ -65,17 +65,3 @@ export function requestApi(query, name = 'name') {
       return getCocktailsByName(query);
   }
 }
-
-// export { requestApi };
-
-// getCocktailsByName(query)
-//   .then(res => createCocktailArray(res))
-//   .catch();
-
-// getCocktailsByFirstLetter()
-//   .then(res => createCocktailArray(res))
-//   .catch();
-
-// getIngredientInfo()
-//   .then(res => res.data.ingredients[0])
-//   .catch();

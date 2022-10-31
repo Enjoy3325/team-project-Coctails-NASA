@@ -7,6 +7,7 @@
 
     menu: document.querySelector('.mob-menu'),
     home: document.querySelector('.mob-menu-nav__item'),
+    submitBtn: document.querySelector('.form-btn'),
     favorites: document.querySelector('.favorites'),
     favoritesMob: document.querySelector('.favorites-mob'),
 
@@ -22,6 +23,7 @@
   refs.openMobFavorites.addEventListener('click', toggleMobFavorites);
   refs.favoritesMob.addEventListener('click', removeMenu);
   refs.home.addEventListener('click', removeMenu);
+  // refs.submitBtn.addEventListener('click', removeMenu);
 
 
 

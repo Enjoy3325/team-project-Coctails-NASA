@@ -2,45 +2,6 @@ import { requestApi } from './requests-api.js';
 import { renderCocktails } from './render-gallery';
 import { Select } from './select';
 
-const arrLetters = [
-  'a',
-  'b',
-  'c',
-  'd',
-  'e',
-  'f',
-  'g',
-  'h',
-  'i',
-  'j',
-  'k',
-  'l',
-  'm',
-  'n',
-  'o',
-  'p',
-  'q',
-  'r',
-  's',
-  't',
-  'u',
-  'v',
-  'w',
-  'x',
-  'y',
-  'z',
-  1,
-  2,
-  3,
-  4,
-  5,
-  6,
-  7,
-  8,
-  9,
-  0,
-];
-
 const arrLetter = [
   { id: 'a', value: 'A' },
   { id: 'b', value: 'B' },
@@ -84,19 +45,6 @@ const refs = {
   letterBox: document.querySelector('.hero__letter-box'),
 };
 
-// function renderLetterButtons() {
-//   let arr = arrLetters;
-//   arr.splice(-10, 0, ' ');
-//   const markup = arr
-//     .map(
-//       letter =>
-//         `<div class="hero__letter " data-letter="${letter}">${
-//           !isNaN(letter) ? letter : letter.toUpperCase()
-//         }</div>`
-//     )
-//     .join('');
-//   refs.letterBox.insertAdjacentHTML('beforeend', markup);
-// }
 function renderLetterButtons() {
   let arr = arrLetter;
   arr.splice(-10, 0, { id: 'null', value: '' });
@@ -150,17 +98,9 @@ function onCheckLetter(e) {
 
 function renderCards(value) {
   requestApi(value, 'letter').then(cocktails => {
-    console.log(cocktails.length);
-    if (cocktails.length !== 0) {
-      document.querySelector('.cocktails__title').innerHTML =
+    document.querySelector('.cocktails__title').innerHTML =
         'Searching results';
       renderCocktails(cocktails);
       return;
-    }
-    document.querySelector('.cocktails__title').innerHTML =
-      "Sorry, we didn't find any cocktail for you";
-    document.querySelector(
-      '.gallery'
-    ).innerHTML = `<div class="ooops-img"></div>`;
-  });
+    });
 }

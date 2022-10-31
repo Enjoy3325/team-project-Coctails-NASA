@@ -93,7 +93,7 @@
     font-size: 14px;
     line-height: 2;
     letter-spacing: 0.02em;
-    color: #000000;
+    color: var(--black);
     opacity: 0.8;
 
     @include media-min($tablet) {

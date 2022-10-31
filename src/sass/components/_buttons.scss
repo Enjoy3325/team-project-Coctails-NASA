@@ -1,3 +1,15 @@
+@keyframes flip-horizontal-bottom {
+  0% {
+    transform: rotateX(0);
+  }
+  50% {
+    transform: rotateX(-180deg);
+  }
+  100% {
+    transform: rotateY(-180deg);
+  }
+}
+
 .btn {
   display: flex;
   justify-content: center;
@@ -13,21 +25,29 @@
   }
 
   &__icon-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 19px;
     height: 17px;
     background-image: url(../images/orangeheart.svg);
     background-repeat: no-repeat;
     background-size: contain;
   }
-    &__icon {
-      padding-top: 2px;
-      fill: var(--white);
-    }
+  &__icon-wrap:hover,
+  &__icon-wrap:focus {
+    animation: flip-horizontal-bottom 0.4s
+      cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+  }
+  &__icon {
+    fill: var(--white);
+  }
   &--orange {
     padding: 8px 16px;
     min-width: 110px;
     color: var(--white);
     background-color: var(--auxiliary-orange);
+    transition: background-color 250ms var(--timing-function);
     @include media-min($tablet) {
       padding: 12px 27px;
       min-width: 160px;
@@ -37,19 +57,40 @@
       min-width: 182px;
     }
   }
+  &--orange:hover,
+  &--orange:focus {
+    background-color: var(--grapefruit);
+  }
+
   &--white {
     padding: 8px 16px;
     min-width: 110px;
-    color: var(--grapefruit);
+    color: var(--auxiliary-orange);
     background-color: var(--white);
-    border: 1px solid var(--grapefruit);
+    border: 1px solid var(--auxiliary-orange);
+    transition: color 250ms var(--timing-function);
+    transition: border-color 250ms var(--timing-function);
     @include media-min($tablet) {
       padding: 12px 13px;
       min-width: 123px;
     }
+    @include media-min($tablet) {
+      padding: 12px 10px;
+      min-width: 124px;
+    }
     @include media-min($desktop) {
-      padding: 12px 22px;
+      padding: 12px 18px;
       min-width: 140px;
     }
+  }
+  &--white:hover,
+  &--white:focus {
+    color: var(--grapefruit);
+    border-color: var(--grapefruit);
+  }
+  &--white:hover .btn__icon-wrap,
+  &--white:focus .btn__icon-wrap {
+    animation: flip-horizontal-bottom 0.5s
+      cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
   }
 }
