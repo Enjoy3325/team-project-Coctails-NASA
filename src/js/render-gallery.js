@@ -39,7 +39,7 @@ function nosearchingRes() {
 }
 
 // візуалізація "ви нічого не додали у favorites"
-function noFavItems(items) {
+export function noFavItems(items) {
       document.querySelector('.gallery').innerHTML =
         `You haven't added any favorites ${items} yet`;
 }
