@@ -42,8 +42,8 @@ function onCreateCockteilsMarkup() {
 
     <b class="modal-coctails__title">INSTRACTIONS:</b>
     <p class="modal-coctails__text">${selectedObj.instruction}</p>
-    <div class="modal-coctails__box-image">
-    <img class="modal-coctails__image" src=${selectedObj.img} alt="${selectedObj.name}" />
+    <div class="box-image">
+    <img class="box-image__image" src=${selectedObj.img} alt="${selectedObj.name}" />
     </div>
     <div class="ingridients">
       <h3 class="ingridients__subtitle">INGREDIENTS</h3>
@@ -66,13 +66,13 @@ function onCreateCockteilsMarkup() {
         </li>
       </ul>
     </div>
+    
     <button class="modal-coctails__button" type="button">
       Add to favorite
     </button>
   </div>`;
 }
-
-refs.modalBody.insertAdjacentHTML('beforeend', onCreateCockteilsMarkup());
+refs.backdrop.insertAdjacentHTML('beforeend', onCreateCockteilsMarkup());
 console.log(cocktailMarkup);
 
 let flag = true;
@@ -84,15 +84,28 @@ refs.btnAddFavorie.addEventListener('click', onCangeBtn);
 window.addEventListener('keydown', handleCloseModal);
 // refs.openModalBtn.addEventListener('click', toggleModal);
 
-function toggleModal() {
-  refs.modal.classList.toggle('is-hidden');
-  refs.body.classList.toggle('no-scroll');
-  refs.modal2.classList.add('is-hidden');
-  onCreateCockteilsMarkup();
-  refs.openModalBtn.forEach(el => {
-    el.addEventListener('click', toggleModal);
-  });
+function onClickModalIngridientsTwo() {
+  if ('click') {
+    refs.modal.classList.remove('is-hidden');
+    refs.modal2.classList.add('is-hidden');
+
+    console.log('----> click');
+
+    refs.openModalBtn.forEach(el => {
+      el.addEventListener('click', onClickModalIngridientsTwo);
+    });
+  }
 }
+// function toggleModal() {
+//   onCreateCockteilsMarkup();
+//   refs.openModalBtn.classList.toggle('is-hidden');
+//   refs.body.classList.toggle('no-scroll');
+//   refs.modal2.classList.add('is-hidden');
+
+//   refs.openModalBtn.forEach(el => {
+//     el.addEventListener('click', toggleModal);
+//   });
+// }
 
 // Открытие 1й модалки с галереи
 // function toggleModal(e) {
@@ -117,14 +130,14 @@ function onBakdropClick(e) {
   }
 }
 // Смена кнопок с Add на Remove + добавить innerHTML
-function onCangeBtn() {
-  if (flag) {
-    refs.btnAddFavorie.innerHTML = 'Remove from favorite';
-  } else {
-    refs.btnAddFavorie.innerHTML = 'Add to favorite';
-  }
-  flag = !flag;
-}
+// function onCangeBtn() {
+//   if (flag) {
+//     refs.btnAddFavorie.innerHTML = 'Remove from favorite';
+//   } else {
+//     refs.btnAddFavorie.innerHTML = 'Add to favorite';
+//   }
+//   flag = !flag;
+// }
 
 // Закрытие по ЕСК
 function handleCloseModal(e) {
@@ -134,14 +147,16 @@ function handleCloseModal(e) {
 }
 
 // ___________Вызов модалки 2 ______________
-//
-function onClickModalIngridientsTwo() {
-  if ('click') {
-    refs.modal2.classList.remove('is-hidden');
-    refs.modal.classList.add('is-hidden');
-  }
-  console.log('----> click');
-}
-refs.ingridientsItems.forEach(ingridientsItem => {
-  ingridientsItem.addEventListener('click', onClickModalIngridientsTwo);
-});
+
+// function onClickModalIngridientsTwo() {
+//   if ('click') {
+//     refs.modal2.classList.remove('is-hidden');
+//     refs.modal.classList.add('is-hidden');
+
+//     console.log('----> click');
+
+//     refs.ingridientsItems.forEach(ingridientsItem => {
+//       ingridientsItem.addEventListener('click', onClickModalIngridientsTwo);
+//     });
+//   }
+// }
