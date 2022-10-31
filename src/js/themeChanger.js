@@ -1,4 +1,5 @@
 const slider = document.querySelector('.themeChanger')
+const sliderMob = document.querySelector('.mob-menu-switcher .slider')
 const body = document.querySelector('body')
 
 const themeChanger = () => {
@@ -6,3 +7,4 @@ const themeChanger = () => {
 };
 
 slider.addEventListener('click', themeChanger)
+sliderMob.addEventListener('click', themeChanger)

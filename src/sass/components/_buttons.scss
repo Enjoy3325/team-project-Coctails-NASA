@@ -45,7 +45,7 @@
   &--orange {
     padding: 8px 16px;
     min-width: 110px;
-    color: var(--white);
+    color: var(--whiteBtn);
     background-color: var(--auxiliary-orange);
     transition: background-color 250ms var(--timing-function);
     @include media-min($tablet) {
