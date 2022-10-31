@@ -1,29 +1,4 @@
-.is-hidden {
-  visibility: hidden;
-  opacity: 0;
-  pointer-events: none;
-}
-.modal-open {
-  overflow: hidden;
-}
 .backdrop {
-  // position: relative;
-  // position: fixed;
-  // display: flex;
-  // width: 100vw;
-  // height: 100vh;
-  // justify-content: center;
-  // align-items: center;
-
-  // top: 0;
-  // left: 0;
-  // z-index: 110;
-
-  // background: rgb(248, 246, 246, 0.7);
-  // overflow-y: scroll;
-  // transition: opacity 250ms time-distribution,
-  //   visibility 250ms time-distribution;
-
   position: fixed;
   z-index: 110;
   top: 0;
@@ -38,32 +13,64 @@
   transition: opacity 250ms var(--timing-function),
     visibility 250ms var(--timing-function);
 
-  @include mobile {
-    padding: 31px;
+  // @include mobile {
+  //   padding: 31px;
+  // }
+
+  &__wrap {
+    width: 320px;
+    position: relative;
+    margin: 0 auto;
+    @include mobile {
+      padding: 31px;
+    }
+
+    @include tablet {
+      min-width: 758px;
+      padding: 0;
+    }
   }
 }
-//* ___________________Тело модалки_______________________*
+
 .modal-coctails {
-  max-width: 320px;
-  background-color: #fff;
   position: relative;
-  padding: 40px 20px;
-  @include tablet {
-    min-width: 822px;
-    min-height: 598px;
-    padding: 28px;
+  background-color: #fff;
+
+  &__mobile-section {
+    max-width: 320px;
+    padding: 40px 20px;
+    @include tablet {
+      display: none;
+    }
   }
+  &__tablet-section {
+    display: none;
+    @include tablet {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      padding: 28px;
+    }
+  }
+
+  &__cover-block {
+    display: flex;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    padding-left: 4px;
+  }
+
   &__header {
     display: block;
     font-family: 'Roboto';
     position: relative;
-    width: 129px;
-    height: 37px;
     font-weight: 900;
     font-size: 32px;
     line-height: 1.18;
     color: var(--black);
-    // margin-top: 40px;
     margin-right: auto;
   }
   &__title {
@@ -74,6 +81,9 @@
     line-height: 1.6;
     margin-top: 20px;
     color: var(--black);
+    @include tablet {
+      margin-top: 0;
+    }
   }
   &__text {
     display: block;
@@ -82,6 +92,9 @@
     line-height: 1.8;
     margin-top: 20px;
     color: var(--gray);
+    @include tablet {
+      margin-top: 24px;
+    }
   }
   &__image {
     width: 280px;
@@ -89,11 +102,18 @@
     display: block;
     margin-top: 32px;
     background-size: cover;
+    border-radius: 4px;
+
     @include tablet {
       display: flex;
       justify-content: flex-start;
       min-width: 288px;
       min-height: 320px;
+      border-radius: 0;
+      margin: 0;
+      position: relative;
+      top: -28px;
+      left: -28px;
     }
   }
   // *___________________________________Кнопка Add || Remove________________________________*
@@ -125,9 +145,8 @@
       color: var(--white);
     }
     @include tablet {
-      display: flex;
-      justify-content: right;
-      transform: translateX(609px);
+      margin-top: 40pxpx;
+      margin-left: auto;
     }
   }
   // ___________________________________Кнопка Add || Remove закончилось________________________________
@@ -137,6 +156,7 @@
     justify-content: center;
     align-items: center;
     position: absolute;
+    z-index: 1;
 
     width: 32px;
     height: 32px;
@@ -157,9 +177,9 @@
 // ____________________________________/Тело модалки закончилось__________________________
 
 .ingridients {
-  @media screen and (min-width: 768px) {
-    transform: translate(320px, -250px);
-  }
+  // @media screen and (min-width: 768px) {
+  //   transform: translate(320px, -250px);
+  // }
   &__subtitle {
     display: block;
     width: 103px;
@@ -180,9 +200,7 @@
   &__list {
     margin-top: 8px;
   }
-  &__item span::before {
-    content: '\2736 \0020 \0020';
-  }
+
   &__list span:hover,
   span:focus {
     color: var(--auxiliary-orange);
@@ -197,4 +215,29 @@
 }
 --line-height {
   line-height: 1.5;
+}
+
+.ingridients__item {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.62;
+  color: var(--gray);
+  cursor: pointer;
+
+  span::before {
+    content: '\2736 \0020 \0020';
+    margin-right: 2px;
+  }
+
+  &:hover {
+    span {
+      color: var(--grapefruit);
+      transform: scale(1.1);
+      text-shadow: 0px 4px 4px rgba(95, 103, 117, 0.25);
+    }
+    span::before {
+      content: '\2736 \0020 \0020';
+      color: var(--grapefruit);
+    }
+  }
 }
