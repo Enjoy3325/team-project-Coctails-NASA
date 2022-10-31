@@ -1,3 +1,5 @@
+//Render select template
+
 const getTemplate = (data = [], placeholder, selectedId) => {
   let text = placeholder ?? '';
 
