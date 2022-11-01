@@ -21,7 +21,7 @@ function getFavorites() {
   refs.hero.classList.add('visually-hidden');
   refs.title.innerHTML = `Favorite ${items}`;
   let arr = JSON.parse(
-    localStorage.getItem(`favorite${items[0].toUpperCase() + items.slice(1)}`)
+    localStorage.getItem(`favorite${items[0].toUpperCase() + items.slice(1)}`) || '[]'
   );
   if (arr.length === 0) {
     noFavItems(items);

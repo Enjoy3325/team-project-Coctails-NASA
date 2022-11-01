@@ -65,7 +65,7 @@ function contentBtnRemovOrAdd(type = 'add') {
 // Додає напій в localStorage to favorite
 function onAddFavoriteToLocalStorage(selectedCocktail) {
   const allFavoriteCocktails = getFavoriteCocktailsFromLocalStorage();
-  allFavoriteCocktails.push(selectedCocktail);
+  allFavoriteCocktails.push({ ...selectedCocktail, dataModal: 'remove' });
   localStorage.setItem(
     'favoriteCocktails',
     JSON.stringify(allFavoriteCocktails)
