@@ -13,17 +13,13 @@
   transition: opacity 250ms var(--timing-function),
     visibility 250ms var(--timing-function);
 
-  // @include mobile {
-  //   padding: 31px;
-  // }
-
   &__wrap {
     width: 320px;
-    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     margin: 0 auto;
-    @include mobile {
-      // padding: 31px;
-    }
 
     @include tablet {
       min-width: 758px;
