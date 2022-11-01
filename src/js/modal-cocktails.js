@@ -9,18 +9,11 @@ const refs = {
   ingridientsList: document.querySelector('.ingridients__list'),
 };
 
-// let selectedCocktail = {};
-
 function modalCocktails() {
   refs.gallery.addEventListener('click', onGalleryClick);
   refs.closeModalBtn.addEventListener('click', toggleModal);
   refs.backdrop.addEventListener('click', onBackdropClick);
-}
-
-// Close modal
-function toggleModal(e) {
-  document.body.classList.toggle('no-scroll');
-  refs.modal.classList.toggle('is-hidden');
+  refs.modal.addEventListener('click', onClickBtnInModal);
 }
 
 function onGalleryClick(e) {
@@ -36,43 +29,26 @@ function onGalleryClick(e) {
     if (openModal === 'open') {
       document.querySelector('#modal-section').innerHTML =
         templateModal(selectedCocktail);
-      toggleModal();
+      onOpenModal(e);
+      //   onClickBtnInModal(e);
+      //   toggleModal();
     } else if (openModal === 'add') {
       // додаємо напій до LocalStorage і змінюємо текст в кнопці
       if (selectedCocktail) {
-        e.target.innerHTML = contantBtnRemovOrAdd('remove');
+        e.target.innerHTML = contentBtnRemovOrAdd('remove');
         e.target.dataset.openModal = 'remove';
-
         onAddFavoriteToLocalStorage(selectedCocktail);
       }
     } else if (openModal === 'remove') {
       // видаляємо напій з LocalStorage і змінюємо текст в кнопці
-      e.target.innerHTML = contantBtnRemovOrAdd('add');
+      e.target.innerHTML = contentBtnRemovOrAdd('add');
       e.target.dataset.openModal = 'add';
       onRemoveFavoriteFromLocalStorage(selectedCocktail);
     }
   }
-
-  // Закрытие по ЕСК
-  function handleCloseModal(e) {
-    if (e.key === 'Escape') {
-      refs.modal.classList.add('is-hidden');
-    }
-  }
-
-  function onCloseModal() {
-    refs.modal.classList.add('is-hidden');
-    document.body.classList.toggle('no-scroll');
-  }
-
-  function onClickModalIngridientsTwo(e) {}
-
-  //   function onOpenModal() {
-  //     refs.modal.classList.remove('is-hidden');
-  //   }
 }
 
-function contantBtnRemovOrAdd(type = 'add') {
+function contentBtnRemovOrAdd(type = 'add') {
   if (type === 'remove') {
     return `Remove 
             <span class="btn__icon-wrap">
@@ -118,16 +94,65 @@ function onBackdropClick(e) {
   }
 }
 
-function onCloseModal() {
-  refs.modal.classList.add('is-hidden');
+// ----------------------OPEN MODAL ----------------------
+
+function onClickBtnInModal(e) {
+  let selectedCocktail = {};
+  const { modalBtn, cocktail } = e.target.dataset;
+
+  if (e.target.nodeName === 'BUTTON') {
+    const data = JSON.parse(localStorage.getItem('cocktails'));
+    selectedCocktail = data.find(el => el.name === cocktail);
+
+    if (modalBtn === 'add') {
+      e.target.innerHTML = 'Remove from favorite';
+      e.target.dataset.modalBtn = 'remove';
+      onAddFavoriteToLocalStorage(selectedCocktail);
+    } else {
+      e.target.innerHTML = 'Add to favorite';
+      e.target.dataset.modalBtn = 'add';
+      onRemoveFavoriteFromLocalStorage(selectedCocktail);
+    }
+  }
+}
+
+function onAddOrRemoveCocktail(e) {
+  console.log('onAddRemoveCockt', selectedCocktail, e.target);
+}
+
+// Закрытие по ЕСК
+function onEskKeyPress(e) {
+  if (e.code === 'Escape') {
+    onCloseModal();
+  }
+}
+
+// toggle modal
+function toggleModal(e) {
   document.body.classList.toggle('no-scroll');
+  refs.modal.classList.toggle('is-hidden');
 }
 
-function onOpenModal() {
+function onCloseModal() {
+  window.removeEventListener('keydown', onEskKeyPress);
+  refs.modal.classList.add('is-hidden');
+  document.body.classList.remove('no-scroll');
+}
+
+function onOpenModal(e) {
+  console.log('onOpenMod', e);
+  window.addEventListener('keydown', onEskKeyPress);
   refs.modal.classList.remove('is-hidden');
+  document.body.classList.add('no-scroll');
 }
 
-export { modalCocktails, getFavoriteCocktailsFromLocalStorage };
+export {
+  modalCocktails,
+  getFavoriteCocktailsFromLocalStorage,
+  contentBtnRemovOrAdd,
+  onAddFavoriteToLocalStorage,
+  onRemoveFavoriteFromLocalStorage,
+};
 
 // export class CreateModalCocktails {
 //   constructor() {
