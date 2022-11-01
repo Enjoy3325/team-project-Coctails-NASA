@@ -37,6 +37,7 @@ export const getRandomCocktail = () => {
         instruction: obj.strInstructions,
         img: obj.strDrinkThumb,
         ingredients: ingredients,
+        dataModal: 'add',
       };
     })
     .catch();
@@ -56,6 +57,7 @@ const createCocktailArray = res => {
       instruction: strInstructions,
       img: strDrinkThumb,
       ingredients: ingredients,
+      dataModal: 'add',
     };
   });
   // console.log(newDrinks);
