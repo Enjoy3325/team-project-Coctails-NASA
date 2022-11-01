@@ -8,7 +8,7 @@ const refs = {
   ingridientsList: document.querySelector('[data-modal-open]'),
 };
 
-function onCloseModal() {
-  refs.modal2.classList.add('is-hidden');
-  document.body.classList.toggle('no-scroll');
-}
+// function onCloseModal() {
+//   refs.modal2.classList.add('is-hidden');
+//   document.body.classList.toggle('no-scroll');
+// }
