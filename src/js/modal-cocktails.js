@@ -8,18 +8,10 @@ const refs = {
   backdrop: document.querySelector('.backdrop'),
 };
 
-// let selectedCocktail = {};
-
 function modalCocktails() {
   refs.gallery.addEventListener('click', onGalleryClick);
   refs.closeModalBtn.addEventListener('click', toggleModal);
   refs.backdrop.addEventListener('click', onBackdropClick);
-}
-
-// Close modal
-function toggleModal(e) {
-  document.body.classList.toggle('no-scroll');
-  refs.modal.classList.toggle('is-hidden');
 }
 
 function onGalleryClick(e) {
@@ -30,30 +22,32 @@ function onGalleryClick(e) {
   if (e.target.nodeName === 'BUTTON') {
     const data = JSON.parse(localStorage.getItem('cocktails'));
     selectedCocktail = data.find(el => el.name === cocktail);
+    console.log('selectedCocktail', selectedCocktail);
+    console.log('data', data);
 
     //   якщо openModal === 'open вiдкриваємо модалку
     if (openModal === 'open') {
+      console.log('open', selectedCocktail);
       document.querySelector('#modal-section').innerHTML =
         templateModal(selectedCocktail);
       toggleModal();
     } else if (openModal === 'add') {
       // додаємо напій до LocalStorage і змінюємо текст в кнопці
       if (selectedCocktail) {
-        e.target.innerHTML = contantBtnRemovOrAdd('remove');
+        e.target.innerHTML = contentBtnRemovOrAdd('remove');
         e.target.dataset.openModal = 'remove';
 
         onAddFavoriteToLocalStorage(selectedCocktail);
       }
     } else if (openModal === 'remove') {
       // видаляємо напій з LocalStorage і змінюємо текст в кнопці
-      e.target.innerHTML = contantBtnRemovOrAdd('add');
+      e.target.innerHTML = contentBtnRemovOrAdd('add');
       e.target.dataset.openModal = 'add';
       onRemoveFavoriteFromLocalStorage(selectedCocktail);
     }
   }
 }
-
-function contantBtnRemovOrAdd(type = 'add') {
+function contentBtnRemovOrAdd(type = 'add') {
   if (type === 'remove') {
     return `Remove 
             <span class="btn__icon-wrap">
@@ -99,6 +93,12 @@ function onBackdropClick(e) {
   }
 }
 
+// toggle modal
+function toggleModal(e) {
+  document.body.classList.toggle('no-scroll');
+  refs.modal.classList.toggle('is-hidden');
+}
+
 function onCloseModal() {
   refs.modal.classList.add('is-hidden');
   document.body.classList.toggle('no-scroll');
@@ -108,7 +108,11 @@ function onOpenModal() {
   refs.modal.classList.remove('is-hidden');
 }
 
-export { modalCocktails, getFavoriteCocktailsFromLocalStorage };
+export {
+  modalCocktails,
+  getFavoriteCocktailsFromLocalStorage,
+  contentBtnRemovOrAdd,
+};
 
 // export class CreateModalCocktails {
 //   constructor() {
