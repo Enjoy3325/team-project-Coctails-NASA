@@ -10,12 +10,10 @@
     submitBtn: document.querySelector('.form-btn'),
     favorites: document.querySelector('.favorites'),
     favoritesMob: document.querySelector('.favorites-mob'),
-
+    favoriteItem: document.querySelector('.favorites__item'),
 
     body: document.querySelector('body'),
   };
-
-
 
   refs.openMenuBtn.addEventListener('click', toggleMenu);
   refs.closeMenuBtn.addEventListener('click', toggleMenu);
@@ -23,9 +21,11 @@
   refs.openMobFavorites.addEventListener('click', toggleMobFavorites);
   refs.favoritesMob.addEventListener('click', removeMenu);
   refs.home.addEventListener('click', removeMenu);
+
+  // refs.favorites.addEventListener('click', backdropClickClose);
+  // refs.favoriteItem.addEventListener('click', backdropClickClose);
+  // refs.body.addEventListener('click', backdropClickClose);
   // refs.submitBtn.addEventListener('click', removeMenu);
-
-
 
   function toggleMenu() {
     refs.menu.classList.toggle('is-hidden');
