@@ -82,12 +82,7 @@ const templateModalIngredients = ({
   //     )
   //     .join('');
   // }
-  console.log(
-    type === 'null',
-    alcoholValue === 'null',
-    type === null,
-    alcoholValue === null
-  );
+
   return `<div class="modal-ingredient__section">
   <div class="modal-ingredient__section-first">
   <h2 class="modal-ingredient__header">${name}</h2>
@@ -119,7 +114,7 @@ const templateModalIngredients = ({
           </li>
         </ul>
       </div>
-      <button class="modal-ingredient__button" type="button">
+      <button data-modal-ingredient="add" data-ingredient="${name}" class="modal-ingredient__button" type="button">
         Add to favorite
       </button>
       </div>
