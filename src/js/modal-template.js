@@ -55,5 +55,32 @@ const templateModal = ({ name, instruction, img, ingredients }) => {
       </button>
       </div>`;
 };
-
 export { templateModal };
+
+const templateModalIngredients = ({ name, type, description, ingredients }) => {
+  let ingredientsDescription;
+  if (ingredients.length > 0) {
+    ingredientsList = ingredients
+      .map(
+        el => `<li class="ingredients__item">
+            <span>${el}</span>
+          </li>`
+      )
+      .join('');
+  }
+  return `<div class="modal-cocktails__mobile-section">
+  <h2 class="modal-cocktails__header">${name}</h2>
+
+       <b class="modal-cocktails__title">${type}</b>
+      <p class="modal-cocktails__text">${description}</p>
+      <div class="ingredients">
+        <ul data-modal-open class="ingredients__list">
+        ${ingredientsDescription}
+        </ul>
+      </div>
+      <button class="modal-cocktails__button" type="button">
+        Add to favorite
+      </button>
+      </div>`;
+};
+export { templateModalIngredients };

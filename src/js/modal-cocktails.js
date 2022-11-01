@@ -8,7 +8,7 @@ const refs = {
   backdrop: document.querySelector('.backdrop'),
   ingridientsList: document.querySelector('.ingridients__list'),
 };
-
+console.log('----> ingridientsList', refs.ingridientsList);
 let selectedCocktail = {};
 
 function modalCocktails() {
