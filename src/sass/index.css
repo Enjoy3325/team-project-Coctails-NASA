@@ -278,6 +278,7 @@ button {
     height: 50px;
     border: var(--grapefruit) solid 2px;
     border-radius: 50%;
+    background-color: var(--white);
     transition: all var(--timing-function);
   }
 }
