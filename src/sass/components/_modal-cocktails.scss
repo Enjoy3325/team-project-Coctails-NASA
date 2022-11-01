@@ -32,9 +32,9 @@
   }
 }
 
-.modal-coctails {
+.modal-cocktails {
   position: relative;
-  background-color: #fff;
+  background-color: var(--white);
 
   &__mobile-section {
     max-width: 320px;
@@ -93,6 +93,7 @@
     margin-top: 20px;
     color: var(--gray);
     @include tablet {
+      color: var(--modalgray);
       margin-top: 24px;
     }
   }
@@ -128,11 +129,11 @@
     border-radius: 4px;
     border: none;
     background-color: var(--grapefruit);
-    color: var(--white);
+    color: var(--whiteBtn);
     margin-top: 32px;
     padding: 12px 24px;
     cursor: pointer;
-    transition: all 0.5, ease;
+    transition: all 0.5 ease;
     &:hover,
     &:focus {
       transition: all 0.5s ease;
@@ -145,7 +146,7 @@
       color: var(--white);
     }
     @include tablet {
-      margin-top: 40pxpx;
+      margin-top: 40px;
       margin-left: auto;
     }
   }
@@ -162,7 +163,6 @@
     height: 32px;
     right: 16px;
     top: 16px;
-    background-color: #fff;
     border: none;
     cursor: pointer;
     &:hover {
@@ -173,10 +173,17 @@
       top: 12px;
     }
   }
+
+  &__icon {
+    fill: var(--black);
+  }
 }
 // ____________________________________/Тело модалки закончилось__________________________
 
-.ingridients {
+.ingredients {
+  // @media screen and (min-width: 768px) {
+  //   transform: translate(320px, -250px);
+  // }
   &__subtitle {
     display: block;
     width: 103px;
@@ -185,7 +192,7 @@
     line-height: 1.5;
     margin-top: 20px;
     list-style-type: none;
-    color: #000917;
+    color: var(--black);
   }
   &__subtext {
     font-weight: 300;
@@ -204,22 +211,25 @@
     cursor: pointer;
   }
 }
-// .modal-coctails__highlighted {
-//   font-weight: 600;
-//   font-size: 16px;
-//   line-height: 1.8;
-//   color: var(--black);
-// }
-// --line-height {
-//   line-height: 1.5;
-// }
+.modal-cocktails__highlighted {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--black);
+}
+--line-height {
+  line-height: 1.5;
+}
 
-.ingridients__item {
+.ingredients__item {
   font-weight: 400;
   font-size: 16px;
   line-height: 1.62;
   color: var(--gray);
   cursor: pointer;
+  @include tablet {
+    color: var(--modalgray);
+  }
 
   span::before {
     content: '\2736 \0020 \0020';

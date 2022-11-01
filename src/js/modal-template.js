@@ -1,56 +1,56 @@
 const templateModal = ({ name, instruction, img, ingredients }) => {
-  let ingridientsList;
+  let ingredientsList;
   if (ingredients.length > 0) {
-    ingridientsList = ingredients
+    ingredientsList = ingredients
       .map(
-        el => `<li class="ingridients__item">
+        el => `<li class="ingredients__item">
             <span>${el}</span>
           </li>`
       )
       .join('');
   }
 
-  console.log(ingridientsList);
+  console.log(ingredientsList);
 
-  return `<div class="modal-coctails__mobile-section">
-  <h2 class="modal-coctails__header">${name}</h2>
+  return `<div class="modal-cocktails__mobile-section">
+  <h2 class="modal-cocktails__header">${name}</h2>
 
-       <b class="modal-coctails__title">INSTRACTIONS:</b>
-      <p class="modal-coctails__text">${instruction}</p>
-      <img class="modal-coctails__image" src="${img}" alt="${name}" />
+       <b class="modal-cocktails__title">INSTRACTIONS:</b>
+      <p class="modal-cocktails__text">${instruction}</p>
+      <img class="modal-cocktails__image" src="${img}" alt="${name}" />
 
-      <div class="ingridients">
-        <h3 class="ingridients__subtitle">INGREDIENTS</h3>
-        <p class="ingridients__subtext">Per cocktail</p>
-        <ul class="ingridients__list">
-        ${ingridientsList}
+      <div class="ingredients">
+        <h3 class="ingredients__subtitle">INGREDIENTS</h3>
+        <p class="ingredients__subtext">Per cocktail</p>
+        <ul class="ingredients__list">
+        ${ingredientsList}
         </ul>
       </div>
-      <button data-add-favorite class="modal-coctails__button" type="button">
+      <button data-modal-open class="modal-cocktails__button" type="button">
         Add to favorite
       </button>
       </div>
-        
-      <div class="modal-coctails__tablet-section">
-      <div class="modal-coctails__cover-block">
-        <img class="modal-coctails__image" src="${img}" alt="${name}" />
-        <div class="modal-coctails__content">
-            <h2 class="modal-coctails__header">${name}</h2>
-            <div class="ingridients">
-            <h3 class="ingridients__subtitle">INGREDIENTS</h3>
-            <p class="ingridients__subtext">Per cocktail</p>
-            <ul class="ingridients__list">
-            ${ingridientsList}
+
+      <div class="modal-cocktails__tablet-section">
+      <div class="modal-cocktails__cover-block">
+        <img class="modal-cocktails__image" src="${img}" alt="${name}" />
+        <div class="modal-cocktails__content">
+            <h2 class="modal-cocktails__header">${name}</h2>
+            <div class="ingredients">
+            <h3 class="ingredients__subtitle">INGREDIENTS</h3>
+            <p class="ingredients__subtext">Per cocktail</p>
+            <ul class="ingredients__list">
+            ${ingredientsList}
             </ul>
             </div>
         </div>
       </div>
 
-        <div class="modal-coctails__instruction-block">
-      <b class="modal-coctails__title">INSTRACTIONS:</b>
-      <p class="modal-coctails__text">${instruction}</p>
+        <div class="modal-cocktails__instruction-block">
+      <b class="modal-cocktails__title">INSTRACTIONS:</b>
+      <p class="modal-cocktails__text">${instruction}</p>
       </div>
-      <button data-add-favorite class="modal-coctails__button" type="button">
+      <button data-modal-open class="modal-cocktails__button" type="button">
         Add to favorite
       </button>
       </div>`;

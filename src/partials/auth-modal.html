@@ -1,0 +1,107 @@
+<div class='backdrop auth is-hidden' data-auth-modal>
+  <div class='modal'>
+    <button class='modal__btn' type='button' data-auth-modal-close>
+      <svg class='modal__btn-img' width='16' height='16'>
+        <use href='./images/sprite.svg#cross'></use>
+      </svg>
+    </button>
+    <div class='login-markup'>
+      <h3 class='modal__title'>Login</h3>
+      <form class='auth-form login'>
+        <div class='auth-form__item'>
+          <label class='auth-form__label' for='login_email'>E-mail</label>
+          <input class='auth-form__input'
+                 type='email'
+                 name='e-mail'
+                 id='login_email'
+                 placeholder='example@gmail.com'
+                 required>
+          <div class='error-group'>
+            <p class='error'>Please enter a valid email address</p>
+          </div>
+          <div class='req-error-group'>
+            <p class='req-error'>This field is required</p>
+          </div>
+        </div>
+        <div class='auth-form__item'>
+          <label class='auth-form__label' for='login_password'>Password</label>
+          <input class='auth-form__input'
+                 type='password' name='password' id='login_password'
+                 minlength='6'
+                 placeholder='Your password' required>
+          <div class='error-group'>
+            <p class='error'>The password must be more than 6 characters</p>
+          </div>
+          <div class='req-error-group'>
+            <p class='req-error'>This field is required</p>
+          </div>
+          <div class='auth-form__item'>
+          </div>
+        </div>
+        <button type='submit' class='auth-form__button'>
+          <span>Login</span>
+        </button>
+
+      </form>
+      <button class='login-form__button'>
+        <span>Don't have an account? REGISTER</span>
+      </button>
+    </div>
+    <div  class='register-markup is-hidden'>
+      <h3 class='modal__title'>Register</h3>
+      <form class='auth-form register'>
+        <div class='auth-form__item'>
+          <label class='auth-form__label' for='register_name'>Name</label>
+          <input class='auth-form__input'
+                 type='text' name='name' id='register_name'
+                 placeholder='Your name' autofocus
+                 minlength='3' maxlength='25'
+                 required>
+          <div class='error-group'>
+            <p class='error'>The name must be between 3 and 25 characters</p>
+          </div>
+          <div class='req-error-group'>
+            <p class='req-error'>This field is required</p>
+          </div>
+        </div>
+        <div class='auth-form__item'>
+          <label class='auth-form__label' for='register_email'>E-mail</label>
+          <input class='auth-form__input'
+                 type='email'
+                 name='e-mail'
+                 id='register_email'
+                 placeholder='example@gmail.com'
+                 required>
+          <div class='error-group'>
+            <p class='error'>Please enter a valid email address</p>
+          </div>
+          <div class='req-error-group'>
+            <p class='req-error'>This field is required</p>
+          </div>
+        </div>
+        <div class='auth-form__item'>
+          <label class='auth-form__label' for='register_password'>Password</label>
+          <input class='auth-form__input'
+                 type='password' name='password' id='register_password'
+                 minlength='6'
+                 placeholder='Your password' required>
+          <div class='error-group'>
+            <p class='error'>The password must be more than 6 characters</p>
+          </div>
+          <div class='req-error-group'>
+            <p class='req-error'>This field is required</p>
+          </div>
+          <div class='auth-form__item'>
+          </div>
+        </div>
+        <button type='submit' class='auth-form__button'>
+          <span>Register</span>
+        </button>
+
+      </form>
+      <button class='reg-form__button'>
+        <span>Have an account LOGIN</span>
+      </button>
+    </div>
+  </div>
+</div>
