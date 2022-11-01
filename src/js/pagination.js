@@ -4,7 +4,14 @@ import { renderCocktailCards } from './render-gallery';
 // і кількість коктейлів на одній сторінці (number)
 
 export function getPagination(arr, number) {
-  let lclStorCocktails = JSON.parse(localStorage.getItem('cocktails'));
+    let key = 'cocktails';
+    if (event.target.innerHTML === 'Favorite cocktails') {
+        key = 'favoriteCocktails';
+    }
+    if (event.target.innerHTML === 'Favorite ingredients') {
+      key = 'favoriteIngredients';
+    }
+  let lclStorCocktails = JSON.parse(localStorage.getItem(`${key}`));
   const pagRefs = {
     box: document.querySelector('.pagination'),
     list: document.querySelector('.pagination__list'),
@@ -31,7 +38,6 @@ export function getPagination(arr, number) {
     activeBtn.classList.remove('pagination--active');
     this.classList.add('pagination--active');
     activeBtn = this;
-    getTruncate();
     let pageNum = Number(this.innerHTML);
     let start = (pageNum - 1) * number;
     let end = pageNum * number;
