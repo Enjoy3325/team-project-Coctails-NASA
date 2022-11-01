@@ -89,4 +89,10 @@
     color: var(--white);
     background-color: var(--auxiliary-orange);
   }
+  &__dots::before,
+  &__dots::after {
+    content: '...';
+    color: var(--black);
+    font-weight: 900; 
+  }
 }
