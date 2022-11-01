@@ -6,6 +6,7 @@ const refs = {
   modal: document.querySelector('[data-modal]'),
   gallery: document.querySelector('.gallery'),
   backdrop: document.querySelector('.backdrop'),
+  ingridientsList: document.querySelector('.ingridients__list'),
 };
 
 // let selectedCocktail = {};
@@ -51,6 +52,24 @@ function onGalleryClick(e) {
       onRemoveFavoriteFromLocalStorage(selectedCocktail);
     }
   }
+
+  // Закрытие по ЕСК
+  function handleCloseModal(e) {
+    if (e.key === 'Escape') {
+      refs.modal.classList.add('is-hidden');
+    }
+  }
+
+  function onCloseModal() {
+    refs.modal.classList.add('is-hidden');
+    document.body.classList.toggle('no-scroll');
+  }
+
+  function onClickModalIngridientsTwo(e) {}
+
+  //   function onOpenModal() {
+  //     refs.modal.classList.remove('is-hidden');
+  //   }
 }
 
 function contantBtnRemovOrAdd(type = 'add') {
