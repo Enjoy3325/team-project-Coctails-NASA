@@ -8,7 +8,7 @@ const refs = {
   backdrop: document.querySelector('.backdrop'),
 };
 
-let selectedCocktail = {};
+// let selectedCocktail = {};
 
 function modalCocktails() {
   refs.gallery.addEventListener('click', onGalleryClick);
@@ -23,28 +23,55 @@ function toggleModal(e) {
 }
 
 function onGalleryClick(e) {
+  let selectedCocktail = {};
   const { openModal, cocktail } = e.target.dataset;
 
   //   Перевіряємо, щоб клік був на BUTTON Learn more,
-  //   тоді вiдкриваємо модалку і записуємо дані обаного коктейлю
   if (e.target.nodeName === 'BUTTON') {
     const data = JSON.parse(localStorage.getItem('cocktails'));
-    console.log(
-      'cocktail',
-      cocktail,
-      e.target,
-      data.find(el => el.name === cocktail)
-    );
+    selectedCocktail = data.find(el => el.name === cocktail);
+    console.log('onGalleryCli', openModal, cocktail, selectedCocktail, data);
 
+    //   якщо openModal === 'open вiдкриваємо модалку
     if (openModal === 'open') {
-      selectedCocktail = data.find(el => el.name === cocktail);
+      //   selectedCocktail = data.find(el => el.name === cocktail);
       document.querySelector('#modal-section').innerHTML =
         templateModal(selectedCocktail);
       toggleModal();
     } else if (openModal === 'add') {
-      selectedCocktail = data.find(el => el.name === cocktail);
-      onAddFavoriteToLocalStorage(selectedCocktail);
+      // додаємо напій до LocalStorage і змінюємо текст в кнопці
+      //   selectedCocktail = data.find(el => el.name === cocktail);
+      if (selectedCocktail) {
+        e.target.innerHTML = contantBtnRemovOrAdd('remove');
+        e.target.dataset.openModal = 'remove';
+
+        onAddFavoriteToLocalStorage(selectedCocktail);
+        console.log('selectedCocktail', selectedCocktail);
+      }
+    } else if (openModal === 'remove') {
+      // видаляємо напій з LocalStorage і змінюємо текст в кнопці
+
+      console.log('remove', selectedCocktail);
+      e.target.innerHTML = contantBtnRemovOrAdd('add');
+      e.target.dataset.openModal = 'add';
+      onRemoveFavoriteFromLocalStorage(selectedCocktail);
     }
+  }
+}
+
+function contantBtnRemovOrAdd(type = 'add') {
+  if (type === 'remove') {
+    return `Remove 
+            <span class="btn__icon-wrap">
+            <svg class="btn__icon-fill" width="15" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8.5 15L7.2675 13.921C2.89 10.1035 0 7.58583 0 4.49591C0 1.9782 2.057 0 4.675 0C6.154 0 7.5735 0.662125 8.5 1.70845C9.4265 0.662125 10.846 0 12.325 0C14.943 0 17 1.9782 17 4.49591C17 7.58583 14.11 10.1035 9.7325 13.9292L8.5 15Z" />
+            </svg>`;
+  } else {
+    return `Add to
+            <span class="btn__icon-wrap">
+            <svg class="btn__icon" width="15" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8.5 15L7.2675 13.921C2.89 10.1035 0 7.58583 0 4.49591C0 1.9782 2.057 0 4.675 0C6.154 0 7.5735 0.662125 8.5 1.70845C9.4265 0.662125 10.846 0 12.325 0C14.943 0 17 1.9782 17 4.49591C17 7.58583 14.11 10.1035 9.7325 13.9292L8.5 15Z" />
+            </svg>`;
   }
 }
 
@@ -56,6 +83,16 @@ function onAddFavoriteToLocalStorage(selectedCocktail) {
     'favoriteCocktails',
     JSON.stringify(allFavoriteCocktails)
   );
+}
+
+// видаляємо напій з localStorage favorite
+function onRemoveFavoriteFromLocalStorage(selectedCocktail) {
+  const allFavoriteCocktails = getFavoriteCocktailsFromLocalStorage();
+  const filterArr = allFavoriteCocktails.filter(
+    drink => drink.name !== selectedCocktail.name
+  );
+  console.log('filterArr', filterArr);
+  localStorage.setItem('favoriteCocktails', JSON.stringify(filterArr));
 }
 
 function getFavoriteCocktailsFromLocalStorage() {
