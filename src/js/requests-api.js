@@ -18,6 +18,25 @@ const getIngredientInfo = query => {
   return axios
     .get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?i=${query}`)
     .then(res => res.data.ingredients[0])
+    .then(obj => {
+      // let cocktailName = '';
+      // let ingredients = [];
+      // for (let i = 1; i <= 15; i++) {
+      //   cocktailName = 'strIngredient' + i;
+      //   obj[cocktailName] !== null
+      //     ? ingredients.push(obj[cocktailName])
+      //     : ingredients.push(obj.strIngredient);
+      // }
+      return {
+        name: obj.strIngredient,
+        description: obj.strDescription,
+        type: obj.strType,
+        alcoholValue: obj.strABV,
+        alcohol: obj.strAlcohol,
+        ingredients: obj.strIngredient,
+        dataModal: 'add',
+      };
+    })
     .catch(Error => []);
 };
 

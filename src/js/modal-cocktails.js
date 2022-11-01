@@ -1,4 +1,5 @@
-import { templateModal } from './modal-template.js';
+import { templateModal, templateModalIngredients } from './modal-template.js';
+import { requestApi } from './requests-api.js';
 
 const refs = {
   closeModalBtn: document.querySelector('[data-modal-closes]'),
@@ -6,7 +7,14 @@ const refs = {
   modal: document.querySelector('[data-modal]'),
   gallery: document.querySelector('.gallery'),
   backdrop: document.querySelector('.backdrop'),
+
+  // --------Ingredient_______
+  closeModalIngredientBtn: document.querySelector(
+    '[data-modal-ingredient-closes]'
+  ),
+  modalIngredient: document.querySelector('[data-modal-ingredient]'),
   ingridientsList: document.querySelector('.ingridients__list'),
+  backdropIngredient: document.querySelector('.backdrop-ingredient'),
 };
 
 function modalCocktails() {
@@ -87,42 +95,18 @@ function getFavoriteCocktailsFromLocalStorage() {
   return JSON.parse(localStorage.getItem('favoriteCocktails') || '[]');
 }
 
-// Закриття модалки по бекдропу
-function onBackdropClick(e) {
-  if (e.currentTarget === e.target) {
-    onCloseModal();
-  }
-}
-
 // ----------------------OPEN MODAL ----------------------
-
-function onClickBtnInModal(e) {
-  let selectedCocktail = {};
-  const { modalBtn, cocktail } = e.target.dataset;
-
-  if (e.target.nodeName === 'BUTTON') {
-    const data = JSON.parse(localStorage.getItem('cocktails'));
-    selectedCocktail = data.find(el => el.name === cocktail);
-
-    if (modalBtn === 'add') {
-      e.target.innerHTML = 'Remove from favorite';
-      e.target.dataset.modalBtn = 'remove';
-      onAddFavoriteToLocalStorage(selectedCocktail);
-    } else {
-      e.target.innerHTML = 'Add to favorite';
-      e.target.dataset.modalBtn = 'add';
-      onRemoveFavoriteFromLocalStorage(selectedCocktail);
-    }
-  }
-}
-
-function onAddOrRemoveCocktail(e) {
-  console.log('onAddRemoveCockt', selectedCocktail, e.target);
-}
 
 // Закрытие по ЕСК
 function onEskKeyPress(e) {
   if (e.code === 'Escape') {
+    onCloseModal();
+  }
+}
+
+// Закриття модалки по бекдропу
+function onBackdropClick(e) {
+  if (e.currentTarget === e.target) {
     onCloseModal();
   }
 }
@@ -144,6 +128,61 @@ function onOpenModal(e) {
   window.addEventListener('keydown', onEskKeyPress);
   refs.modal.classList.remove('is-hidden');
   document.body.classList.add('no-scroll');
+}
+
+function onClickBtnInModal(e) {
+  console.log('clic ingr', e, e.target, e.target.nodeName);
+  let selectedCocktail = {};
+  const { modalBtn, cocktail } = e.target.dataset;
+
+  if (e.target.nodeName === 'BUTTON') {
+    const data = JSON.parse(localStorage.getItem('cocktails'));
+    selectedCocktail = data.find(el => el.name === cocktail);
+
+    if (modalBtn === 'add') {
+      e.target.innerHTML = 'Remove from favorite';
+      e.target.dataset.modalBtn = 'remove';
+      onAddFavoriteToLocalStorage(selectedCocktail);
+    } else {
+      e.target.innerHTML = 'Add to favorite';
+      e.target.dataset.modalBtn = 'add';
+      onRemoveFavoriteFromLocalStorage(selectedCocktail);
+    }
+  } else if (e.target.nodeName === 'SPAN') {
+    onOpenIngredientModal(e);
+  }
+}
+
+// ----------------------OPEN MODAL INGREDIENT ----------------------
+
+function onOpenIngredientModal(e) {
+  const { ingredient } = e.target.dataset;
+  console.log('onOpenIngredient', e.target.dataset);
+  requestApi(ingredient, 'ingredient').then(ingredient => {
+    console.log(
+      'ingredient',
+      ingredient,
+      document.querySelector('#modal-ingredient')
+    );
+    document.querySelector('#modal-ingredient').innerHTML =
+      templateModalIngredients(ingredient);
+  });
+  refs.modalIngredient.classList.remove('is-hidden');
+  refs.closeModalIngredientBtn.addEventListener(
+    'click',
+    onCloseIngredientModal
+  );
+  refs.backdropIngredient.addEventListener('click', onBackdropIngredientClick);
+}
+
+function onCloseIngredientModal(e) {
+  refs.modalIngredient.classList.add('is-hidden');
+}
+
+function onBackdropIngredientClick(e, type = 'cocktails') {
+  if (e.currentTarget === e.target) {
+    onCloseIngredientModal();
+  }
 }
 
 export {
