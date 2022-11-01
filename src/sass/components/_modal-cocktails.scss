@@ -86,10 +86,15 @@
     @include tablet {
       margin-top: 0;
     }
+    &__span {
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--black);
+    }
   }
   &__text {
     display: block;
-    font-weight: 400;
     font-size: 16px;
     line-height: 1.8;
     margin-top: 20px;
@@ -119,6 +124,7 @@
       left: -28px;
     }
   }
+
   // *___________________________________Кнопка Add || Remove________________________________*
   &__button {
     font-family: 'Roboto';
@@ -261,3 +267,98 @@
   list-style-type: none;
   color: var(--black);
 }
+
+//*______________________________________________ Модалка 2____________________________________________*
+// .modal-cocktails2 {
+//   position: relative;
+//   background-color: var(--white);
+
+//   &__header2 {
+//     display: block;
+//     font-family: 'Roboto';
+//     position: relative;
+//     font-weight: 900;
+//     font-size: 32px;
+//     line-height: 1.18;
+//     color: var(--black);
+//     margin-right: auto;
+//     @include tablet {
+//       margin-top: 12px;
+//     }
+//     &__title2 {
+//       display: block;
+//       width: 122px;
+//       font-weight: 600;
+//       font-size: 16px;
+//       line-height: 1.6;
+//       margin-top: 20px;
+//       color: var(--black);
+//       @include tablet {
+//         margin-top: 0;
+//       }
+//       &__span {
+//         font-weight: 600;
+//         font-size: 16px;
+//         line-height: 1.8;
+//         color: var(--black);
+//       }
+//     }
+//     &__text2 {
+//       display: block;
+//       font-size: 16px;
+//       line-height: 1.8;
+//       margin-top: 20px;
+//       color: var(--gray);
+//       @include tablet {
+//         color: var(--modalgray);
+//         margin-top: 24px;
+//       }
+//     }
+//   }
+//   .ingredients2 {
+//     &__list {
+//       margin-top: 8px;
+//     }
+
+//     &__list span:hover,
+//     span:focus {
+//       --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+//       color: var(--grapefruit);
+
+//       cursor: pointer;
+//     }
+//     &__item2 {
+//       font-weight: 400;
+//       font-size: 16px;
+//       line-height: 1.62;
+//       color: var(--gray);
+//       cursor: pointer;
+//       @include tablet {
+//         color: var(--modalgray);
+//       }
+
+//       span::before {
+//         content: '\2736 \0020 \0020';
+//         margin-right: 2px;
+//       }
+
+//       &:hover {
+//         span {
+//           color: var(--grapefruit);
+//           transform: scale(1.1);
+//           text-shadow: 0px 4px 4px rgba(95, 103, 117, 0.25);
+//         }
+//         span::before {
+//           content: '\2736 \0020 \0020';
+//           color: var(--grapefruit);
+//         }
+//       }
+//     }
+//   }
+
+//   hr {
+//     margin-top: 40px;
+//     margin-bottom: 28px;
+//     border: 1px solid var(--grapefruit);
+//   }
+// }

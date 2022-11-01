@@ -5,7 +5,7 @@ export const refs = {
   modal: document.querySelector('[data-modal]'),
   modal2: document.querySelector('[data-modal-ingridients]'),
   backdrop: document.querySelector('.backdrop'),
-  body: document.querySelector('body'),
+  // body: document.querySelector('body'),
   btnAddFavorie: document.querySelector('.modal-coctails__button'),
   ingridientsItems: document.querySelectorAll('.ingridients__item'),
   gallery: document.querySelector('.gallery'),
@@ -81,7 +81,7 @@ refs.openModalBtn.addEventListenerAll('click', toggleModal);
 refs.closeModalBtn.addEventListener('click', toggleModal);
 refs.backdrop.addEventListener('click', onBakdropClick);
 refs.btnAddFavorie.addEventListener('click', onCangeBtn);
-window.addEventListener('keydown', handleCloseModal);
+// window.addEventListener('keydown', handleCloseModal);
 // refs.openModalBtn.addEventListener('click', toggleModal);
 
 function onClickModalIngridientsTwo() {
