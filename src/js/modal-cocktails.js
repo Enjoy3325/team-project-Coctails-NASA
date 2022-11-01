@@ -7,10 +7,11 @@ const refs = {
   gallery: document.querySelector('.gallery'),
   backdrop: document.querySelector('.backdrop'),
   ingridientsList: document.querySelector('.ingridients__list'),
+  btnAddFavorie: document.querySelector('.modal-cocktails__button'),
 };
 
 // let selectedCocktail = {};
-
+let flag = true;
 function modalCocktails() {
   refs.gallery.addEventListener('click', onGalleryClick);
   refs.closeModalBtn.addEventListener('click', toggleModal);
@@ -25,6 +26,7 @@ function toggleModal(e) {
 
 function onGalleryClick(e) {
   let selectedCocktail = {};
+
   const { openModal, cocktail } = e.target.dataset;
 
   //   Перевіряємо, щоб клік був на BUTTON Learn more,
@@ -34,6 +36,7 @@ function onGalleryClick(e) {
 
     //   якщо openModal === 'open вiдкриваємо модалку
     if (openModal === 'open') {
+      window.addEventListener('keydown', handleCloseModal);
       document.querySelector('#modal-section').innerHTML =
         templateModal(selectedCocktail);
       toggleModal();
@@ -53,10 +56,23 @@ function onGalleryClick(e) {
     }
   }
 
+  // Смена кнопок с Add на Remove + добавить innerHTML
+  // function onCangeBtn() {
+  //   if (flag) {
+  //     refs.btnAddFavorie.innerHTML = 'Remove from favorite';
+  //   } else {
+  //     refs.btnAddFavorie.innerHTML = 'Add to favorite';
+  //   }
+  //   flag = !flag;
+  // }
+  // refs.btnAddFavorie.addEventListener('click', onCangeBtn);
+  // console.log('---> ', refs.btnAddFavorie);
   // Закрытие по ЕСК
   function handleCloseModal(e) {
     if (e.key === 'Escape') {
       refs.modal.classList.add('is-hidden');
+      window.removeEventListener('keydown', handleCloseModal);
+      onCloseModal();
     }
   }
 

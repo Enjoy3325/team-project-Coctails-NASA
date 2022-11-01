@@ -10,7 +10,7 @@ const templateModal = ({ name, instruction, img, ingredients }) => {
       .join('');
   }
 
-  console.log(ingredientsList);
+  // console.log(ingredientsList);
 
   return `<div class="modal-cocktails__mobile-section">
   <h2 class="modal-cocktails__header">${name}</h2>

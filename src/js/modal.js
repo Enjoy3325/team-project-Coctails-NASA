@@ -130,7 +130,7 @@ function onBakdropClick(e) {
   }
 }
 // let flag = true;
-// // Смена кнопок с Add на Remove + добавить innerHTML
+// Смена кнопок с Add на Remove + добавить innerHTML
 // function onCangeBtn() {
 //   if (flag) {
 //     refs.btnAddFavorie.innerHTML = 'Remove from favorite';
