@@ -141,18 +141,20 @@
     margin-top: 32px;
     padding: 12px 24px;
     cursor: pointer;
-    transition: all 0.5 ease;
+    transition: transform 250ms var(--timing-function),
+      background-color 250ms var(--timing-function),
+      color 250ms var(--timing-function);
+
     &:hover,
     &:focus {
-      --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
       transform: scale(1.1);
       background-color: var(--auxiliary-orange);
       color: var(--white);
     }
-    &::active {
-      background-color: var(--grapefruit);
-      color: var(--white);
-    }
+    // &::active {
+    //   background-color: var(--grapefruit);
+    //   color: var(--white);
+    // }
     @include tablet {
       margin-top: 40px;
       margin-left: auto;
@@ -223,12 +225,12 @@
     cursor: pointer;
   }
 }
-.modal-cocktails__highlighted {
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 1.8;
-  color: var(--black);
-}
+// .modal-cocktails__highlighted {
+//   font-weight: 600;
+//   font-size: 16px;
+//   line-height: 1.8;
+//   color: var(--black);
+// }
 
 .ingredients__item {
   font-weight: 400;

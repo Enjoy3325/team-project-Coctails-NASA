@@ -9,16 +9,11 @@ const refs = {
   ingridientsList: document.querySelector('.ingridients__list'),
 };
 
-// let selectedCocktail = {};
-// let flag = true;
 function modalCocktails() {
   refs.gallery.addEventListener('click', onGalleryClick);
   refs.closeModalBtn.addEventListener('click', toggleModal);
-}
-
-//?______________________________ Close modal_______________________________
-function toggleModal() {
-  refs.modal.classList.toggle('is-hidden');
+  refs.backdrop.addEventListener('click', onBackdropClick);
+  refs.modal.addEventListener('click', onClickBtnInModal);
 }
 
 function onGalleryClick(e) {
@@ -36,18 +31,19 @@ function onGalleryClick(e) {
       window.addEventListener('keydown', handleCloseModal);
       document.querySelector('#modal-section').innerHTML =
         templateModal(selectedCocktail);
-      toggleModal();
+      onOpenModal(e);
+      //   onClickBtnInModal(e);
+      //   toggleModal();
     } else if (openModal === 'add') {
       //?*__________________________ Додаємо напій до LocalStorage і змінюємо текст в кнопці_______________________
       if (selectedCocktail) {
-        e.target.innerHTML = contantBtnRemovOrAdd('remove');
+        e.target.innerHTML = contentBtnRemovOrAdd('remove');
         e.target.dataset.openModal = 'remove';
-
         onAddFavoriteToLocalStorage(selectedCocktail);
       }
     } else if (openModal === 'remove') {
       // видаляємо напій з LocalStorage і змінюємо текст в кнопці
-      e.target.innerHTML = contantBtnRemovOrAdd('add');
+      e.target.innerHTML = contentBtnRemovOrAdd('add');
       e.target.dataset.openModal = 'add';
       onRemoveFavoriteFromLocalStorage(selectedCocktail);
     }
@@ -129,7 +125,13 @@ function onGalleryClick(e) {
 //   refs.modal.classList.remove('is-hidden');
 // }
 
-export { modalCocktails, getFavoriteCocktailsFromLocalStorage };
+export {
+  modalCocktails,
+  getFavoriteCocktailsFromLocalStorage,
+  contentBtnRemovOrAdd,
+  onAddFavoriteToLocalStorage,
+  onRemoveFavoriteFromLocalStorage,
+};
 
 // export class CreateModalCocktails {
 //   constructor() {
