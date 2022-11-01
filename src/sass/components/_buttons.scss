@@ -28,6 +28,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 6px;
     width: 19px;
     height: 17px;
     background-image: url(../images/orangeheart.svg);
@@ -42,6 +43,10 @@
   &__icon {
     fill: var(--white);
   }
+  &__icon-fill {
+    fill: var(--grapefruit);
+  }
+
   &--orange {
     padding: 8px 16px;
     min-width: 110px;
@@ -131,5 +136,4 @@
 .go-up-btn:hover .go-up,
 .go-up-btn:focus .go-up {
   fill: var(--whiteBtn);
-
 }
