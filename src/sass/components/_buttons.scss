@@ -45,7 +45,7 @@
   &--orange {
     padding: 8px 16px;
     min-width: 110px;
-    color: var(--white);
+    color: var(--whiteBtn);
     background-color: var(--auxiliary-orange);
     transition: background-color 250ms var(--timing-function);
     @include media-min($tablet) {
@@ -93,4 +93,43 @@
     animation: flip-horizontal-bottom 0.5s
       cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
   }
+}
+
+// up-button styles
+.go-up {
+  rotate: -90deg;
+  fill: var(--grapefruit);
+  transition: fill var(--timing-function);
+}
+
+.go-up-btn {
+  display: none;
+  @include mobile {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border: var(--grapefruit) solid 2px;
+
+    border-radius: 50%;
+    background-color: var(--white);
+    transition: all var(--timing-function);
+  }
+}
+
+.go-up-btn:hover,
+.go-up-btn:focus {
+  background-color: var(--grapefruit);
+  transform: scale(1.1);
+}
+
+.go-up-btn:hover .go-up,
+.go-up-btn:focus .go-up {
+  fill: var(--whiteBtn);
+
 }
