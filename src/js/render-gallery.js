@@ -66,7 +66,7 @@ export function renderCocktailCards(arr) {
         <div class="gallery__btns">
           <button class="btn btn--orange" data-open-modal="open" data-cocktail="${cocktail.name}" type="button">Learn more</button>
           <button class="btn btn--white" data-open-modal="add" data-cocktail="${cocktail.name}" type="button">
-            Add to &nbsp
+            Add to 
             <span class="btn__icon-wrap">
             <svg class="btn__icon" width="15" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M8.5 15L7.2675 13.921C2.89 10.1035 0 7.58583 0 4.49591C0 1.9782 2.057 0 4.675 0C6.154 0 7.5735 0.662125 8.5 1.70845C9.4265 0.662125 10.846 0 12.325 0C14.943 0 17 1.9782 17 4.49591C17 7.58583 14.11 10.1035 9.7325 13.9292L8.5 15Z" />

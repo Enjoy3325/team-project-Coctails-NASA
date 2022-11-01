@@ -13,21 +13,20 @@
   transition: opacity 250ms var(--timing-function),
     visibility 250ms var(--timing-function);
 
-  // @include mobile {
-  //   padding: 31px;
-  // }
-
   &__wrap {
     width: 320px;
-    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     margin: 0 auto;
-    @include mobile {
-      padding: 31px;
-    }
 
     @include tablet {
       min-width: 758px;
       padding: 0;
+    }
+    @include desktop {
+      min-width: 822px;
     }
   }
 }
@@ -72,6 +71,9 @@
     line-height: 1.18;
     color: var(--black);
     margin-right: auto;
+    @include tablet {
+      margin-top: 12px;
+    }
   }
   &__title {
     display: block;
@@ -136,12 +138,12 @@
     transition: all 0.5 ease;
     &:hover,
     &:focus {
-      transition: all 0.5s ease;
+      --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
       transform: scale(1.1);
-      background-color: #f5f5f5;
-      color: var(--grapefruit);
+      background-color: var(--auxiliary-orange);
+      color: var(--white);
     }
-    &::after {
+    &::active {
       background-color: var(--grapefruit);
       color: var(--white);
     }
@@ -164,9 +166,11 @@
     right: 16px;
     top: 16px;
     border: none;
+    --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     &:hover {
       transform: scale(1.2);
+      --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     }
     @include tablet {
       right: 12px;
@@ -182,7 +186,7 @@
 
 .ingredients {
   // @media screen and (min-width: 768px) {
-  //   transform: translate(320px, -250px);
+
   // }
   &__subtitle {
     display: block;
@@ -207,7 +211,9 @@
 
   &__list span:hover,
   span:focus {
-    color: var(--auxiliary-orange);
+    --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--grapefruit);
+
     cursor: pointer;
   }
 }
@@ -216,9 +222,6 @@
   font-size: 16px;
   line-height: 1.8;
   color: var(--black);
-}
---line-height {
-  line-height: 1.5;
 }
 
 .ingredients__item {
@@ -247,4 +250,14 @@
       color: var(--grapefruit);
     }
   }
+}
+.ingredients__subtitle {
+  display: block;
+  width: 103px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-top: 22px;
+  list-style-type: none;
+  color: var(--black);
 }

@@ -7,6 +7,12 @@
   overflow: hidden;
 }
 .backdrop {
+  position: relative;
+  position: fixed;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
   // position: relative;
   // position: fixed;
   // display: flex;
@@ -28,6 +34,9 @@
   z-index: 110;
   top: 0;
   left: 0;
+  z-index: 150;
+
+  background: rgb(248, 246, 246, 0.7);
   width: 100vw;
   height: 100vh;
   background-color: rgba(94, 99, 99, 0.7);
@@ -44,121 +53,144 @@
 }
 //* ___________________Тело модалки_______________________*
 .modal-coctails {
-  max-width: 320px;
-  background-color: #fff;
+  width: 320px;
+  min-width: 320px;
+  background-color: var(--white);
   position: relative;
   padding: 40px 20px;
   @include tablet {
-    min-width: 822px;
-    min-height: 598px;
+    width: 822px;
     padding: 28px;
   }
   &__header {
     display: block;
     font-family: 'Roboto';
     position: relative;
-    width: 129px;
-    height: 37px;
     font-weight: 900;
     font-size: 32px;
     line-height: 1.18;
     color: var(--black);
     // margin-top: 40px;
     margin-right: auto;
-  }
-  &__title {
-    display: block;
-    width: 122px;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 1.6;
-    margin-top: 20px;
-    color: var(--black);
-  }
-  &__text {
-    display: block;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1.8;
-    margin-top: 20px;
-    color: var(--gray);
-  }
-  &__image {
-    width: 280px;
-    height: 280px;
-    display: block;
-    margin-top: 32px;
-    background-size: cover;
     @include tablet {
       display: flex;
-      justify-content: flex-start;
-      min-width: 288px;
-      min-height: 320px;
+      margin-right: 68px;
+      justify-content: center;
+      margin-top: 12px;
+    }
+    &__title {
+      display: block;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-top: 20px;
+      color: var(--black);
+      @include tablet {
+      }
+    }
+    &__text {
+      display: block;
+      width: 275px;
+      font-size: 16px;
+      line-height: 1.8;
+      margin-top: 20px;
+      color: var(--gray);
+      @include tablet {
+        width: 615px;
+      }
+    }
+
+    // *___________________________________Кнопка Add || Remove________________________________*
+    &__button {
+      // font-family: 'Roboto';
+      // width: max-content;
+      // font-weight: 400;
+      // font-size: 20px;
+      // line-height: 1.2;
+      // letter-spacing: 0.02em;
+      // border-radius: 4px;
+      // border: none;
+      // background-color: var(--grapefruit);
+      // color: var(--white);
+      // margin-top: 32px;
+      // padding: 12px 24px;
+      // cursor: pointer;
+      // transition: all 0.5, ease;
+      // &:hover,
+      // &:focus {
+      //   transition: all 0.5s ease;
+      //   transform: scale(1.1);
+      //   background-color: #f5f5f5;
+      //   color: var(--grapefruit);
+      // }
+      // &::after {
+      //   background-color: var(--grapefruit);
+      //   color: var(--white);
+      // }
+      @include tablet {
+        display: flex;
+        justify-content: right;
+      }
+    }
+    // ___________________________________Кнопка Add || Remove закончилось________________________________
+    // *___________________________ Кнопка Крестик закрытие модалки________________________*
+    &__closeModal {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+
+      width: 32px;
+      height: 32px;
+      right: 16px;
+      top: 16px;
+      border: none;
+      cursor: pointer;
+      &:hover {
+        transform: scale(1.2);
+      }
+      @include tablet {
+        right: 12px;
+        top: 12px;
+      }
     }
   }
-  // *___________________________________Кнопка Add || Remove________________________________*
-  &__button {
-    font-family: 'Roboto';
-    width: max-content;
-    height: 48px;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 1.2;
-    letter-spacing: 0.02em;
-    border-radius: 4px;
-    border: none;
-    background-color: var(--grapefruit);
-    color: var(--white);
-    margin-top: 32px;
-    padding: 12px 24px;
-    cursor: pointer;
-    transition: all 0.5, ease;
-    &:hover,
-    &:focus {
-      transition: all 0.5s ease;
-      transform: scale(1.1);
-      background-color: #f5f5f5;
-      color: var(--grapefruit);
-    }
-    &::after {
-      background-color: var(--grapefruit);
-      color: var(--white);
-    }
+  // ____________________________________/Тело модалки закончилось__________________________
+  .box-content {
+    display: block;
+
     @include tablet {
       display: flex;
-      justify-content: right;
-      transform: translateX(609px);
+      flex-direction: flex-start;
+    }
+    &__image {
+      width: 280px;
+      height: 280px;
+      margin-top: 32px;
+      background-size: cover;
+      @include tablet {
+        width: 288px;
+        height: 320px;
+        display: flex;
+        position: relative;
+        top: -78px;
+        left: -28px;
+      }
     }
   }
-  // ___________________________________Кнопка Add || Remove закончилось________________________________
-  // *___________________________ Кнопка Крестик закрытие модалки________________________*
-  &__closeModal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
 
-    width: 32px;
-    height: 32px;
-    right: 16px;
-    top: 16px;
-    background-color: #fff;
-    border: none;
-    cursor: pointer;
-    &:hover {
-      transform: scale(1.2);
-    }
+  .div-up {
     @include tablet {
-      right: 12px;
-      top: 12px;
+      display: flex;
     }
   }
-}
-// ____________________________________/Тело модалки закончилось__________________________
-
-.ingridients {
-  @media screen and (min-width: 768px) {
-    transform: translate(320px, -250px);
+  .ingridients {
+    @include tablet {
+      display: flex;
+      text-align: inherit;
+      flex-direction: column;
+      margin-left: 4px;
+    }
   }
   &__subtitle {
     display: block;
@@ -166,7 +198,7 @@
     font-weight: 600;
     font-size: 16px;
     line-height: 1.5;
-    margin-top: 20px;
+    margin-top: 22px;
     list-style-type: none;
     color: #000917;
   }
@@ -180,6 +212,9 @@
   &__list {
     margin-top: 8px;
   }
+  &__item {
+    margin-bottom: 8px;
+  }
   &__item span::before {
     content: '\2736 \0020 \0020';
   }
@@ -189,12 +224,22 @@
     cursor: pointer;
   }
 }
+
 .modal-coctails__highlighted {
   font-weight: 600;
   font-size: 16px;
   line-height: 1.8;
   color: var(--black);
 }
---line-height {
-  line-height: 1.5;
+
+.div-reverse {
+  @include tablet {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+.box-instractions {
+  @include tablet {
+    display: flex;
+  }
 }
