@@ -23,7 +23,7 @@
   refs.home.addEventListener('click', removeMenu);
 
   // refs.favorites.addEventListener('click', backdropClickClose);
-  // refs.favoriteItem.addEventListener('click', backdropClickClose);
+  refs.favoriteItem.addEventListener('click', backdropClickClose);
   // refs.body.addEventListener('click', backdropClickClose);
   // refs.submitBtn.addEventListener('click', removeMenu);
 
@@ -40,12 +40,19 @@
     refs.favoritesMob.classList.toggle('is-hidden');
   }
 
-  function BtnbackdropClickClose(e) {
+  function backdropClickClose(e) {
     if (e.currentTarget === e.target) {
-      refs.favorites.classList.add('is-hidden');
+      refs.body.classList.add('is-hidden');
     }
   }
   function removeMenu() {
     refs.menu.classList.toggle('is-hidden');
   }
+
+  // const navItem = document.querySelector('.nav__item');
+  // navItem.addEventListener('click', e => {
+  //   if (!navItem.contains(e.target)) {
+  //     refs.body.classList.toggle('is-hiden');
+  //   }
+  // });
 })();

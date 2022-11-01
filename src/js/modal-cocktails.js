@@ -5,6 +5,7 @@ const refs = {
   modal: document.querySelector('[data-modal]'),
   gallery: document.querySelector('.gallery'),
   backdrop: document.querySelector('.backdrop'),
+  ingridientsList: document.querySelector('.ingridients__list'),
 };
 
 function modalCocktails() {
@@ -16,6 +17,7 @@ function modalCocktails() {
   function toggleModal(e) {
     document.body.classList.toggle('no-scroll');
     refs.modal.classList.toggle('is-hidden');
+    refs.ingridientsList.addEventListener('click', onClickModalIngridientsTwo);
   }
 
   function onGalleryClick(e) {
@@ -51,6 +53,8 @@ function modalCocktails() {
     refs.modal.classList.add('is-hidden');
     document.body.classList.toggle('no-scroll');
   }
+
+  function onClickModalIngridientsTwo(e) {}
 
   //   function onOpenModal() {
   //     refs.modal.classList.remove('is-hidden');
