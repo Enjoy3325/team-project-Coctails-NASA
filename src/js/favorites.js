@@ -9,8 +9,8 @@ import { getPagination } from './pagination';
 const refs = {
   hero: document.querySelector('.hero'),
   title: document.querySelector('.cocktails__title'),
-  favCocktails: document.querySelector('#cocktails'),
-  favIngredients: document.querySelector('#ingredients'),
+  favCocktails: document.querySelectorAll('[data-name="cocktails"]'),
+  favIngredients: document.querySelectorAll('[data-name="ingredients"]'),
 };
 
 //  це тестові масиви - їх треба буде видалити
@@ -42,11 +42,11 @@ const favorIngredientsArr = [
   { name: 'Tequila', type: 'distilled beverage' },
 ];
 
-//  це функція, яка відмальовує вибрані коктейлі.
-// На місце favorCocktArr треба передавати масив вибраних коктейлів з локал сторедж.
+//  це функція, яка відмальовує обрані коктейлі або інгредієнти.
+// Масиви треба переробити на локал сторедж.
 function getFavorites(arr) {
-  event.preventDefault();
-  const items = event.target.id;
+    event.preventDefault();
+    const items = event.target.dataset.name;
   refs.hero.classList.add('visually-hidden');
   refs.title.innerHTML = `Favorite ${items}`;
   if (arr.length === 0) {
@@ -56,9 +56,10 @@ function getFavorites(arr) {
   items === 'cocktails' ? renderCocktailCards(arr) : renderIngredientCards(arr);
   getPagination(arr, numberOfGalleryItems());
 }
-refs.favCocktails.addEventListener('click', event =>
-  getFavorites(favorCocktArr)
-);
-refs.favIngredients.addEventListener('click', event =>
-  getFavorites(favorIngredientsArr)
-);
+
+for (const ref of refs.favCocktails) {
+    ref.addEventListener('click', event => getFavorites(favorCocktArr))
+};
+for (const ref of refs.favIngredients) {
+  ref.addEventListener('click', event => getFavorites(favorIngredientsArr));
+};

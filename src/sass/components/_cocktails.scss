@@ -49,6 +49,7 @@
     background-color: var(--auxiliary-orange);
   }
   .pagination__icon {
+    fill: var(--black);
     transition: fill 250ms var(--timing-function);
   }
   &__previous:hover .pagination__icon,
@@ -87,8 +88,5 @@
   &--active {
     color: var(--white);
     background-color: var(--auxiliary-orange);
-  }
-  &--disabled {
-    fill: var(--gray);
   }
 }
