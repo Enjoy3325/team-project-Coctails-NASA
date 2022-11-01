@@ -11,7 +11,7 @@ function modalCocktails() {
   let selectedCocktail = {};
   refs.gallery.addEventListener('click', onGalleryClick);
   refs.closeModalBtn.addEventListener('click', toggleModal);
-  refs.backdrop.addEventListener('click', onBakdropClick);
+  refs.backdrop.addEventListener('click', onBackdropClick);
 
   function toggleModal(e) {
     document.body.classList.toggle('no-scroll');
@@ -34,7 +34,7 @@ function modalCocktails() {
   }
 
   // Закрытие по бекдропу
-  function onBakdropClick(e) {
+  function onBackdropClick(e) {
     if (e.currentTarget === e.target) {
       onCloseModal();
     }
