@@ -1,4 +1,5 @@
-<header class="header" id="home">
+<div id="home"></div>
+<header class="header">
   <div class="container container-header">
     <a class="logo" href="./index.html">
       <img src="./images/logo.svg" alt="main-logo" />
@@ -12,13 +13,14 @@
         <li class="nav__item" data-favorites-open>
           <a class="nav__link">Favorites</a>
           <ul class="favorites is-hidden">
+            <li class="favorites__backdrop" data-type="backdrop"></li>
             <li class="favorites__item">
-              <a class="mob-menu-nav__link" id="cocktails" href="#"
+              <a class="mob-menu-nav__link" data-name="cocktails" href="#"
                 >Favorite cocktails</a
               >
             </li>
             <li class="favorites__item">
-              <a class="mob-menu-nav__link" id="ingredients" href="#"
+              <a class="mob-menu-nav__link" data-name="ingredients" href="#"
                 >Favorite ingredients</a
               >
             </li>
@@ -40,15 +42,15 @@
         <use class="menu-btn__icon" href="./images/sprite.svg#burgermenu"></use>
       </svg>
     </button>
-<div class='switcher'>
-  <span class='light'>Light</span>
-  <label class="switch">
-    <input type="checkbox" class='switchBtn'>
-    <span class="slider themeChanger"></span>
-  </label>
-  <span class='dark'>Dark</span>
-</div>
-    <button class='button' type='button' data-auth-modal-open>LOG IN</button>
+    <div class="switcher">
+      <span class="light">Light</span>
+      <label class="switch">
+        <input type="checkbox" class="switchBtn" />
+        <span class="slider themeChanger"></span>
+      </label>
+      <span class="dark">Dark</span>
+    </div>
+    <button class="button" type="button" data-auth-modal-open>LOG IN</button>
 
     <!--    mobMenu-->
     <div class="mob-menu is-hidden">
@@ -71,45 +73,40 @@
             <use class="form-btn__icon" href="./images/sprite.svg#search"></use>
           </svg>
         </button>
-        <div class='switcher mob-menu-switcher'>
-          <span class='light'>Light</span>
-          <label class="switch">
-            <input type="checkbox" class='switchBtn'>
-            <span class="slider themeChanger"></span>
-          </label>
-          <span class='dark'>Dark</span>
-        </div>
-        <form class='form mob-menu-form'>
-          <button type='submit' class='form-btn'>
-            <svg width='24' height='24'>
-              <use class='form-btn__icon' href='./images/sprite.svg#search'></use>
-            </svg>
-          </button>
-          <input type='text' class='form-input mob-form-input' placeholder='Search' required>
-        </form>
-        <nav class='mob-menu-nav'>
-          <ul class='mob-menu-nav__list'>
-            <li class='mob-menu-nav__item'>
-              <a class='mob-menu-nav__link' href='#home'>Home</a></li>
-            <li class='mob-menu-nav__item' data-mob-favorites-open>
-              <a class='mob-menu-nav__link' href='#' >
-                <span >Favorites</span>
-                <svg class='mob-menu__btn-img' width='24' height='24'>
-                  <use href='./images/sprite.svg#arrow-down'></use>
-                </svg>
-              </a>
-              <ul class='favorites-mob is-hidden'>
-                <li class='favorites__item'>
-                  <a class='mob-menu-nav__link' data-name='cocktails' href='#' >Favorite cocktails</a>
-                </li>
-                <li class='favorites__item'>
-                  <a class='mob-menu-nav__link' data-name='ingredients' href='#' >Favorite ingredients</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </nav>
-      </div>
+        <input
+          type="text"
+          class="form-input mob-form-input"
+          placeholder="Search"
+          required
+        />
+      </form>
+      <nav class="mob-menu-nav">
+        <ul class="mob-menu-nav__list">
+          <li class="mob-menu-nav__item">
+            <a class="mob-menu-nav__link" href="#home">Home</a>
+          </li>
+          <li class="mob-menu-nav__item" data-mob-favorites-open>
+            <a class="mob-menu-nav__link" href="#">
+              <span>Favorites</span>
+              <svg class="mob-menu__btn-img" width="24" height="24">
+                <use href="./images/sprite.svg#arrow-down"></use>
+              </svg>
+            </a>
+            <ul class="favorites-mob is-hidden">
+              <li class="favorites__item">
+                <a class="mob-menu-nav__link" data-name="cocktails" href="#"
+                  >Favorite cocktails</a
+                >
+              </li>
+              <li class="favorites__item">
+                <a class="mob-menu-nav__link" data-name="ingredients" href="#"
+                  >Favorite ingredients</a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
 </header>

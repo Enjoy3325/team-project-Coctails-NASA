@@ -86,10 +86,25 @@
   width: 280px;
   background-color: var(--white);
 
+  &__backdrop {
+    position: fixed;
+    display: block;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: transparent;
+  }
+
   &.is-hidden {
     transform: translate(50%, -60%);
     scale: 0;
     opacity: 0;
+
+    .favorites__backdrop {
+      display: none;
+    }
   }
 
   @include desktop {
