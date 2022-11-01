@@ -14,10 +14,6 @@ function modalCocktails() {
   refs.gallery.addEventListener('click', onGalleryClick);
   refs.closeModalBtn.addEventListener('click', toggleModal);
   refs.backdrop.addEventListener('click', onBackdropClick);
-
-  //   function onOpenModal() {
-  //     refs.modal.classList.remove('is-hidden');
-  //   }
 }
 
 // Close modal
@@ -50,9 +46,6 @@ function onGalleryClick(e) {
       onAddFavoriteToLocalStorage(selectedCocktail);
     }
   }
-
-  //   if (e.target.nodeName === 'BUTTON' && openModal === 'open') {
-  //   }
 }
 
 // Додає напій в localStorage to favorite
@@ -60,13 +53,13 @@ function onAddFavoriteToLocalStorage(selectedCocktail) {
   const allFavoriteCocktails = getFavoriteCocktailsFromLocalStorage();
   allFavoriteCocktails.push(selectedCocktail);
   localStorage.setItem(
-    'favotiteCocktails',
+    'favoriteCocktails',
     JSON.stringify(allFavoriteCocktails)
   );
 }
 
 function getFavoriteCocktailsFromLocalStorage() {
-  return JSON.parse(localStorage.getItem('favotiteCocktails') || '[]');
+  return JSON.parse(localStorage.getItem('favoriteCocktails') || '[]');
 }
 
 // Закриття модалки по бекдропу
@@ -79,6 +72,10 @@ function onBackdropClick(e) {
 function onCloseModal() {
   refs.modal.classList.add('is-hidden');
   document.body.classList.toggle('no-scroll');
+}
+
+function onOpenModal() {
+  refs.modal.classList.remove('is-hidden');
 }
 
 export { modalCocktails, getFavoriteCocktailsFromLocalStorage };
