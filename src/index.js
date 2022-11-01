@@ -5,6 +5,8 @@ import './js/requests-api';
 import './js/searchInput';
 import './js/render-gallery';
 import './js/back-to-top';
+import './js/auth-modal';
+import './js/firebase';
 // import './js/modal';
 import './js/select';
 import './js/themeChanger';

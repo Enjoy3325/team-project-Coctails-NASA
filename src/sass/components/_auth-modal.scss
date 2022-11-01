@@ -1,0 +1,179 @@
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  width: 320px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.06);
+  //border-radius: 30px;
+  padding: 20px;
+  background: var(--white);
+  transition: transform var(--timing-function);
+
+  @include tablet {
+    width: 458px;
+    padding: 28px;
+  }
+
+  .is-hidden & {
+    transform: translate(-50%, -50%) scale(0.1);
+  }
+}
+
+.modal__title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.modal__btn {
+  width: 32px;
+  height: 32px;
+  background: var(--white);
+  border: none;
+  border-radius: 50%;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.06);
+}
+
+.modal__btn-img {
+  transition: fill var(--timing-function);
+
+  .modal__btn:active & {
+    fill: var(--grapefruit);
+  }
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.auth-form__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  transition: border var(--timing-function);
+}
+
+.auth-form__label {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.4;
+  margin-bottom: 2px;
+  padding-left: 12px;
+}
+
+.auth-form__input {
+  background: var(--white);
+  border: 1px solid var(--grapefruit);
+  font-size: 16px;
+  line-height: 1.25;
+  border-radius: 5px;
+  padding: 14px 12px;
+  transition: border var(--timing-function);
+
+  &::placeholder {
+    color: #C4C4C4;
+  }
+}
+
+.auth-form__input:not(:focus):not(:placeholder-shown):invalid {
+  border: 1px solid red;
+}
+
+form:invalid .auth-form__button {
+  //border: 1px solid $error;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+form:valid .auth-form__button {
+  background: #BBF330;
+}
+
+input:required:invalid + .req-error-group {
+  display: block;
+}
+
+.auth-form__input:not(:focus):not(:placeholder-shown):valid {
+  border: 1px solid var(--grapefruit);
+}
+
+.error-group, .req-error-group {
+  display: none;
+}
+
+.auth-form__input:not(:focus):not(:placeholder-shown):invalid + .error-group {
+  display: block;
+}
+
+//.order-form__input:not(:focus):not(:placeholder-shown):invalid + .error-group + .req-error-group {
+//  display: block;
+//  //opacity: 1;
+//  //background-color: #e30d0d;
+//  //height: 100px;
+//}
+
+.error, .req-error {
+  position: absolute;
+  padding-left: 12px;
+  height: 20px;
+  font-size: 11px;
+  line-height: 1.5;
+  color: red;
+  display: flex;
+  align-items: center;
+}
+
+.error::before, .req-error::before {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 14px;
+  background-repeat: no-repeat;
+  margin-right: 4px;
+  background-image: url(../images/danger-sign.svg);
+}
+
+//.error::after, .req-error::after {
+//  content: "";
+//  display: inline-block;
+//  width: 12px;
+//  height: 14px;
+//  background-repeat: no-repeat;
+//  margin-right: 4px;
+//  background-image: url(../images/icons/danger-sign.svg);
+//}
+
+.auth-form__button {
+  margin-top: 7px;
+  padding: 10px 38px;
+  background-color: var(--white);
+  border: 2px solid var(--grapefruit);
+  transition: background-color var(--timing-function);
+
+  &:active,
+  &:focus {
+    background-color: var(--timing-function);
+  }
+
+  .auth-form__input:not(:focus):not(:placeholder-shown):invalid & {
+    border: 0.854167px solid red;
+  }
+}
+
+.register-markup.is-hidden, .login-markup.is-hidden {
+  display: none;
+}
