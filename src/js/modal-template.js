@@ -26,11 +26,11 @@ const templateModal = ({ name, instruction, img, ingredients }) => {
         ${ingridientsList}
         </ul>
       </div>
-      <button data-modal-open class="modal-coctails__button" type="button">
+      <button data-add-favorite class="modal-coctails__button" type="button">
         Add to favorite
       </button>
       </div>
-      
+        
       <div class="modal-coctails__tablet-section">
       <div class="modal-coctails__cover-block">
         <img class="modal-coctails__image" src="${img}" alt="${name}" />
@@ -50,7 +50,7 @@ const templateModal = ({ name, instruction, img, ingredients }) => {
       <b class="modal-coctails__title">INSTRACTIONS:</b>
       <p class="modal-coctails__text">${instruction}</p>
       </div>
-      <button data-modal-open class="modal-coctails__button" type="button">
+      <button data-add-favorite class="modal-coctails__button" type="button">
         Add to favorite
       </button>
       </div>`;

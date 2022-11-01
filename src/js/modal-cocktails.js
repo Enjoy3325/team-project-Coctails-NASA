@@ -2,6 +2,7 @@ import { templateModal } from './modal-template.js';
 
 const refs = {
   closeModalBtn: document.querySelector('[data-modal-closes]'),
+  addFavoriteBtn: document.querySelector('[data-add-favorite]'),
   modal: document.querySelector('[data-modal]'),
   gallery: document.querySelector('.gallery'),
   backdrop: document.querySelector('.backdrop'),
@@ -29,8 +30,15 @@ function modalCocktails() {
       document.querySelector('#modal-section').innerHTML =
         templateModal(selectedCocktail);
       toggleModal();
+      refs.addFavoriteBtn.addEventListener('click', onAddFavorite);
     }
-    console.log(selectedCocktail);
+  }
+
+  console.log('refs.addFavoriteBtn', refs.addFavoriteBtn);
+  // Додає напій в localStorage to favorite
+  function onAddFavorite(e) {
+    console.log(e);
+    localStorage.setItem('favotite', JSON.stringify(selectedCocktail));
   }
 
   // Закрытие по бекдропу

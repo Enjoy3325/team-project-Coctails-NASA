@@ -177,9 +177,6 @@
 // ____________________________________/Тело модалки закончилось__________________________
 
 .ingridients {
-  // @media screen and (min-width: 768px) {
-  //   transform: translate(320px, -250px);
-  // }
   &__subtitle {
     display: block;
     width: 103px;
@@ -207,15 +204,15 @@
     cursor: pointer;
   }
 }
-.modal-coctails__highlighted {
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 1.8;
-  color: var(--black);
-}
---line-height {
-  line-height: 1.5;
-}
+// .modal-coctails__highlighted {
+//   font-weight: 600;
+//   font-size: 16px;
+//   line-height: 1.8;
+//   color: var(--black);
+// }
+// --line-height {
+//   line-height: 1.5;
+// }
 
 .ingridients__item {
   font-weight: 400;
