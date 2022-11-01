@@ -23,21 +23,18 @@ function onGalleryClick(e) {
   if (e.target.nodeName === 'BUTTON') {
     const data = JSON.parse(localStorage.getItem('cocktails'));
     selectedCocktail = data.find(el => el.name === cocktail);
-    console.log('selectedCocktail', selectedCocktail);
-    console.log('data', data);
 
     //   якщо openModal === 'open вiдкриваємо модалку
     if (openModal === 'open') {
-      console.log('open', selectedCocktail);
       document.querySelector('#modal-section').innerHTML =
         templateModal(selectedCocktail);
       toggleModal();
+      //   onOpenModal();
     } else if (openModal === 'add') {
       // додаємо напій до LocalStorage і змінюємо текст в кнопці
       if (selectedCocktail) {
         e.target.innerHTML = contentBtnRemovOrAdd('remove');
         e.target.dataset.openModal = 'remove';
-
         onAddFavoriteToLocalStorage(selectedCocktail);
       }
     } else if (openModal === 'remove') {
@@ -47,25 +44,8 @@ function onGalleryClick(e) {
       onRemoveFavoriteFromLocalStorage(selectedCocktail);
     }
   }
-
-  // Закрытие по ЕСК
-  function handleCloseModal(e) {
-    if (e.key === 'Escape') {
-      refs.modal.classList.add('is-hidden');
-    }
-  }
-
-  function onCloseModal() {
-    refs.modal.classList.add('is-hidden');
-    document.body.classList.toggle('no-scroll');
-  }
-
-  function onClickModalIngridientsTwo(e) {}
-
-  //   function onOpenModal() {
-  //     refs.modal.classList.remove('is-hidden');
-  //   }
 }
+
 function contentBtnRemovOrAdd(type = 'add') {
   if (type === 'remove') {
     return `Remove 
@@ -112,6 +92,19 @@ function onBackdropClick(e) {
   }
 }
 
+// Закрытие по ЕСК
+function handleCloseModal(e) {
+  if (e.key === 'Escape') {
+    refs.modal.classList.add('is-hidden');
+  }
+}
+
+function onClickModalIngridientsTwo(e) {}
+
+//   function onOpenModal() {
+//     refs.modal.classList.remove('is-hidden');
+//   }
+
 // toggle modal
 function toggleModal(e) {
   document.body.classList.toggle('no-scroll');
@@ -119,18 +112,32 @@ function toggleModal(e) {
 }
 
 function onCloseModal() {
+  window.removeEventListener('keydown', onEskKeyPress);
   refs.modal.classList.add('is-hidden');
-  document.body.classList.toggle('no-scroll');
+  document.body.classList.remove('no-scroll');
 }
 
 function onOpenModal() {
+  window.addEventListener('keydown', onEskKeyPress);
   refs.modal.classList.remove('is-hidden');
+  document.body.classList.add('no-scroll');
+  onAddDrinkInModal();
+}
+
+function onAddDrinkInModal() {
+  console.log(
+    'refs.modal',
+    refs.modal,
+    refs.modal.querySelector('[data-modal-btn]')
+  );
 }
 
 export {
   modalCocktails,
   getFavoriteCocktailsFromLocalStorage,
   contentBtnRemovOrAdd,
+  onAddFavoriteToLocalStorage,
+  onRemoveFavoriteFromLocalStorage,
 };
 
 // export class CreateModalCocktails {

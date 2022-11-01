@@ -26,7 +26,7 @@ const templateModal = ({ name, instruction, img, ingredients }) => {
         ${ingredientsList}
         </ul>
       </div>
-      <button data-modal-open class="modal-cocktails__button" type="button">
+      <button data-modal-btn="add" class="modal-cocktails__button" type="button">
         Add to favorite
       </button>
       </div>
@@ -50,7 +50,7 @@ const templateModal = ({ name, instruction, img, ingredients }) => {
       <b class="modal-cocktails__title">INSTRACTIONS:</b>
       <p class="modal-cocktails__text">${instruction}</p>
       </div>
-      <button data-modal-open class="modal-cocktails__button" type="button">
+      <button data-modal-btn="add" class="modal-cocktails__button" type="button">
         Add to favorite
       </button>
       </div>`;
