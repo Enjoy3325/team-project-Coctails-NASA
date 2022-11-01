@@ -10,6 +10,7 @@
     submitBtn: document.querySelector('.form-btn'),
     favorites: document.querySelector('.favorites'),
     favoritesMob: document.querySelector('.favorites-mob'),
+    favoriteItem: document.querySelector('.favorites__item'),
 
     body: document.querySelector('body'),
   };
@@ -20,7 +21,10 @@
   refs.openMobFavorites.addEventListener('click', toggleMobFavorites);
   refs.favoritesMob.addEventListener('click', removeMenu);
   refs.home.addEventListener('click', removeMenu);
-  refs.openFavorites.addEventListener('click', backdropClickClose);
+
+  // refs.favorites.addEventListener('click', backdropClickClose);
+  // refs.favoriteItem.addEventListener('click', backdropClickClose);
+  // refs.body.addEventListener('click', backdropClickClose);
   // refs.submitBtn.addEventListener('click', removeMenu);
 
   function toggleMenu() {
@@ -35,9 +39,10 @@
   function toggleMobFavorites() {
     refs.favoritesMob.classList.toggle('is-hidden');
   }
-  function backdropClickClose(e) {
+
+  function BtnbackdropClickClose(e) {
     if (e.currentTarget === e.target) {
-      onCloseModal();
+      refs.favorites.classList.add('is-hidden');
     }
   }
   function removeMenu() {

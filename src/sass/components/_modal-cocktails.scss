@@ -22,7 +22,7 @@
     position: relative;
     margin: 0 auto;
     @include mobile {
-      padding: 31px;
+      // padding: 31px;
     }
 
     @include tablet {
@@ -37,7 +37,7 @@
 
 .modal-coctails {
   position: relative;
-  background-color: #fff;
+  background-color: var(--white);
 
   &__mobile-section {
     max-width: 320px;
@@ -75,6 +75,9 @@
     line-height: 1.18;
     color: var(--black);
     margin-right: auto;
+    @include tablet {
+      margin-top: 12px;
+    }
   }
   &__title {
     display: block;
@@ -165,7 +168,7 @@
     height: 32px;
     right: 16px;
     top: 16px;
-    background-color: #fff;
+    background-color: var(--white);
     border: none;
     cursor: pointer;
     &:hover {
@@ -191,7 +194,7 @@
     line-height: 1.5;
     margin-top: 20px;
     list-style-type: none;
-    color: #000917;
+    color: var(--black);
   }
   &__subtext {
     font-weight: 300;
@@ -250,5 +253,5 @@
   line-height: 1.5;
   margin-top: 22px;
   list-style-type: none;
-  color: #000917;
+  color: var(--black);
 }
