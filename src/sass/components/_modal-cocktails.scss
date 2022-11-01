@@ -138,16 +138,16 @@
     margin-top: 32px;
     padding: 12px 24px;
     cursor: pointer;
-    transition: all 0.5, ease;
+    --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     &:hover,
     &:focus {
-      transition: all 0.5s ease;
+      --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
       transform: scale(1.1);
-      background-color: var(--white);
-      color: var(--auxiliary-orange);
-    }
-    &::after {
       background-color: var(--auxiliary-orange);
+      color: var(--white);
+    }
+    &::active {
+      background-color: var(--grapefruit);
       color: var(--white);
     }
     @include tablet {
@@ -170,9 +170,11 @@
     top: 16px;
     background-color: var(--white);
     border: none;
+    --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     &:hover {
       transform: scale(1.2);
+      --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     }
     @include tablet {
       right: 12px;
@@ -209,6 +211,7 @@
 
   &__list span:hover,
   span:focus {
+    --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     color: var(--grapefruit);
 
     cursor: pointer;
