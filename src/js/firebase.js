@@ -26,7 +26,8 @@ let registerForm = document.querySelector('.auth-form.register')
 let loginForm = document.querySelector('.auth-form.login')
 let loginBtn = document.querySelector('.loginButton')
 let logoutBtn = document.querySelector('.logoutButton')
-let logoutBtnImg = document.querySelector('.logoutButton__img')
+let loginBtnMob = document.querySelector('.mob-menu-loginButton')
+let logoutBtnMob = document.querySelector('.mob-menu-logoutButton')
 let favBtn = document.querySelector('.btn .btn--white')
 
 
@@ -107,19 +108,37 @@ onAuthStateChanged(auth, (user) => {
   // console.log(auth);
   if (user) {
     loginBtn.classList.add('is-hidden')
+    loginBtnMob.classList.add('is-hidden')
     logoutBtn.classList.remove('is-hidden')
+    logoutBtnMob.classList.remove('is-hidden')
     logoutBtn.insertAdjacentHTML('afterbegin', user.displayName)
+    logoutBtnMob.insertAdjacentHTML('afterbegin', user.displayName)
     // favBtn.classList.remove('is-hidden')
   } else {
     logoutBtn.classList.add('is-hidden')
+    logoutBtnMob.classList.add('is-hidden')
     loginBtn.classList.remove('is-hidden')
+    loginBtnMob.classList.remove('is-hidden')
     logoutBtn.innerHTML = ''
+    logoutBtnMob.innerHTML = ''
     // favBtn.classList.add('is-hidden')
   }
 });
 
 
 logoutBtn.addEventListener('click', ()=>{
+  signOut(auth).then(
+    ()=> {
+      Notiflix.Notify.info(`U r out`)
+    }
+  ).catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    alert(errorMessage)
+  }
+  )
+})
+logoutBtnMob.addEventListener('click', ()=>{
   signOut(auth).then(
     ()=> {
       Notiflix.Notify.info(`U r out`)

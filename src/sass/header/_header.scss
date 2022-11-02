@@ -13,7 +13,7 @@
 
 .container-header {
   display: flex;
-  align-items: baseline;
+  //align-items: baseline;
 }
 
 .logo {
@@ -94,28 +94,27 @@
 }
 
 .loginButton, .logoutButton{
-  margin-left: 30px;
-  cursor: pointer;
-  border-radius: 4px;
-  justify-content: center;
-  align-items: center;
-  font-family: Roboto, sans-serif;
-  font-size: 14px;
-  line-height: 1.7;
-  display: flex;
-  //font-size: 20px;
-  //line-height: 1.2;
-  min-width: 160px;
-  //padding: 12px 27px;
-  //min-width: 110px;
-  color: var(--black);
-  //background-color: var(--auxiliary-orange);
-  transition: background-color 250ms var(--timing-function);
-  padding: 8px 16px;
-}
+  display: none;
+  @include desktop {
+    margin-left: 30px;
+    cursor: pointer;
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    font-family: Roboto, sans-serif;
 
-.loginButton__img {
-  background-color: #fcfcfc;
+    line-height: 1.7;
+    display: flex;
+    font-size: 20px;
+    //line-height: 1.2;
+    min-width: 160px;
+    //padding: 12px 27px;
+    //min-width: 110px;
+    color: var(--black);
+    //background-color: var(--auxiliary-orange);
+    transition: background-color 250ms var(--timing-function);
+    padding: 8px 16px;
+  }
 }
 
 .logoutButton:hover .logoutButton__img {
@@ -127,18 +126,22 @@
   opacity: 1;
   //pointer-events: none;
   visibility: inherit;
+
 }
 
 
-//.logoutButton__img:after {
-//  content: "";
-//  display: inline-block;
-//  width: 20px;
-//  height: 20px;
-//  background-image: url(../images/arrow-down.svg);
-//  background-repeat: no-repeat;
-//  background-size: contain;
-//}
+.logoutButton__img:after {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  padding-left: 10px;
+  background-image: url(../images/logout.svg);
+
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 
 .is-hidden{
   display: none;
