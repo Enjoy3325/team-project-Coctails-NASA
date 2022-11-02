@@ -18,112 +18,133 @@ function modalCocktails() {
 
 function onGalleryClick(e) {
   let selectedCocktail = {};
-
   const { openModal, cocktail } = e.target.dataset;
 
-  //*_______________________Перевіряємо, щоб клік був на BUTTON Learn more,_____________________________________________________
+  //__________________________________Перевіряємо, щоб клік був на BUTTON Learn more,__________________________________
   if (e.target.nodeName === 'BUTTON') {
     const data = JSON.parse(localStorage.getItem('cocktails'));
     selectedCocktail = data.find(el => el.name === cocktail);
 
-    //!________________________Якщо openModal === 'open вiдкриваємо модалку____________________
+    //________________________________Якщо openModal === 'open вiдкриваємо модалку______________________________________
     if (openModal === 'open') {
-      window.addEventListener('keydown', handleCloseModal);
       document.querySelector('#modal-section').innerHTML =
         templateModal(selectedCocktail);
       onOpenModal(e);
       //   onClickBtnInModal(e);
       //   toggleModal();
     } else if (openModal === 'add') {
-      //?*__________________________ Додаємо напій до LocalStorage і змінюємо текст в кнопці_______________________
+      //____________________________  Додаємо напій до LocalStorage і змінюємо текст в кнопці___________________________
       if (selectedCocktail) {
         e.target.innerHTML = contentBtnRemovOrAdd('remove');
         e.target.dataset.openModal = 'remove';
         onAddFavoriteToLocalStorage(selectedCocktail);
       }
     } else if (openModal === 'remove') {
-      // видаляємо напій з LocalStorage і змінюємо текст в кнопці
+      //______________________________Видаляємо напій з LocalStorage і змінюємо текст в кнопці___________________________
       e.target.innerHTML = contentBtnRemovOrAdd('add');
       e.target.dataset.openModal = 'add';
       onRemoveFavoriteFromLocalStorage(selectedCocktail);
     }
   }
+}
 
-  //!_____________________________Закрытие по ESC____________________________
-  function handleCloseModal(e) {
-    if (e.key === 'Escape') {
-      refs.modal.classList.add('is-hidden');
-      window.removeEventListener('keydown', handleCloseModal);
-      onCloseModal();
-    }
-  }
-  //?__________________________________ Закриття модалки по бекдропу______________________________________
-  refs.backdrop.addEventListener('click', onBackdropClick);
-  function onBackdropClick(e) {
-    if (e.currentTarget === e.target) {
-      onCloseModal();
-    }
-  }
-  //
-  function onCloseModal() {
-    refs.modal.classList.add('is-hidden');
-    document.body.classList.toggle('no-scroll');
-  }
-
-  // function onClickModalIngridientsTwo(e) {}
-
-  //   function onOpenModal() {
-  //     refs.modal.classList.remove('is-hidden');
-  //   }
-  // }
-
-  function contantBtnRemovOrAdd(type = 'add') {
-    if (type === 'remove') {
-      return `Remove 
+function contentBtnRemovOrAdd(type = 'add') {
+  if (type === 'remove') {
+    return `Remove 
             <span class="btn__icon-wrap">
             <svg class="btn__icon-fill" width="15" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M8.5 15L7.2675 13.921C2.89 10.1035 0 7.58583 0 4.49591C0 1.9782 2.057 0 4.675 0C6.154 0 7.5735 0.662125 8.5 1.70845C9.4265 0.662125 10.846 0 12.325 0C14.943 0 17 1.9782 17 4.49591C17 7.58583 14.11 10.1035 9.7325 13.9292L8.5 15Z" />
             </svg>`;
-    } else {
-      return `Add to
+  } else {
+    return `Add to
             <span class="btn__icon-wrap">
             <svg class="btn__icon" width="15" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M8.5 15L7.2675 13.921C2.89 10.1035 0 7.58583 0 4.49591C0 1.9782 2.057 0 4.675 0C6.154 0 7.5735 0.662125 8.5 1.70845C9.4265 0.662125 10.846 0 12.325 0C14.943 0 17 1.9782 17 4.49591C17 7.58583 14.11 10.1035 9.7325 13.9292L8.5 15Z" />
             </svg>`;
-    }
-  }
-
-  //!____________________ Додає напій в localStorage to favorite__________________
-  function onAddFavoriteToLocalStorage(selectedCocktail) {
-    const allFavoriteCocktails = getFavoriteCocktailsFromLocalStorage();
-    allFavoriteCocktails.push({ ...selectedCocktail, dataModal: 'remove' });
-    localStorage.setItem(
-      'favoriteCocktails',
-      JSON.stringify(allFavoriteCocktails)
-    );
-  }
-
-  //!__________________________ видаляємо напій з localStorage favorite___________________________
-  function onRemoveFavoriteFromLocalStorage(selectedCocktail) {
-    const allFavoriteCocktails = getFavoriteCocktailsFromLocalStorage();
-    const filterArr = allFavoriteCocktails.filter(
-      drink => drink.name !== selectedCocktail.name
-    );
-    localStorage.setItem('favoriteCocktails', JSON.stringify(filterArr));
-  }
-
-  function getFavoriteCocktailsFromLocalStorage() {
-    return JSON.parse(localStorage.getItem('favoriteCocktails') || '[]');
-  }
-
-  function onCloseModal() {
-    refs.modal.classList.add('is-hidden');
-    document.body.classList.toggle('no-scroll');
   }
 }
-// function onOpenModal() {
-//   refs.modal.classList.remove('is-hidden');
-// }
+
+//__________________________________ Додає напій в localStorage to favorite__________________________________________
+function onAddFavoriteToLocalStorage(selectedCocktail) {
+  const allFavoriteCocktails = getFavoriteCocktailsFromLocalStorage();
+  allFavoriteCocktails.push({ ...selectedCocktail, dataModal: 'remove' });
+  localStorage.setItem(
+    'favoriteCocktails',
+    JSON.stringify(allFavoriteCocktails)
+  );
+}
+
+//___________________________________Видаляємо напій з localStorage favorite_______________________________________
+function onRemoveFavoriteFromLocalStorage(selectedCocktail) {
+  const allFavoriteCocktails = getFavoriteCocktailsFromLocalStorage();
+  const filterArr = allFavoriteCocktails.filter(
+    drink => drink.name !== selectedCocktail.name
+  );
+  localStorage.setItem('favoriteCocktails', JSON.stringify(filterArr));
+}
+
+function getFavoriteCocktailsFromLocalStorage() {
+  return JSON.parse(localStorage.getItem('favoriteCocktails') || '[]');
+}
+
+//__________________________________Закриття модалки по бекдропу____________________________________________________
+function onBackdropClick(e) {
+  if (e.currentTarget === e.target) {
+    onCloseModal();
+  }
+}
+
+// ----------------------OPEN MODAL ----------------------
+
+function onClickBtnInModal(e) {
+  let selectedCocktail = {};
+  const { modalBtn, cocktail } = e.target.dataset;
+
+  if (e.target.nodeName === 'BUTTON') {
+    const data = JSON.parse(localStorage.getItem('cocktails'));
+    selectedCocktail = data.find(el => el.name === cocktail);
+
+    if (modalBtn === 'add') {
+      e.target.innerHTML = 'Remove from favorite';
+      e.target.dataset.modalBtn = 'remove';
+      onAddFavoriteToLocalStorage(selectedCocktail);
+    } else {
+      e.target.innerHTML = 'Add to favorite';
+      e.target.dataset.modalBtn = 'add';
+      onRemoveFavoriteFromLocalStorage(selectedCocktail);
+    }
+  }
+}
+
+function onAddOrRemoveCocktail(e) {
+  console.log('onAddRemoveCockt', selectedCocktail, e.target);
+}
+
+//_________________________________Закрытие по ЕСК________________________________
+function onEskKeyPress(e) {
+  if (e.code === 'Escape') {
+    onCloseModal();
+  }
+}
+
+//_________________________________toggle modal__________________________________
+function toggleModal(e) {
+  document.body.classList.toggle('no-scroll');
+  refs.modal.classList.toggle('is-hidden');
+}
+
+function onCloseModal() {
+  window.removeEventListener('keydown', onEskKeyPress);
+  refs.modal.classList.add('is-hidden');
+  document.body.classList.remove('no-scroll');
+}
+
+function onOpenModal(e) {
+  console.log('onOpenMod', e);
+  window.addEventListener('keydown', onEskKeyPress);
+  refs.modal.classList.remove('is-hidden');
+  document.body.classList.add('no-scroll');
+}
 
 export {
   modalCocktails,
