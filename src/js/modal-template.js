@@ -87,28 +87,33 @@ const templateModalIngredients = ({
   <div class="modal-ingredient__section-first">
   <h2 class="modal-ingredient__header">${name}</h2>
 
-       <b class="modal-ingredient__title">${type}</b>
+       <b class="modal-ingredient__title">${
+         type !== null ? type : 'no information'
+       }</b>
        </div>
        <div class="modal-ingredient__line"></div>
        <div class="modal-ingredient__section-last">
-      <p class="modal-ingredient__text">${description}</p>
+      <p class="modal-ingredient__text"><span class="span-text">${name}</span> 
+      ${description !== null ? name : 'no information'}</p>
       <div class="ingredients">
-        <ul data-modal-open class="ingredients__list">
-        <li class="ingredients__item">
-            <span>Type: ${type !== null ? type : 'no information'} </span>
+        <ul data-modal-open class="ingredients__list2">
+        <li class="ingredients__item2">
+            <span class="span2">Type: ${
+              type !== null ? type : 'no information'
+            } </span>
           </li>
-          <li class="ingredients__item">
-            <span>Alcohol by volume: ${
+          <li class="ingredients__item2">
+            <span class="span2">Alcohol by volume: ${
               alcoholValue !== null ? alcoholValue : 'no information'
             }</span>
           </li>
-          <li class="ingredients__item">
-            <span>Alcohol: ${
+          <li class="ingredients__item2">
+            <span class="span2">Alcohol: ${
               alcohol !== null ? alcohol : 'no information'
             }</span>
           </li>
-          <li class="ingredients__item">
-            <span>Ingredients: ${
+          <li class="ingredients__item2">
+            <span class="span2">Ingredients: ${
               ingredients !== null ? ingredients : 'no information'
             }</span>
           </li>

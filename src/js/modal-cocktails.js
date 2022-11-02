@@ -2,7 +2,7 @@ import { templateModal, templateModalIngredients } from './modal-template.js';
 import { requestApi } from './requests-api.js';
 import { onClickIngredient } from './modal-ingredients';
 
-const refs = {
+export const refs = {
   closeModalBtn: document.querySelector('[data-modal-closes]'),
   addFavoriteBtn: document.querySelector('[data-add-favorite]'),
   modal: document.querySelector('[data-modal]'),
@@ -113,7 +113,7 @@ function onBackdropClick(e) {
 }
 
 // toggle modal
-function toggleModal(e) {
+export function toggleModal(e) {
   document.body.classList.toggle('no-scroll');
   refs.modal.classList.toggle('is-hidden');
 }

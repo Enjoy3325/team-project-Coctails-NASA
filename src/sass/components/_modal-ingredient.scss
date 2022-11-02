@@ -120,10 +120,17 @@
     }
   }
   &__line {
-    width: 100%;
-    border: 1px solid var(--grapefruit);
+    @include tablet {
+      width: 100%;
+      border: 1px solid var(--grapefruit);
+    }
   }
-
+  .span-text {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--black);
+  }
   // *___________________________________Кнопка Add || Remove________________________________*
   &__button {
     font-family: 'Roboto';
@@ -186,8 +193,29 @@
     fill: var(--black);
   }
 }
-// ____________________________________/Тело модалки закончилось__________________________
+.ingredients__item2 {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.62;
+  color: var(--gray);
+  @include tablet {
+    color: var(--modalgray);
+  }
 
+  .span2 {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.62;
+    color: var(--gray);
+
+    &::before {
+      content: '\2736 \0020 \0020';
+      margin-right: 2px;
+    }
+  }
+}
 .ingredients {
   // @media screen and (min-width: 768px) {
 
@@ -209,15 +237,8 @@
     margin-top: 8px;
     color: var(--black);
   }
-  &__list {
+  &__list2 {
     margin-top: 8px;
   }
-
-  &__list span:hover,
-  span:focus {
-    --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    color: var(--grapefruit);
-
-    cursor: pointer;
-  }
 }
+// ____________________________________/Тело модалки закончилось__________________________

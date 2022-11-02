@@ -1,3 +1,4 @@
+import { refs } from './modal-cocktails.js';
 import { templateModalIngredients } from './modal-template.js';
 import { requestApi } from './requests-api.js';
 
@@ -17,6 +18,7 @@ function onClickIngredient(e) {
     'click',
     onCloseIngredientModal
   );
+
   refs.backdropIngredient.addEventListener('click', onBackdropIngredientClick);
   renderIngredientTemplate(ingredient);
 
@@ -77,14 +79,25 @@ function getFavoriteIngredientFromLocalStorage() {
 
 function onOpenIngredientModal() {
   refs.modalIngredient.classList.remove('is-hidden');
+  document.body.classList.add('no-scroll');
+  refs.modal.classList.add('is-hidden');
+  window.addEventListener('keydown', onEskKeyPress);
 }
 
 function onCloseIngredientModal(e) {
+  window.removeEventListener('keydown', onEskKeyPress);
   refs.modalIngredient.classList.add('is-hidden');
+  refs.modal.classList.remove('is-hidden');
 }
 
 function onBackdropIngredientClick(e) {
   if (e.currentTarget === e.target) {
+    onCloseIngredientModal();
+  }
+}
+
+function onEskKeyPress(e) {
+  if (e.code === 'Escape') {
     onCloseIngredientModal();
   }
 }
