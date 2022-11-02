@@ -1,6 +1,7 @@
 import { getRandomCocktail } from './requests-api';
 import { getPagination } from './pagination';
 import { modalCocktails } from './modal-cocktails';
+import { INSPECT_MAX_BYTES } from 'buffer';
 
 const gallery = document.querySelector('.gallery');
 
@@ -23,6 +24,7 @@ function getRandCocktails(number) {
   for (let i = 1; i <= number; i += 1) {
     promiseArray.push(getRandomCocktail().then(data => data));
   }
+  console.log('promiseArray', promiseArray);
   Promise.all(promiseArray).then(cocktails => {
     localStorage.setItem('cocktails', JSON.stringify(cocktails));
     renderCocktails(cocktails);
@@ -31,6 +33,28 @@ function getRandCocktails(number) {
   });
 }
 getRandCocktails(numberOfGalleryItems());
+
+// ================================================
+
+// function checkIncoming() {
+//   const favCocktNames = JSON.parse(
+//     localStorage.getItem('favoriteCocktails')
+//   ).map(item => item.name);
+
+//   let incomingCockts = JSON.parse(localStorage.getItem('cocktails')).map(
+//     item => {
+//       favCocktNames.forEach(fav => {
+//         if (fav === item.name) {
+//           item.dataModal = 'remove';
+//         }
+//       });
+//       return item;
+//     }
+//   );
+//   localStorage.setItem('cocktails', JSON.stringify(incomingCockts));
+// }
+
+// ================================================
 
 // візуалізація "пошук не дав результату" (oops image)
 function nosearchingRes() {
@@ -57,7 +81,7 @@ export function renderCocktailCards(arr) {
       let classBtn;
       if (cocktail.dataModal === 'add') {
         textBtn = 'Add to';
-        classBtn = 'btn__icon'
+        classBtn = 'btn__icon';
       } else {
         textBtn = 'Remove';
         classBtn = 'btn__icon-fill';
