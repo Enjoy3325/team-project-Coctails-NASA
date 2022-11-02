@@ -1,6 +1,7 @@
 import { getRandomCocktail } from './requests-api';
 import { getPagination } from './pagination';
 import { modalCocktails } from './modal-cocktails';
+import { INSPECT_MAX_BYTES } from 'buffer';
 
 const gallery = document.querySelector('.gallery');
 
@@ -32,6 +33,28 @@ function getRandCocktails(number) {
 }
 getRandCocktails(numberOfGalleryItems());
 
+// ================================================
+
+// function checkIncoming() {
+//   const favCocktNames = JSON.parse(
+//     localStorage.getItem('favoriteCocktails')
+//   ).map(item => item.name);
+
+//   let incomingCockts = JSON.parse(localStorage.getItem('cocktails')).map(
+//     item => {
+//       favCocktNames.forEach(fav => {
+//         if (fav === item.name) {
+//           item.dataModal = 'remove';
+//         }
+//       });
+//       return item;
+//     }
+//   );
+//   localStorage.setItem('cocktails', JSON.stringify(incomingCockts));
+// }
+
+// ================================================
+
 // візуалізація "пошук не дав результату" (oops image)
 function nosearchingRes() {
   document.querySelector('.cocktails__title').innerHTML =
@@ -49,7 +72,7 @@ export function noFavItems(items) {
 }
 
 // функція renderCocktailCards відмальовує картки коктейлів
-export function renderCocktailCards(arr) {
+export function renderCocktailCards(arr, type) {
   const sliceArr = arr.slice(0, numberOfGalleryItems());
   const markUp = sliceArr
     .map(cocktail => {
@@ -57,7 +80,7 @@ export function renderCocktailCards(arr) {
       let classBtn;
       if (cocktail.dataModal === 'add') {
         textBtn = 'Add to';
-        classBtn = 'btn__icon'
+        classBtn = 'btn__icon';
       } else {
         textBtn = 'Remove';
         classBtn = 'btn__icon-fill';
@@ -73,8 +96,8 @@ export function renderCocktailCards(arr) {
           />
           <h3 class="gallery__subtitle text-truncate">${cocktail.name}</h3>
         <div class="gallery__btns">
-          <button class="btn btn--orange" data-open-modal="open" data-cocktail="${cocktail.name}" type="button">Learn more</button>
-          <button class="btn btn--white" data-open-modal="${cocktail.dataModal}" data-cocktail="${cocktail.name}" type="button">
+          <button class="btn btn--orange" data-open-modal="open" data-type="${type}" data-action="${cocktail.dataModal}" data-cocktail="${cocktail.name}" type="button">Learn more</button>
+          <button class="btn btn--white" data-open-modal="${cocktail.dataModal}" data-type="${type}" data-cocktail="${cocktail.name}" type="button">
             ${textBtn}
             <span class="btn__icon-wrap">
             <svg class="${classBtn}" width="15" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -96,7 +119,7 @@ export function renderCocktailCards(arr) {
 }
 
 // функція renderIngredientCards відмальовує картки інгредієнтів
-export function renderIngredientCards(arr) {
+export function renderIngredientCards(arr, type) {
   const sliceArr = arr.slice(0, numberOfGalleryItems());
   const markUp = sliceArr
     .map(
@@ -105,8 +128,8 @@ export function renderIngredientCards(arr) {
         <h2 class="ingredient__name text-truncate">${ingredient.name}</h2>
         <h3 class="ingredient__type text-truncate">${ingredient.type}</h3>
         <div class="ingredient__btns">
-          <button class="btn btn--orange" type="button">Learn more</button>
-          <button class="btn btn--white" type="button">
+          <button data-favorite-ingredient="openModal" data-ingredient="${ingredient.name}" class="btn btn--orange" type="button">Learn more</button>
+          <button data-modal-ingredient="remove" data-ingredient="${ingredient.name}" class="btn btn--white" type="button">
             Remove &nbsp
             <span class="btn__icon-wrap"></span>
           </button>
@@ -119,9 +142,9 @@ export function renderIngredientCards(arr) {
 }
 
 // renderCocktails відмальовує галерею коктейлів
-export function renderCocktails(arr) {
+export function renderCocktails(arr, type = 'all') {
   if (arr.length !== 0) {
-    renderCocktailCards(arr);
+    renderCocktailCards(arr, type);
   } else if (arr.length === 0) {
     nosearchingRes();
   }
