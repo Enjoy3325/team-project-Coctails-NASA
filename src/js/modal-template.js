@@ -76,6 +76,7 @@ const templateModalIngredients = ({
   alcoholValue,
   alcohol,
   dataModal,
+  typeIngredient = 'all',
 }) => {
   let textBtn;
   if (dataModal === 'add') {
@@ -83,6 +84,8 @@ const templateModalIngredients = ({
   } else {
     textBtn = 'Remove from favorite';
   }
+
+  console.log('dataModal', dataModal);
   return `<div class="modal-ingredient__section">
   <div class="modal-ingredient__section-first">
   <h2 class="modal-ingredient__header">${name}</h2>
@@ -116,7 +119,7 @@ const templateModalIngredients = ({
           </li>
         </ul>
       </div>
-      <button data-modal-ingredient="${dataModal}" data-ingredient="${name}" class="modal-ingredient__button" type="button">
+      <button data-modal-ingredient="${dataModal}" data-type='${typeIngredient}' data-ingredient="${name}" class="modal-ingredient__button" type="button">
         ${textBtn}
       </button>
       </div>

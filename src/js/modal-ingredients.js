@@ -1,51 +1,62 @@
 import { templateModalIngredients } from './modal-template.js';
 import { requestApi } from './requests-api.js';
+import { noFavItems } from './render-gallery';
+import { onEskKeyPress } from './modal-cocktails';
 
 const refs = {
   closeModalIngredientBtn: document.querySelector(
     '[data-modal-ingredient-closes]'
   ),
+  gallery: document.querySelector('.gallery'),
   modalIngredient: document.querySelector('[data-modal-ingredient]'),
   ingridientsList: document.querySelector('.ingridients__list'),
   backdropIngredient: document.querySelector('.backdrop-ingredient'),
 };
 
 function onClickIngredient(e) {
-  const { ingredient } = e.target.dataset;
+  const { ingredient, type } = e.target.dataset;
+  console.log('nClickIngre', e.target.dataset);
   refs.closeModalIngredientBtn.addEventListener(
     'click',
     onCloseIngredientModal
   );
   refs.backdropIngredient.addEventListener('click', onBackdropIngredientClick);
   refs.modalIngredient.addEventListener('click', onClickBtnIngredient);
-  renderIngredientTemplate(ingredient);
+  renderIngredientTemplate(ingredient, type);
 
   onOpenIngredientModal();
 }
 
-function renderIngredientTemplate(ingredientName) {
-  console.log('ingredientN', ingredientName);
+function renderIngredientTemplate(ingredientName, type = 'all') {
   requestApi(ingredientName, 'ingredient').then(ingredient => {
     console.log('ingredient add', ingredient);
     document.querySelector('#modal-ingredient').innerHTML =
-      templateModalIngredients({ ...ingredient, dataModal: 'remove' });
+      // templateModalIngredients({ ...ingredient, dataModal: 'remove' });
+      templateModalIngredients(
+        type === 'favorite'
+          ? { ...ingredient, dataModal: 'remove', typeIngredient: 'favorite' }
+          : ingredient
+      );
     const arrIngredient = getIngredientFromLocalStorage();
     arrIngredient.push(ingredient);
     localStorage.setItem('ingredient', JSON.stringify(arrIngredient));
-    // onClickBtnIngredient(ingredient);
   });
 }
 
 function onClickBtnIngredient(e, type = 'modal') {
   let selectedIngredient = {};
 
-  const { modalIngredient, ingredient } = e.target.dataset;
+  const {
+    modalIngredient,
+    ingredient,
+    type: typeIngredient,
+  } = e.target.dataset;
 
   if (e.target.nodeName === 'BUTTON') {
     const data = JSON.parse(localStorage.getItem('ingredient'));
     selectedIngredient = data.find(el => el.name === ingredient);
+    console.log('type', e.target, type, selectedIngredient);
     if (modalIngredient === 'add') {
-      console.log('add ingr', e.target);
       e.target.innerHTML =
         type === 'favorite'
           ? contentBtnRemovOrAdd('remove')
@@ -53,10 +64,19 @@ function onClickBtnIngredient(e, type = 'modal') {
       e.target.dataset.modalIngredient = 'remove';
       onAddIngredientToLocalStorage(selectedIngredient);
     } else if (modalIngredient === 'remove') {
+      console.log(
+        'remo ',
+        refs.gallery.querySelector(`[data-ingredient="${ingredient}"]`)
+      );
+      if (typeIngredient === 'favorite') {
+        onCloseIngredientModal();
+        refs.gallery
+          .querySelector(`[data-ingredient="${ingredient}"]`)
+          .closest('.ingredient')
+          .classList.add('is-hidden');
+      }
       e.target.innerHTML =
-        type === 'favorite'
-          ? contentBtnRemovOrAdd('add')
-          : 'Remove from favorite';
+        type === 'favorite' ? contentBtnRemovOrAdd('add') : 'Add to favorite';
       e.target.dataset.modalIngredient = 'add';
       onRemoveIngredientFromLocalStorage(selectedIngredient);
     }
@@ -101,11 +121,14 @@ function onRemoveIngredientFromLocalStorage(ingredient) {
   const filterArr = allFavoriteIngredient.filter(
     drink => drink.name !== ingredient.name
   );
+  if (filterArr.length < 1) {
+    noFavItems('ingredients');
+  }
   localStorage.setItem('favoriteIngredients', JSON.stringify(filterArr));
 }
 
 // Закрытие по ЕСК
-function onEskKeyPress(e) {
+function onEskKeyPressIngredient(e) {
   console.log();
   if (e.code === 'Escape') {
     onCloseIngredientModal();
@@ -122,12 +145,13 @@ function getIngredientFromLocalStorage() {
 
 function onOpenIngredientModal() {
   refs.modalIngredient.classList.remove('is-hidden');
-  window.addEventListener('keydown', onEskKeyPress);
+  window.addEventListener('keydown', onEskKeyPressIngredient);
 }
 
 function onCloseIngredientModal(e) {
   refs.modalIngredient.classList.add('is-hidden');
-  window.removeEventListener('keydown', onEskKeyPress);
+  window.removeEventListener('keydown', onEskKeyPressIngredient);
+  window.addEventListener('keydown', onEskKeyPress);
 }
 
 function onBackdropIngredientClick(e) {

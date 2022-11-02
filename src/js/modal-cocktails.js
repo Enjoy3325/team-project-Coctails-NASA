@@ -1,4 +1,4 @@
-import { templateModal, templateModalIngredients } from './modal-template.js';
+import { templateModal } from './modal-template.js';
 import { onClickIngredient, onClickBtnIngredient } from './modal-ingredients';
 import { nosearchingRes } from './render-gallery';
 
@@ -45,7 +45,7 @@ function onGalleryClick(e) {
       )
     );
     const btnLearMore = document.querySelector('[data-open-modal="open"]');
-    selectedCocktail = data.find(el => el.name === cocktail);
+    selectedCocktail = data?.find(el => el.name === cocktail);
     console.log('action', selectedCocktail, cocktail, data, openModal, type);
 
     //   якщо openModal === 'open вiдкриваємо модалку
@@ -67,7 +67,6 @@ function onGalleryClick(e) {
     } else if (openModal === 'remove') {
       // видаляємо напій з LocalStorage і змінюємо текст в кнопці
       btnLearMore.dataset.action = 'add';
-      console.log('remove', e.target.closest('.gallery__item'));
       e.target.closest('.gallery__item').classList.add('is-hidden');
       e.target.innerHTML = contentBtnRemovOrAdd('add');
       e.target.dataset.openModal = 'add';
@@ -140,7 +139,7 @@ function getFavoriteCocktailsFromLocalStorage() {
 // ---------------------- MODAL ----------------------
 
 // Закрытие по ЕСК
-function onEskKeyPress(e) {
+export function onEskKeyPress(e) {
   if (e.code === 'Escape') {
     onCloseModal();
   }
@@ -198,7 +197,7 @@ function onClickBtnInModal(e) {
           .querySelector(`[data-cocktail="${cocktail}"]`)
           .closest('.gallery__item')
           .classList.add('is-hidden');
-        //   onRemoveFavoriteFromLocalStorage(selectedCocktail, type);
+        onRemoveFavoriteFromLocalStorage(selectedCocktail, type);
       }
       e.target.innerHTML = 'Add to favorite';
       e.target.dataset.modalBtn = 'add';
@@ -206,6 +205,7 @@ function onClickBtnInModal(e) {
     }
   } else if (e.target.nodeName === 'SPAN') {
     onClickIngredient(e);
+    window.removeEventListener('keydown', onEskKeyPress);
   }
 }
 
