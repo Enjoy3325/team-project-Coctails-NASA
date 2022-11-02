@@ -10,12 +10,12 @@ const refs = {
   backdrop: document.querySelector('.backdrop'),
 
   // --------Ingredient_______
-  closeModalIngredientBtn: document.querySelector(
-    '[data-modal-ingredient-closes]'
-  ),
-  modalIngredient: document.querySelector('[data-modal-ingredient]'),
-  ingridientsList: document.querySelector('.ingridients__list'),
-  backdropIngredient: document.querySelector('.backdrop-ingredient'),
+  //   closeModalIngredientBtn: document.querySelector(
+  //     '[data-modal-ingredient-closes]'
+  //   ),
+  //   modalIngredient: document.querySelector('[data-modal-ingredient]'),
+  //   ingridientsList: document.querySelector('.ingridients__list'),
+  //   backdropIngredient: document.querySelector('.backdrop-ingredient'),
 };
 
 function modalCocktails() {
@@ -35,7 +35,6 @@ function onGalleryClick(e) {
     favoriteIngredient,
     modalIngredient,
   } = e.target.dataset;
-  console.log('onGalleryCli', e.target, favoriteIngredient);
 
   //   Перевіряємо, щоб клік був на BUTTON Learn more,
   if (e.target.nodeName === 'BUTTON') {
@@ -46,9 +45,8 @@ function onGalleryClick(e) {
     );
     const btnLearMore = document.querySelector('[data-open-modal="open"]');
     selectedCocktail = data?.find(el => el.name === cocktail);
-    console.log('action', selectedCocktail, cocktail, data, openModal, type);
 
-    //   якщо openModal === 'open вiдкриваємо модалку
+    // вiдкриваємо модалку
     if (openModal === 'open') {
       document.querySelector('#modal-section').innerHTML = templateModal({
         ...selectedCocktail,
@@ -97,20 +95,15 @@ function contentBtnRemovOrAdd(type = 'add') {
 
 // Додає напій в localStorage to favorite
 function onAddFavoriteToLocalStorage(selectedCocktail, type) {
-  console.log('onAdd', type, selectedCocktail);
   const allFavoriteCocktails = getFavoriteCocktailsFromLocalStorage();
-
-  const isFound = allFavoriteCocktails.some(el => {
-    console.log('el', el.name, selectedCocktail.name);
-    return el.name === selectedCocktail.name;
-  });
+  const isFound = allFavoriteCocktails.some(
+    el => el.name === selectedCocktail.name
+  );
 
   if (isFound) {
     return;
   } else {
     allFavoriteCocktails.push({ ...selectedCocktail, dataModal: 'remove' });
-    console.log('add2', allFavoriteCocktails);
-
     localStorage.setItem(
       'favoriteCocktails',
       JSON.stringify(allFavoriteCocktails)
@@ -124,11 +117,11 @@ function onRemoveFavoriteFromLocalStorage(selectedCocktail, type) {
   const filterArr = allFavoriteCocktails.filter(
     drink => drink.name !== selectedCocktail.name
   );
-  if (filterArr.length < 1) {
+
+  console.log('type', type);
+  if (filterArr.length < 1 && type === 'favorite') {
     nosearchingRes();
   }
-  console.log('onRemoveFavoriteFromL', allFavoriteCocktails);
-  console.log('filterArr', filterArr);
   localStorage.setItem('favoriteCocktails', JSON.stringify(filterArr));
 }
 
@@ -152,7 +145,6 @@ function onBackdropClick(e) {
   }
 }
 
-// toggle modal
 function toggleModal(e) {
   document.body.classList.toggle('no-scroll');
   refs.modal.classList.toggle('is-hidden');
@@ -166,7 +158,6 @@ function onCloseModal() {
 }
 
 function onOpenModal(e) {
-  console.log('onOpenMod', e);
   window.addEventListener('keydown', onEskKeyPress);
   refs.modal.classList.remove('is-hidden');
   document.body.classList.add('no-scroll');
@@ -183,15 +174,15 @@ function onClickBtnInModal(e) {
       )
     );
     selectedCocktail = data.find(el => el.name === cocktail);
-    console.log('clic ingr', e, data, type);
 
     if (modalBtn === 'add') {
       e.target.innerHTML = 'Remove from favorite';
       e.target.dataset.modalBtn = 'remove';
       onAddFavoriteToLocalStorage(selectedCocktail, type);
     } else {
-      console.log('type === favorit', refs.gallery, cocktail, selectedCocktail);
+      // remove card from gallery if remove cocktail on the favorite page
       if (type === 'favorite') {
+        console.log('remove modal', type, selectedCocktail, cocktail);
         onCloseModal();
         refs.gallery
           .querySelector(`[data-cocktail="${cocktail}"]`)
@@ -204,91 +195,11 @@ function onClickBtnInModal(e) {
       onRemoveFavoriteFromLocalStorage(selectedCocktail, type);
     }
   } else if (e.target.nodeName === 'SPAN') {
+    // open ingredient modal
     onClickIngredient(e);
     window.removeEventListener('keydown', onEskKeyPress);
   }
 }
-
-// ---------------------- MODAL INGREDIENT ----------------------
-
-// function onClickIngredient(e) {
-//   const { ingredient } = e.target.dataset;
-//   //   refs.modalIngredient.addEventListener('click', onClickBtnIngredient);
-//   refs.closeModalIngredientBtn.addEventListener(
-//     'click',
-//     onCloseIngredientModal
-//   );
-//   refs.backdropIngredient.addEventListener('click', onBackdropIngredientClick);
-//   renderIngredientTemplate(ingredient);
-
-//   console.log('onOpenIngredient', e.target.dataset);
-//   onOpenIngredientModal();
-// }
-
-// function renderIngredientTemplate(ingredientName) {
-//   requestApi(ingredientName, 'ingredient')
-//     .then(ingredient => {
-//       document.querySelector('#modal-ingredient').innerHTML =
-//         templateModalIngredients(ingredient);
-//       return ingredient;
-//     })
-//     .then(ingredient => {
-//       refs.modalIngredient.addEventListener('click', e => {
-//         const { modalIngredient } = e.target.dataset;
-
-//         if (e.target.nodeName === 'BUTTON') {
-//           if (modalIngredient === 'add') {
-//             console.log('modalIngredient', ingredient);
-//             e.target.innerHTML = 'Remove from favorite';
-//             e.target.dataset.modalIngredient = 'remove';
-//             onAddIngredientToLocalStorage(ingredient);
-//           } else if (modalIngredient === 'remove') {
-//             e.target.innerHTML = 'Add to favorite';
-//             e.target.dataset.modalIngredient = 'add';
-//             onRemoveIngredientFromLocalStorage(ingredient);
-//           }
-//         }
-//       });
-//     });
-// }
-
-// // Додає ingredient в localStorage to favorite
-// function onAddIngredientToLocalStorage(ingredient) {
-//   const allFavoriteIngredient = getFavoriteIngredientFromLocalStorage();
-//   allFavoriteIngredient.push({ ...ingredient, dataModal: 'remove' });
-//   console.log('add', ingredient, allFavoriteIngredient);
-//   localStorage.setItem(
-//     'favoriteIngredients',
-//     JSON.stringify(allFavoriteIngredient)
-//   );
-// }
-
-// // видаляємо ingredient з localStorage favorite
-// function onRemoveIngredientFromLocalStorage(ingredient) {
-//   const allFavoriteIngredient = getFavoriteIngredientFromLocalStorage();
-//   const filterArr = allFavoriteIngredient.filter(
-//     drink => drink.name !== ingredient.name
-//   );
-//   localStorage.setItem('favoriteIngredients', JSON.stringify(filterArr));
-// }
-
-// function getFavoriteIngredientFromLocalStorage() {
-//   return JSON.parse(localStorage.getItem('favoriteIngredients') || '[]');
-// }
-
-// function onOpenIngredientModal() {
-//   refs.modalIngredient.classList.remove('is-hidden');
-// }
-
-// function onCloseIngredientModal(e) {
-//   refs.modalIngredient.classList.add('is-hidden');
-// }
-
-// function onBackdropIngredientClick(e) {
-//   if (e.currentTarget === e.target) {
-//     onCloseIngredientModal();
-//   }
-// }
 
 export {
   modalCocktails,
@@ -297,15 +208,3 @@ export {
   onAddFavoriteToLocalStorage,
   onRemoveFavoriteFromLocalStorage,
 };
-
-// export class CreateModalCocktails {
-//   constructor() {
-//     this.#setup();
-//   }
-
-//   #setup() {
-//     refs.gallery.addEventListener('click', onGalleryClick);
-//     refs.closeModalBtn.addEventListener('click', toggleModal);
-//     refs.backdrop.addEventListener('click', onBackdropClick);
-//   }
-// }
