@@ -62,7 +62,7 @@ const templateModal = ({
       <b class="modal-cocktails__title">INSTRACTIONS:</b>
       <p class="modal-cocktails__text">${instruction}</p>
       </div>
-      <button data-modal-btn="${dataModal}" data-cocktail="${name}" class="modal-cocktails__button" type="button">
+      <button data-modal-btn="${dataModal}" data-cocktail="${name}" data-type="${type}" class="modal-cocktails__button" type="button">
         ${textBtn}
       </button>
       </div>`;
@@ -76,18 +76,16 @@ const templateModalIngredients = ({
   alcoholValue,
   alcohol,
   dataModal,
+  typeIngredient = 'all',
 }) => {
-  // let ingredientsDescription;
-  // if (ingredients.length > 0) {
-  //   ingredientsList = ingredients
-  //     .map(
-  //       el => `<li class="ingredients__item">
-  //           <span>${el}</span>
-  //         </li>`
-  //     )
-  //     .join('');
-  // }
+  let textBtn;
+  if (dataModal === 'add') {
+    textBtn = 'Add to favorite';
+  } else {
+    textBtn = 'Remove from favorite';
+  }
 
+  console.log('dataModal', dataModal);
   return `<div class="modal-ingredient__section">
   <div class="modal-ingredient__section-first">
   <h2 class="modal-ingredient__header">${name}</h2>
@@ -127,8 +125,8 @@ const templateModalIngredients = ({
           </li>
         </ul>
       </div>
-      <button data-modal-ingredient="add" data-ingredient="${name}" class="modal-ingredient__button" type="button">
-        Add to favorite
+      <button data-modal-ingredient="${dataModal}" data-type='${typeIngredient}' data-ingredient="${name}" class="modal-ingredient__button" type="button">
+        ${textBtn}
       </button>
       </div>
       </div>`;

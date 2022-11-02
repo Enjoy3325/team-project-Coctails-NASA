@@ -41,10 +41,10 @@ const getIngredientInfo = query => {
 };
 
 export const getRandomCocktail = () => {
-    const favCocktNames = JSON.parse(
-      localStorage.getItem('favoriteCocktails')
+  const favCocktNames = JSON.parse(
+    localStorage.getItem('favoriteCocktails') || '[]'
   ).map(item => item.name);
-  
+
   return axios
     .get('https://www.thecocktaildb.com/api/json/v1/1/random.php')
     .then(res => res.data.drinks[0])
@@ -64,46 +64,47 @@ export const getRandomCocktail = () => {
       };
     })
     .then(data => {
-        favCocktNames.forEach(fav => {
-          if (fav === data.name) {
-            data.dataModal = 'remove';
-          }
-        });
-        return data;
-      }
-    )
+      favCocktNames.forEach(fav => {
+        if (fav === data.name) {
+          data.dataModal = 'remove';
+        }
+      });
+      return data;
+    })
     .catch();
 };
 
 const createCocktailArray = res => {
   const favCocktNames = JSON.parse(
-    localStorage.getItem('favoriteCocktails')
+    localStorage.getItem('favoriteCocktails') || '[]'
   ).map(item => item.name);
-  const newDrinks = res.data.drinks.map(drink => {
-    const { strDrink, strInstructions, strDrinkThumb } = drink;
-    let cocktailName = '';
-    let ingredients = [];
-    for (let i = 1; i <= 15; i++) {
-      cocktailName = 'strIngredient' + i;
-      drink[cocktailName] !== null ? ingredients.push(drink[cocktailName]) : '';
-    }
-    return {
-      name: strDrink,
-      instruction: strInstructions,
-      img: strDrinkThumb,
-      ingredients: ingredients,
-      dataModal: 'add',
-    };
-  }).map(
-      item => {
-        favCocktNames.forEach(fav => {
-          if (fav === item.name) {
-            item.dataModal = 'remove';
-          }
-        });
-        return item;
+  const newDrinks = res.data.drinks
+    .map(drink => {
+      const { strDrink, strInstructions, strDrinkThumb } = drink;
+      let cocktailName = '';
+      let ingredients = [];
+      for (let i = 1; i <= 15; i++) {
+        cocktailName = 'strIngredient' + i;
+        drink[cocktailName] !== null
+          ? ingredients.push(drink[cocktailName])
+          : '';
       }
-    );
+      return {
+        name: strDrink,
+        instruction: strInstructions,
+        img: strDrinkThumb,
+        ingredients: ingredients,
+        dataModal: 'add',
+      };
+    })
+    .map(item => {
+      favCocktNames.forEach(fav => {
+        if (fav === item.name) {
+          item.dataModal = 'remove';
+        }
+      });
+      return item;
+    });
   console.log(newDrinks);
   localStorage.setItem('cocktails', JSON.stringify(newDrinks));
   return newDrinks;

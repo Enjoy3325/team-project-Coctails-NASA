@@ -33,7 +33,7 @@ function getFavorites() {
   }
   items === 'cocktails'
     ? renderCocktailCards(arr, 'favorite')
-    : renderIngredientCards(arr);
+    : renderIngredientCards(arr, 'ingredient');
   getPagination(arr, numberOfGalleryItems());
 }
 
