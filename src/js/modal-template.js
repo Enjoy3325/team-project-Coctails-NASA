@@ -96,7 +96,9 @@ const templateModalIngredients = ({
        </div>
        <div class="modal-ingredient__line"></div>
        <div class="modal-ingredient__section-last">
+       <div class="modal-ingredient__description">
       <p class="modal-ingredient__text">${description}</p>
+      </div>
       <div class="ingredients">
         <ul data-modal-open class="ingredients__list">
         <li class="ingredients__item">
