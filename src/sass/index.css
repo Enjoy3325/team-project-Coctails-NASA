@@ -762,6 +762,7 @@ button {
   background-color: var(--auxiliary-orange);
 }
 .pagination .pagination__icon {
+  fill: var(--black);
   transition: fill 250ms var(--timing-function);
 }
 .pagination__previous:hover .pagination__icon, .pagination__next:hover .pagination__icon {
@@ -801,9 +802,6 @@ button {
 .pagination--active {
   color: var(--white);
   background-color: var(--auxiliary-orange);
-}
-.pagination--disabled {
-  fill: var(--gray);
 }
 
 .page-footer {
@@ -1539,6 +1537,40 @@ input:checked + .slider:before {
 }
 .menu-btn:active .menu-btn__icon {
   fill: var(--grapefruit);
+}
+
+.loginButton, .logoutButton {
+  margin-left: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  justify-content: center;
+  align-items: center;
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
+  display: flex;
+  min-width: 160px;
+  color: var(--whiteBtn);
+  background-color: var(--auxiliary-orange);
+  transition: background-color 250ms var(--timing-function);
+  padding: 8px 16px;
+}
+
+.loginButton__img {
+  background-color: #fcfcfc;
+}
+
+.logoutButton:hover .logoutButton__img {
+  display: block;
+  position: absolute;
+  width: 160px;
+  background-color: var(--auxiliary-orange);
+  opacity: 1;
+  visibility: inherit;
+}
+
+.is-hidden {
+  display: none;
 }
 
 .mob-menu {
