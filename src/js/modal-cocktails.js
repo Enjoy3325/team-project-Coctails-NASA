@@ -1,5 +1,5 @@
 import { templateModal, templateModalIngredients } from './modal-template.js';
-import { onClickIngredient } from './modal-ingredients';
+import { onClickIngredient, onClickBtnIngredient } from './modal-ingredients';
 
 const refs = {
   closeModalBtn: document.querySelector('[data-modal-closes]'),
@@ -26,8 +26,15 @@ function modalCocktails() {
 
 function onGalleryClick(e) {
   let selectedCocktail = {};
-  console.log('onGalleryCli', e.target);
-  const { openModal, cocktail, action, type } = e.target.dataset;
+  const {
+    openModal,
+    cocktail,
+    action,
+    type,
+    favoriteIngredient,
+    modalIngredient,
+  } = e.target.dataset;
+  console.log('onGalleryCli', e.target, favoriteIngredient);
 
   //   Перевіряємо, щоб клік був на BUTTON Learn more,
   if (e.target.nodeName === 'BUTTON') {
@@ -39,7 +46,6 @@ function onGalleryClick(e) {
     const btnLearMore = document.querySelector('[data-open-modal="open"]');
     selectedCocktail = data.find(el => el.name === cocktail);
     console.log('action', action, cocktail, data);
-    console.log('selectedCockta', { ...selectedCocktail, dataModal: action });
 
     //   якщо openModal === 'open вiдкриваємо модалку
     if (openModal === 'open') {
@@ -63,6 +69,10 @@ function onGalleryClick(e) {
       e.target.innerHTML = contentBtnRemovOrAdd('add');
       e.target.dataset.openModal = 'add';
       onRemoveFavoriteFromLocalStorage(selectedCocktail, MimeTypeArray);
+    } else if (favoriteIngredient === 'openModal') {
+      onClickIngredient(e);
+    } else if (modalIngredient === 'remove' || modalIngredient === 'add') {
+      onClickBtnIngredient(e, 'favorite');
     }
   }
 }

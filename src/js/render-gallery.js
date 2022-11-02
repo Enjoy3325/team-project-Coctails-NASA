@@ -120,7 +120,7 @@ export function renderCocktailCards(arr, type) {
 }
 
 // функція renderIngredientCards відмальовує картки інгредієнтів
-export function renderIngredientCards(arr) {
+export function renderIngredientCards(arr, type) {
   const sliceArr = arr.slice(0, numberOfGalleryItems());
   const markUp = sliceArr
     .map(
@@ -129,8 +129,8 @@ export function renderIngredientCards(arr) {
         <h2 class="ingredient__name text-truncate">${ingredient.name}</h2>
         <h3 class="ingredient__type text-truncate">${ingredient.type}</h3>
         <div class="ingredient__btns">
-          <button class="btn btn--orange" type="button">Learn more</button>
-          <button class="btn btn--white" type="button">
+          <button data-favorite-ingredient="openModal" data-ingredient="${ingredient.name}" class="btn btn--orange" type="button">Learn more</button>
+          <button data-modal-ingredient="remove" data-ingredient="${ingredient.name}" class="btn btn--white" type="button">
             Remove &nbsp
             <span class="btn__icon-wrap"></span>
           </button>
