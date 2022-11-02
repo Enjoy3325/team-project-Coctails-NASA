@@ -93,7 +93,7 @@
 }
 
 .loginButton, .logoutButton{
-  margin-left: 10px;
+  margin-left: 30px;
   cursor: pointer;
   border-radius: 4px;
   justify-content: center;
@@ -107,8 +107,8 @@
   min-width: 160px;
   //padding: 12px 27px;
   //min-width: 110px;
-  color: var(--whiteBtn);
-  background-color: var(--auxiliary-orange);
+  color: var(--black);
+  //background-color: var(--auxiliary-orange);
   transition: background-color 250ms var(--timing-function);
   padding: 8px 16px;
 }
@@ -122,7 +122,7 @@
   position: absolute;
   width: 160px;
   //height: 20px;
-  background-color: var(--auxiliary-orange);
+  background-color: var(--white);
   opacity: 1;
   //pointer-events: none;
   visibility: inherit;
