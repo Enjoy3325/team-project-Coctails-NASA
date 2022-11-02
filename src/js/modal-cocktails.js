@@ -1,5 +1,6 @@
 import { templateModal, templateModalIngredients } from './modal-template.js';
 import { requestApi } from './requests-api.js';
+import { onClickIngredient } from './modal-ingredients';
 
 const refs = {
   closeModalBtn: document.querySelector('[data-modal-closes]'),
@@ -155,84 +156,84 @@ function onClickBtnInModal(e) {
 
 // ---------------------- MODAL INGREDIENT ----------------------
 
-function onClickIngredient(e) {
-  const { ingredient } = e.target.dataset;
-  //   refs.modalIngredient.addEventListener('click', onClickBtnIngredient);
-  refs.closeModalIngredientBtn.addEventListener(
-    'click',
-    onCloseIngredientModal
-  );
-  refs.backdropIngredient.addEventListener('click', onBackdropIngredientClick);
-  renderIngredientTemplate(ingredient);
+// function onClickIngredient(e) {
+//   const { ingredient } = e.target.dataset;
+//   //   refs.modalIngredient.addEventListener('click', onClickBtnIngredient);
+//   refs.closeModalIngredientBtn.addEventListener(
+//     'click',
+//     onCloseIngredientModal
+//   );
+//   refs.backdropIngredient.addEventListener('click', onBackdropIngredientClick);
+//   renderIngredientTemplate(ingredient);
 
-  console.log('onOpenIngredient', e.target.dataset);
-  onOpenIngredientModal();
-}
+//   console.log('onOpenIngredient', e.target.dataset);
+//   onOpenIngredientModal();
+// }
 
-function renderIngredientTemplate(ingredientName) {
-  requestApi(ingredientName, 'ingredient')
-    .then(ingredient => {
-      document.querySelector('#modal-ingredient').innerHTML =
-        templateModalIngredients(ingredient);
-      return ingredient;
-    })
-    .then(ingredient => {
-      refs.modalIngredient.addEventListener('click', e => {
-        const { modalIngredient } = e.target.dataset;
+// function renderIngredientTemplate(ingredientName) {
+//   requestApi(ingredientName, 'ingredient')
+//     .then(ingredient => {
+//       document.querySelector('#modal-ingredient').innerHTML =
+//         templateModalIngredients(ingredient);
+//       return ingredient;
+//     })
+//     .then(ingredient => {
+//       refs.modalIngredient.addEventListener('click', e => {
+//         const { modalIngredient } = e.target.dataset;
 
-        if (e.target.nodeName === 'BUTTON') {
-          if (modalIngredient === 'add') {
-            console.log('modalIngredient', ingredient);
-            e.target.innerHTML = 'Remove from favorite';
-            e.target.dataset.modalIngredient = 'remove';
-            onAddIngredientToLocalStorage(ingredient);
-          } else if (modalIngredient === 'remove') {
-            e.target.innerHTML = 'Add to favorite';
-            e.target.dataset.modalIngredient = 'add';
-            onRemoveIngredientFromLocalStorage(ingredient);
-          }
-        }
-      });
-    });
-}
+//         if (e.target.nodeName === 'BUTTON') {
+//           if (modalIngredient === 'add') {
+//             console.log('modalIngredient', ingredient);
+//             e.target.innerHTML = 'Remove from favorite';
+//             e.target.dataset.modalIngredient = 'remove';
+//             onAddIngredientToLocalStorage(ingredient);
+//           } else if (modalIngredient === 'remove') {
+//             e.target.innerHTML = 'Add to favorite';
+//             e.target.dataset.modalIngredient = 'add';
+//             onRemoveIngredientFromLocalStorage(ingredient);
+//           }
+//         }
+//       });
+//     });
+// }
 
-// Додає ingredient в localStorage to favorite
-function onAddIngredientToLocalStorage(ingredient) {
-  const allFavoriteIngredient = getFavoriteIngredientFromLocalStorage();
-  allFavoriteIngredient.push({ ...ingredient, dataModal: 'remove' });
-  console.log('add', ingredient, allFavoriteIngredient);
-  localStorage.setItem(
-    'favoriteIngredients',
-    JSON.stringify(allFavoriteIngredient)
-  );
-}
+// // Додає ingredient в localStorage to favorite
+// function onAddIngredientToLocalStorage(ingredient) {
+//   const allFavoriteIngredient = getFavoriteIngredientFromLocalStorage();
+//   allFavoriteIngredient.push({ ...ingredient, dataModal: 'remove' });
+//   console.log('add', ingredient, allFavoriteIngredient);
+//   localStorage.setItem(
+//     'favoriteIngredients',
+//     JSON.stringify(allFavoriteIngredient)
+//   );
+// }
 
-// видаляємо ingredient з localStorage favorite
-function onRemoveIngredientFromLocalStorage(ingredient) {
-  const allFavoriteIngredient = getFavoriteIngredientFromLocalStorage();
-  const filterArr = allFavoriteIngredient.filter(
-    drink => drink.name !== ingredient.name
-  );
-  localStorage.setItem('favoriteIngredients', JSON.stringify(filterArr));
-}
+// // видаляємо ingredient з localStorage favorite
+// function onRemoveIngredientFromLocalStorage(ingredient) {
+//   const allFavoriteIngredient = getFavoriteIngredientFromLocalStorage();
+//   const filterArr = allFavoriteIngredient.filter(
+//     drink => drink.name !== ingredient.name
+//   );
+//   localStorage.setItem('favoriteIngredients', JSON.stringify(filterArr));
+// }
 
-function getFavoriteIngredientFromLocalStorage() {
-  return JSON.parse(localStorage.getItem('favoriteIngredients') || '[]');
-}
+// function getFavoriteIngredientFromLocalStorage() {
+//   return JSON.parse(localStorage.getItem('favoriteIngredients') || '[]');
+// }
 
-function onOpenIngredientModal() {
-  refs.modalIngredient.classList.remove('is-hidden');
-}
+// function onOpenIngredientModal() {
+//   refs.modalIngredient.classList.remove('is-hidden');
+// }
 
-function onCloseIngredientModal(e) {
-  refs.modalIngredient.classList.add('is-hidden');
-}
+// function onCloseIngredientModal(e) {
+//   refs.modalIngredient.classList.add('is-hidden');
+// }
 
-function onBackdropIngredientClick(e) {
-  if (e.currentTarget === e.target) {
-    onCloseIngredientModal();
-  }
-}
+// function onBackdropIngredientClick(e) {
+//   if (e.currentTarget === e.target) {
+//     onCloseIngredientModal();
+//   }
+// }
 
 export {
   modalCocktails,
