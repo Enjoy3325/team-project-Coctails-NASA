@@ -77,6 +77,7 @@ const templateModalIngredients = ({
   alcohol,
   dataModal,
 }) => {
+  let textBtn;
   if (dataModal === 'add') {
     textBtn = 'Add to favorite';
   } else {
