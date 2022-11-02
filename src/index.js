@@ -11,3 +11,4 @@ import './js/firebase';
 import './js/select';
 import './js/themeChanger';
 import './js/modal-cocktails';
+import './js/modal-ingredients';
