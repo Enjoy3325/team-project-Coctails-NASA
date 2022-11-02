@@ -12,12 +12,14 @@ const refs = {
 
 function onClickIngredient(e) {
   const { ingredient } = e.target.dataset;
+  console.log('onClickIngr', e.target, e.target.dataset);
   //   refs.modalIngredient.addEventListener('click', onClickBtnIngredient);
   refs.closeModalIngredientBtn.addEventListener(
     'click',
     onCloseIngredientModal
   );
   refs.backdropIngredient.addEventListener('click', onBackdropIngredientClick);
+  refs.modalIngredient.addEventListener('click', onClickBtnIngredient);
   renderIngredientTemplate(ingredient);
 
   console.log('onOpenIngredient', e.target.dataset);
@@ -25,36 +27,44 @@ function onClickIngredient(e) {
 }
 
 function renderIngredientTemplate(ingredientName) {
-  requestApi(ingredientName, 'ingredient')
-    .then(ingredient => {
-      document.querySelector('#modal-ingredient').innerHTML =
-        templateModalIngredients(ingredient);
-      return ingredient;
-    })
-    .then(ingredient => {
-      refs.modalIngredient.addEventListener('click', e => {
-        const { modalIngredient } = e.target.dataset;
+  console.log('ingredientN', ingredientName);
+  requestApi(ingredientName, 'ingredient').then(ingredient => {
+    document.querySelector('#modal-ingredient').innerHTML =
+      templateModalIngredients(ingredient);
+    const arrIngredient = getIngredientFromLocalStorage();
+    arrIngredient.push(ingredient);
+    localStorage.setItem('ingredient', JSON.stringify(arrIngredient));
+    // onClickBtnIngredient(ingredient);
+  });
+}
 
-        if (e.target.nodeName === 'BUTTON') {
-          if (modalIngredient === 'add') {
-            console.log('modalIngredient', ingredient);
-            e.target.innerHTML = 'Remove from favorite';
-            e.target.dataset.modalIngredient = 'remove';
-            onAddIngredientToLocalStorage(ingredient);
-          } else if (modalIngredient === 'remove') {
-            e.target.innerHTML = 'Add to favorite';
-            e.target.dataset.modalIngredient = 'add';
-            onRemoveIngredientFromLocalStorage(ingredient);
-          }
-        }
-      });
-    });
+function onClickBtnIngredient(e) {
+  let selectedIngredient = {};
+
+  const { modalIngredient, ingredient } = e.target.dataset;
+
+  if (e.target.nodeName === 'BUTTON') {
+    const data = JSON.parse(localStorage.getItem('ingredient'));
+    selectedIngredient = data.find(el => el.name === ingredient);
+    if (modalIngredient === 'add') {
+      console.log('selectedIngredient', selectedIngredient);
+      console.log('Ingredient', ingredient);
+      e.target.innerHTML = 'Remove from favorite';
+      e.target.dataset.modalIngredient = 'remove';
+      onAddIngredientToLocalStorage(selectedIngredient);
+    } else if (modalIngredient === 'remove') {
+      e.target.innerHTML = 'Add to favorite';
+      e.target.dataset.modalIngredient = 'add';
+      onRemoveIngredientFromLocalStorage(selectedIngredient);
+    }
+  }
 }
 
 // Додає ingredient в localStorage to favorite
 function onAddIngredientToLocalStorage(ingredient) {
   const allFavoriteIngredient = getFavoriteIngredientFromLocalStorage();
   const isFound = allFavoriteIngredient.some(el => el.name === ingredient.name);
+  console.log('onAddIngr', ingredient, isFound);
   if (isFound) {
     return;
   } else {
@@ -70,14 +80,19 @@ function onAddIngredientToLocalStorage(ingredient) {
 // видаляємо ingredient з localStorage favorite
 function onRemoveIngredientFromLocalStorage(ingredient) {
   const allFavoriteIngredient = getFavoriteIngredientFromLocalStorage();
-  const filterArr = allFavoriteIngredient.filter(
-    drink => drink.name !== ingredient.name
-  );
+  const filterArr = allFavoriteIngredient.filter(drink => {
+    console.log('remove', drink.name, ingredient.name);
+    return drink.name !== ingredient.name;
+  });
   localStorage.setItem('favoriteIngredients', JSON.stringify(filterArr));
 }
 
 function getFavoriteIngredientFromLocalStorage() {
   return JSON.parse(localStorage.getItem('favoriteIngredients') || '[]');
+}
+
+function getIngredientFromLocalStorage() {
+  return JSON.parse(localStorage.getItem('ingredient') || '[]');
 }
 
 function onOpenIngredientModal() {
