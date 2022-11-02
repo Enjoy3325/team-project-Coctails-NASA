@@ -54,12 +54,17 @@ function renderIngredientTemplate(ingredientName) {
 // Додає ingredient в localStorage to favorite
 function onAddIngredientToLocalStorage(ingredient) {
   const allFavoriteIngredient = getFavoriteIngredientFromLocalStorage();
-  allFavoriteIngredient.push({ ...ingredient, dataModal: 'remove' });
-  console.log('add', ingredient, allFavoriteIngredient);
-  localStorage.setItem(
-    'favoriteIngredients',
-    JSON.stringify(allFavoriteIngredient)
-  );
+  const isFound = allFavoriteCocktails.some(el => el.name === ingredient.name);
+  if (isFound) {
+    return;
+  } else {
+    allFavoriteIngredient.push({ ...ingredient, dataModal: 'remove' });
+    console.log('add', allFavoriteIngredient);
+    localStorage.setItem(
+      'favoriteIngredients',
+      JSON.stringify(allFavoriteIngredient)
+    );
+  }
 }
 
 // видаляємо ingredient з localStorage favorite
