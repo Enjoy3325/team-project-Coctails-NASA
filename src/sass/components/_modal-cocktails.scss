@@ -6,6 +6,7 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba(94, 99, 99, 0.7);
+
   opacity: 1;
   padding-top: 60px;
   overflow-y: scroll;
@@ -151,10 +152,7 @@
       background-color: var(--auxiliary-orange);
       color: var(--white);
     }
-    // &::active {
-    //   background-color: var(--grapefruit);
-    //   color: var(--white);
-    // }
+
     @include tablet {
       margin-top: 40px;
       margin-left: auto;
@@ -240,6 +238,16 @@
   cursor: pointer;
   @include tablet {
     color: var(--modalgray);
+  }
+
+  span {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.62;
+    color: var(--gray);
+    cursor: pointer;
   }
 
   span::before {
