@@ -1,5 +1,4 @@
 import { templateModal, templateModalIngredients } from './modal-template.js';
-import { requestApi } from './requests-api.js';
 import { onClickIngredient } from './modal-ingredients';
 
 export const refs = {
@@ -27,32 +26,43 @@ function modalCocktails() {
 
 function onGalleryClick(e) {
   let selectedCocktail = {};
-  const { openModal, cocktail } = e.target.dataset;
+  console.log('onGalleryCli', e.target);
+  const { openModal, cocktail, action, type } = e.target.dataset;
 
   //__________________________________Перевіряємо, щоб клік був на BUTTON Learn more,__________________________________
   if (e.target.nodeName === 'BUTTON') {
-    const data = JSON.parse(localStorage.getItem('cocktails'));
+    const data = JSON.parse(
+      localStorage.getItem(
+        type === 'favorite' ? 'favoriteCocktails' : 'cocktails'
+      )
+    );
+    const btnLearMore = document.querySelector('[data-open-modal="open"]');
     selectedCocktail = data.find(el => el.name === cocktail);
+    console.log('action', action, cocktail, data);
+    console.log('selectedCockta', { ...selectedCocktail, dataModal: action });
 
     //________________________________Якщо openModal === 'open вiдкриваємо модалку______________________________________
     if (openModal === 'open') {
-      document.querySelector('#modal-section').innerHTML =
-        templateModal(selectedCocktail);
+      document.querySelector('#modal-section').innerHTML = templateModal({
+        ...selectedCocktail,
+        dataModal: action,
+        type: type,
+      });
       onOpenModal(e);
-      //   onClickBtnInModal(e);
-      //   toggleModal();
     } else if (openModal === 'add') {
       //____________________________  Додаємо напій до LocalStorage і змінюємо текст в кнопці___________________________
       if (selectedCocktail) {
+        btnLearMore.dataset.action = 'remove';
         e.target.innerHTML = contentBtnRemovOrAdd('remove');
         e.target.dataset.openModal = 'remove';
-        onAddFavoriteToLocalStorage(selectedCocktail);
+        onAddFavoriteToLocalStorage(selectedCocktail, MimeTypeArray);
       }
     } else if (openModal === 'remove') {
-      //______________________________Видаляємо напій з LocalStorage і змінюємо текст в кнопці___________________________
+      // видаляємо напій з LocalStorage і змінюємо текст в кнопці
+      btnLearMore.dataset.action = 'add';
       e.target.innerHTML = contentBtnRemovOrAdd('add');
       e.target.dataset.openModal = 'add';
-      onRemoveFavoriteFromLocalStorage(selectedCocktail);
+      onRemoveFavoriteFromLocalStorage(selectedCocktail, MimeTypeArray);
     }
   }
 }
@@ -73,22 +83,38 @@ function contentBtnRemovOrAdd(type = 'add') {
   }
 }
 
-//__________________________________ Додає напій в localStorage to favorite__________________________________________
-function onAddFavoriteToLocalStorage(selectedCocktail) {
+// Додає напій в localStorage to favorite
+function onAddFavoriteToLocalStorage(selectedCocktail, type) {
+  console.log('onAdd', type, selectedCocktail);
   const allFavoriteCocktails = getFavoriteCocktailsFromLocalStorage();
-  allFavoriteCocktails.push({ ...selectedCocktail, dataModal: 'remove' });
-  localStorage.setItem(
-    'favoriteCocktails',
-    JSON.stringify(allFavoriteCocktails)
-  );
+
+  const isFound = allFavoriteCocktails.some(el => {
+    console.log('el', el.name, selectedCocktail.name);
+    return el.name === selectedCocktail.name;
+  });
+
+  if (isFound) {
+    return;
+  } else {
+    allFavoriteCocktails.push({ ...selectedCocktail, dataModal: 'remove' });
+    console.log('add2', allFavoriteCocktails);
+
+    localStorage.setItem(
+      'favoriteCocktails',
+      JSON.stringify(allFavoriteCocktails)
+    );
+  }
 }
 
-//___________________________________Видаляємо напій з localStorage favorite_______________________________________
-function onRemoveFavoriteFromLocalStorage(selectedCocktail) {
+// видаляємо напій з localStorage favorite
+function onRemoveFavoriteFromLocalStorage(selectedCocktail, type) {
+  console.log('onRemov', type, selectedCocktail);
   const allFavoriteCocktails = getFavoriteCocktailsFromLocalStorage();
   const filterArr = allFavoriteCocktails.filter(
     drink => drink.name !== selectedCocktail.name
   );
+  console.log('onRemoveFavoriteFromL', allFavoriteCocktails);
+  console.log('filterArr', filterArr);
   localStorage.setItem('favoriteCocktails', JSON.stringify(filterArr));
 }
 
@@ -96,7 +122,7 @@ function getFavoriteCocktailsFromLocalStorage() {
   return JSON.parse(localStorage.getItem('favoriteCocktails') || '[]');
 }
 
-// ----------------------OPEN MODAL ----------------------
+// ---------------------- MODAL ----------------------
 
 // Закрытие по ЕСК
 function onEskKeyPress(e) {
@@ -122,6 +148,7 @@ function onCloseModal() {
   window.removeEventListener('keydown', onEskKeyPress);
   refs.modal.classList.add('is-hidden');
   document.body.classList.remove('no-scroll');
+  refs.modal.removeEventListener('click', onClickBtnInModal);
 }
 
 function onOpenModal(e) {
@@ -132,9 +159,9 @@ function onOpenModal(e) {
 }
 
 function onClickBtnInModal(e) {
-  console.log('clic ingr', e, e.target, e.target.nodeName);
   let selectedCocktail = {};
-  const { modalBtn, cocktail } = e.target.dataset;
+  const { modalBtn, cocktail, type } = e.target.dataset;
+  console.log('clic ingr', e, e.target, type);
 
   if (e.target.nodeName === 'BUTTON') {
     const data = JSON.parse(localStorage.getItem('cocktails'));
@@ -143,11 +170,12 @@ function onClickBtnInModal(e) {
     if (modalBtn === 'add') {
       e.target.innerHTML = 'Remove from favorite';
       e.target.dataset.modalBtn = 'remove';
-      onAddFavoriteToLocalStorage(selectedCocktail);
+      onAddFavoriteToLocalStorage(selectedCocktail, type);
     } else {
+      console.log('remove1', e);
       e.target.innerHTML = 'Add to favorite';
       e.target.dataset.modalBtn = 'add';
-      onRemoveFavoriteFromLocalStorage(selectedCocktail);
+      onRemoveFavoriteFromLocalStorage(selectedCocktail, type);
     }
   } else if (e.target.nodeName === 'SPAN') {
     onClickIngredient(e);

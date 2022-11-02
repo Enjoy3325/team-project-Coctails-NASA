@@ -41,6 +41,10 @@ const getIngredientInfo = query => {
 };
 
 export const getRandomCocktail = () => {
+    const favCocktNames = JSON.parse(
+      localStorage.getItem('favoriteCocktails')
+  ).map(item => item.name);
+  
   return axios
     .get('https://www.thecocktaildb.com/api/json/v1/1/random.php')
     .then(res => res.data.drinks[0])
@@ -59,10 +63,22 @@ export const getRandomCocktail = () => {
         dataModal: 'add',
       };
     })
+    .then(data => {
+        favCocktNames.forEach(fav => {
+          if (fav === data.name) {
+            data.dataModal = 'remove';
+          }
+        });
+        return data;
+      }
+    )
     .catch();
 };
 
 const createCocktailArray = res => {
+  const favCocktNames = JSON.parse(
+    localStorage.getItem('favoriteCocktails')
+  ).map(item => item.name);
   const newDrinks = res.data.drinks.map(drink => {
     const { strDrink, strInstructions, strDrinkThumb } = drink;
     let cocktailName = '';
@@ -78,8 +94,17 @@ const createCocktailArray = res => {
       ingredients: ingredients,
       dataModal: 'add',
     };
-  });
-  // console.log(newDrinks);
+  }).map(
+      item => {
+        favCocktNames.forEach(fav => {
+          if (fav === item.name) {
+            item.dataModal = 'remove';
+          }
+        });
+        return item;
+      }
+    );
+  console.log(newDrinks);
   localStorage.setItem('cocktails', JSON.stringify(newDrinks));
   return newDrinks;
 };

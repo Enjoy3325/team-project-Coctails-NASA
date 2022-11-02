@@ -218,7 +218,7 @@
 
   &__list span:hover,
   span:focus {
-    transition: transform 250ms var(--timing-function);
+    transition: color 250ms var(--timing-function);
     color: var(--grapefruit);
 
     cursor: pointer;

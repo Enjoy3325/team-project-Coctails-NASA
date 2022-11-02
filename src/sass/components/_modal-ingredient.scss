@@ -61,6 +61,14 @@
     }
   }
 
+  &__description {
+    max-height: 250px;
+    overflow-y: auto;
+    @include tablet {
+      max-height: 350px;
+    }
+  }
+
   &__icon {
     fill: var(--black);
   }
@@ -79,6 +87,9 @@
     @include tablet {
       padding: 0 28px;
     }
+  }
+  &__section-last {
+    padding-top: 20px;
   }
 
   &__header {
@@ -217,6 +228,7 @@
   }
 }
 .ingredients {
+  padding-top: 10px;
   // @media screen and (min-width: 768px) {
 
   // }
