@@ -62,7 +62,7 @@ const templateModal = ({
       <b class="modal-cocktails__title">INSTRACTIONS:</b>
       <p class="modal-cocktails__text">${instruction}</p>
       </div>
-      <button data-modal-btn="${dataModal}" data-cocktail="${name}" class="modal-cocktails__button" type="button">
+      <button data-modal-btn="${dataModal}" data-cocktail="${name}" data-type="${type}" class="modal-cocktails__button" type="button">
         ${textBtn}
       </button>
       </div>`;

@@ -57,7 +57,7 @@ getRandCocktails(numberOfGalleryItems());
 // ================================================
 
 // візуалізація "пошук не дав результату" (oops image)
-function nosearchingRes() {
+export function nosearchingRes() {
   document.querySelector('.cocktails__title').innerHTML =
     "Sorry, we didn't find any cocktail for you";
   document.querySelector(

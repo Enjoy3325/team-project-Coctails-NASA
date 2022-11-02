@@ -104,6 +104,14 @@ function onRemoveIngredientFromLocalStorage(ingredient) {
   localStorage.setItem('favoriteIngredients', JSON.stringify(filterArr));
 }
 
+// Закрытие по ЕСК
+function onEskKeyPress(e) {
+  console.log();
+  if (e.code === 'Escape') {
+    onCloseIngredientModal();
+  }
+}
+
 function getFavoriteIngredientFromLocalStorage() {
   return JSON.parse(localStorage.getItem('favoriteIngredients') || '[]');
 }
@@ -114,10 +122,12 @@ function getIngredientFromLocalStorage() {
 
 function onOpenIngredientModal() {
   refs.modalIngredient.classList.remove('is-hidden');
+  window.addEventListener('keydown', onEskKeyPress);
 }
 
 function onCloseIngredientModal(e) {
   refs.modalIngredient.classList.add('is-hidden');
+  window.removeEventListener('keydown', onEskKeyPress);
 }
 
 function onBackdropIngredientClick(e) {

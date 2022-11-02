@@ -1,5 +1,6 @@
 import { templateModal, templateModalIngredients } from './modal-template.js';
 import { onClickIngredient, onClickBtnIngredient } from './modal-ingredients';
+import { nosearchingRes } from './render-gallery';
 
 const refs = {
   closeModalBtn: document.querySelector('[data-modal-closes]'),
@@ -45,7 +46,7 @@ function onGalleryClick(e) {
     );
     const btnLearMore = document.querySelector('[data-open-modal="open"]');
     selectedCocktail = data.find(el => el.name === cocktail);
-    console.log('action', action, cocktail, data);
+    console.log('action', selectedCocktail, cocktail, data, openModal, type);
 
     //   якщо openModal === 'open вiдкриваємо модалку
     if (openModal === 'open') {
@@ -61,14 +62,16 @@ function onGalleryClick(e) {
         btnLearMore.dataset.action = 'remove';
         e.target.innerHTML = contentBtnRemovOrAdd('remove');
         e.target.dataset.openModal = 'remove';
-        onAddFavoriteToLocalStorage(selectedCocktail, MimeTypeArray);
+        onAddFavoriteToLocalStorage(selectedCocktail, type);
       }
     } else if (openModal === 'remove') {
       // видаляємо напій з LocalStorage і змінюємо текст в кнопці
       btnLearMore.dataset.action = 'add';
+      console.log('remove', e.target.closest('.gallery__item'));
+      e.target.closest('.gallery__item').classList.add('is-hidden');
       e.target.innerHTML = contentBtnRemovOrAdd('add');
       e.target.dataset.openModal = 'add';
-      onRemoveFavoriteFromLocalStorage(selectedCocktail, MimeTypeArray);
+      onRemoveFavoriteFromLocalStorage(selectedCocktail, type);
     } else if (favoriteIngredient === 'openModal') {
       onClickIngredient(e);
     } else if (modalIngredient === 'remove' || modalIngredient === 'add') {
@@ -118,11 +121,13 @@ function onAddFavoriteToLocalStorage(selectedCocktail, type) {
 
 // видаляємо напій з localStorage favorite
 function onRemoveFavoriteFromLocalStorage(selectedCocktail, type) {
-  console.log('onRemov', type, selectedCocktail);
   const allFavoriteCocktails = getFavoriteCocktailsFromLocalStorage();
   const filterArr = allFavoriteCocktails.filter(
     drink => drink.name !== selectedCocktail.name
   );
+  if (filterArr.length < 1) {
+    nosearchingRes();
+  }
   console.log('onRemoveFavoriteFromL', allFavoriteCocktails);
   console.log('filterArr', filterArr);
   localStorage.setItem('favoriteCocktails', JSON.stringify(filterArr));
@@ -171,18 +176,30 @@ function onOpenModal(e) {
 function onClickBtnInModal(e) {
   let selectedCocktail = {};
   const { modalBtn, cocktail, type } = e.target.dataset;
-  console.log('clic ingr', e, e.target, type);
 
   if (e.target.nodeName === 'BUTTON') {
-    const data = JSON.parse(localStorage.getItem('cocktails'));
+    const data = JSON.parse(
+      localStorage.getItem(
+        type === 'favorite' ? 'favoriteCocktails' : 'cocktails'
+      )
+    );
     selectedCocktail = data.find(el => el.name === cocktail);
+    console.log('clic ingr', e, data, type);
 
     if (modalBtn === 'add') {
       e.target.innerHTML = 'Remove from favorite';
       e.target.dataset.modalBtn = 'remove';
       onAddFavoriteToLocalStorage(selectedCocktail, type);
     } else {
-      console.log('remove1', e);
+      console.log('type === favorit', refs.gallery, cocktail, selectedCocktail);
+      if (type === 'favorite') {
+        onCloseModal();
+        refs.gallery
+          .querySelector(`[data-cocktail="${cocktail}"]`)
+          .closest('.gallery__item')
+          .classList.add('is-hidden');
+        //   onRemoveFavoriteFromLocalStorage(selectedCocktail, type);
+      }
       e.target.innerHTML = 'Add to favorite';
       e.target.dataset.modalBtn = 'add';
       onRemoveFavoriteFromLocalStorage(selectedCocktail, type);
