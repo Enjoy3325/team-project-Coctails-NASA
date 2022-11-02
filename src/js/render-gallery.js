@@ -49,7 +49,7 @@ export function noFavItems(items) {
 }
 
 // функція renderCocktailCards відмальовує картки коктейлів
-export function renderCocktailCards(arr) {
+export function renderCocktailCards(arr, type) {
   const sliceArr = arr.slice(0, numberOfGalleryItems());
   const markUp = sliceArr
     .map(cocktail => {
@@ -57,7 +57,7 @@ export function renderCocktailCards(arr) {
       let classBtn;
       if (cocktail.dataModal === 'add') {
         textBtn = 'Add to';
-        classBtn = 'btn__icon'
+        classBtn = 'btn__icon';
       } else {
         textBtn = 'Remove';
         classBtn = 'btn__icon-fill';
@@ -73,8 +73,8 @@ export function renderCocktailCards(arr) {
           />
           <h3 class="gallery__subtitle text-truncate">${cocktail.name}</h3>
         <div class="gallery__btns">
-          <button class="btn btn--orange" data-open-modal="open" data-cocktail="${cocktail.name}" type="button">Learn more</button>
-          <button class="btn btn--white" data-open-modal="${cocktail.dataModal}" data-cocktail="${cocktail.name}" type="button">
+          <button class="btn btn--orange" data-open-modal="open" data-type="${type}" data-action="${cocktail.dataModal}" data-cocktail="${cocktail.name}" type="button">Learn more</button>
+          <button class="btn btn--white" data-open-modal="${cocktail.dataModal}" data-type="${type}" data-cocktail="${cocktail.name}" type="button">
             ${textBtn} 
             <span class="btn__icon-wrap">
             <svg class="${classBtn}" width="15" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -119,9 +119,9 @@ export function renderIngredientCards(arr) {
 }
 
 // renderCocktails відмальовує галерею коктейлів
-export function renderCocktails(arr) {
+export function renderCocktails(arr, type = 'all') {
   if (arr.length !== 0) {
-    renderCocktailCards(arr);
+    renderCocktailCards(arr, type);
   } else if (arr.length === 0) {
     nosearchingRes();
   }
