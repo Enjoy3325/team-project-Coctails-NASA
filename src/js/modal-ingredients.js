@@ -54,7 +54,7 @@ function renderIngredientTemplate(ingredientName) {
 // Додає ingredient в localStorage to favorite
 function onAddIngredientToLocalStorage(ingredient) {
   const allFavoriteIngredient = getFavoriteIngredientFromLocalStorage();
-  const isFound = allFavoriteCocktails.some(el => el.name === ingredient.name);
+  const isFound = allFavoriteIngredient.some(el => el.name === ingredient.name);
   if (isFound) {
     return;
   } else {
