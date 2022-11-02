@@ -76,7 +76,7 @@ export const getRandomCocktail = () => {
 
 const createCocktailArray = res => {
   const favCocktNames = JSON.parse(
-    localStorage.getItem('favoriteCocktails')
+    localStorage.getItem('favoriteCocktails') || '[]'
   ).map(item => item.name);
   const newDrinks = res.data.drinks
     .map(drink => {
