@@ -204,7 +204,7 @@
     fill: var(--black);
   }
 }
-.ingredients__item2 {
+.ingredients__item-element {
   font-weight: 400;
   font-size: 16px;
   line-height: 1.62;
@@ -212,21 +212,21 @@
   @include tablet {
     color: var(--modalgray);
   }
+}
+.no-hover {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.62;
+  color: var(--gray);
 
-  .span2 {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1.62;
-    color: var(--gray);
-
-    &::before {
-      content: '\2736 \0020 \0020';
-      margin-right: 2px;
-    }
+  &::before {
+    content: '\2736 \0020 \0020';
+    margin-right: 2px;
   }
 }
+
 .ingredients {
   padding-top: 10px;
   // @media screen and (min-width: 768px) {
@@ -249,7 +249,7 @@
     margin-top: 8px;
     color: var(--black);
   }
-  &__list2 {
+  &__list-elements {
     margin-top: 8px;
   }
 }

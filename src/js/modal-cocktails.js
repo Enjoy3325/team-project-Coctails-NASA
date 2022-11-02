@@ -36,6 +36,7 @@ function onGalleryClick(e) {
         type === 'favorite' ? 'favoriteCocktails' : 'cocktails'
       )
     );
+    console.log('---> data', data);
     const btnLearMore = document.querySelector('[data-open-modal="open"]');
     selectedCocktail = data.find(el => el.name === cocktail);
     console.log('action', action, cocktail, data);
@@ -58,7 +59,7 @@ function onGalleryClick(e) {
         onAddFavoriteToLocalStorage(selectedCocktail, MimeTypeArray);
       }
     } else if (openModal === 'remove') {
-      // видаляємо напій з LocalStorage і змінюємо текст в кнопці
+      //______________________________Видаляємо напій з LocalStorage і змінюємо текст в кнопці________________________________
       btnLearMore.dataset.action = 'add';
       e.target.innerHTML = contentBtnRemovOrAdd('add');
       e.target.dataset.openModal = 'add';
@@ -66,7 +67,7 @@ function onGalleryClick(e) {
     }
   }
 }
-
+// ____________________________________Зміна сердечок на кнопках_______________________________________
 function contentBtnRemovOrAdd(type = 'add') {
   if (type === 'remove') {
     return `Remove 
@@ -83,7 +84,7 @@ function contentBtnRemovOrAdd(type = 'add') {
   }
 }
 
-// Додає напій в localStorage to favorite
+//____________________________________Додає напій в localStorage to favorite__________________________________
 function onAddFavoriteToLocalStorage(selectedCocktail, type) {
   console.log('onAdd', type, selectedCocktail);
   const allFavoriteCocktails = getFavoriteCocktailsFromLocalStorage();
@@ -148,7 +149,7 @@ function onCloseModal() {
   window.removeEventListener('keydown', onEskKeyPress);
   refs.modal.classList.add('is-hidden');
   document.body.classList.remove('no-scroll');
-  refs.modal.removeEventListener('click', onClickBtnInModal);
+  // refs.modal.removeEventListener('click', onClickBtnInModal);
 }
 
 function onOpenModal(e) {

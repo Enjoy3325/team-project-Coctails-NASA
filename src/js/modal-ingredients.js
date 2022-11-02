@@ -83,16 +83,17 @@ function getFavoriteIngredientFromLocalStorage() {
 }
 
 function onOpenIngredientModal() {
+  //   window.removeEventListener('keydown', onEskKeyPress);
   refs.modalIngredient.classList.remove('is-hidden');
-  document.body.classList.add('no-scroll');
   refs.modal.classList.add('is-hidden');
-  window.addEventListener('keydown', onEskKeyPress);
+  document.body.classList.add('no-scroll');
 }
 
 function onCloseIngredientModal(e) {
-  window.removeEventListener('keydown', onEskKeyPress);
+  window.addEventListener('keydown', onEskKeyPress);
   refs.modalIngredient.classList.add('is-hidden');
   refs.modal.classList.remove('is-hidden');
+  document.body.classList.add('no-scroll');
 }
 
 function onBackdropIngredientClick(e) {
