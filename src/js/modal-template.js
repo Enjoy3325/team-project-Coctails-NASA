@@ -1,4 +1,11 @@
-const templateModal = ({ name, instruction, img, ingredients, dataModal }) => {
+const templateModal = ({
+  name,
+  instruction,
+  img,
+  ingredients,
+  dataModal,
+  type,
+}) => {
   let ingredientsList;
   if (ingredients.length > 0) {
     ingredientsList = ingredients
@@ -10,13 +17,11 @@ const templateModal = ({ name, instruction, img, ingredients, dataModal }) => {
       .join('');
   }
   let textBtn;
-  let classBtn;
+
   if (dataModal === 'add') {
-    textBtn = 'Add to';
-    classBtn = 'btn__icon';
+    textBtn = 'Add to favorite';
   } else {
-    textBtn = 'Remove';
-    classBtn = 'btn__icon-fill';
+    textBtn = 'Remove from favorite';
   }
 
   return `<div class="modal-cocktails__mobile-section">
@@ -33,8 +38,8 @@ const templateModal = ({ name, instruction, img, ingredients, dataModal }) => {
         ${ingredientsList}
         </ul>
       </div>
-      <button data-open-modal="${dataModal}" data-cocktail="${name}" class="modal-cocktails__button" type="button">
-        Add to favorite
+      <button data-modal-btn="${dataModal}" data-cocktail="${name}" data-type="${type}" class="modal-cocktails__button" type="button">
+         ${textBtn}
       </button>
       </div>
 
@@ -57,8 +62,8 @@ const templateModal = ({ name, instruction, img, ingredients, dataModal }) => {
       <b class="modal-cocktails__title">INSTRACTIONS:</b>
       <p class="modal-cocktails__text">${instruction}</p>
       </div>
-      <button data-modal-btn="add" data-cocktail="${name}" class="modal-cocktails__button" type="button">
-        Add to favorite
+      <button data-modal-btn="${dataModal}" data-cocktail="${name}" class="modal-cocktails__button" type="button">
+        ${textBtn}
       </button>
       </div>`;
 };
