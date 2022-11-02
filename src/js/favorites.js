@@ -8,6 +8,7 @@ import { getPagination } from './pagination';
 
 const refs = {
   hero: document.querySelector('.hero'),
+  pagination: document.querySelector('.pagination'),
   title: document.querySelector('.cocktails__title'),
   favCocktails: document.querySelectorAll('[data-name="cocktails"]'),
   favIngredients: document.querySelectorAll('[data-name="ingredients"]'),
@@ -27,6 +28,7 @@ function getFavorites() {
   );
   if (arr.length === 0) {
     noFavItems(items);
+    refs.pagination.classList.add('visually-hidden');
     return;
   }
   items === 'cocktails'
