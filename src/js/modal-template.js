@@ -82,7 +82,7 @@ const templateModalIngredients = ({
   //     )
   //     .join('');
   // }
-
+  console.log(fks);
   return `<div class="modal-ingredient__section">
   <div class="modal-ingredient__section-first">
   <h2 class="modal-ingredient__header">${name}</h2>
