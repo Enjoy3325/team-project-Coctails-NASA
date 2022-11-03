@@ -129,9 +129,9 @@ export function getPagination(arr, number) {
     if (pagBtnsArr.length > pageNum) {
       next.classList.remove('is-hidden');
     }
-    start = (pageNum - 1) * number;
-    end = pageNum * number;
-    sliceArr = arr.slice(start, end);
+    let start = (pageNum - 1) * number;
+    let end = pageNum * number;
+    let sliceArr = arr.slice(start, end);
     renderCocktailCards(sliceArr);
     if (pageNum === 1) {
       prev.classList.add('is-hidden');
@@ -140,15 +140,15 @@ export function getPagination(arr, number) {
   function showNextPage(event) {
     activeBtn.classList.remove('pagination--active');
     pageNum = pageNum + 1;
-    activeBtn = pagBtnsArr[pageNum - 1];
+    activeBtn = pagBtnsArr[pageNum - 2];
     activeBtn.classList.add('pagination--active');
     showDots(pagBtnsArr);
     if (pagBtnsArr.length > 1) {
       prev.classList.remove('is-hidden');
     }
-    start = (pageNum - 1) * number;
-    end = pageNum * number;
-    sliceArr = arr.slice(start, end);
+    let start = (pageNum - 1) * number;
+    let end = pageNum * number;
+    let sliceArr = arr.slice(start, end);
     renderCocktailCards(sliceArr);
     if (pageNum === pagBtnsArr.length) {
       next.classList.add('is-hidden');
