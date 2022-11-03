@@ -69,7 +69,6 @@
   height: 40px;
   background: transparent;
   color: var(--black);
-}
 
 .menu-btn {
   background: transparent;
@@ -133,11 +132,11 @@
 .logoutButton__img:after {
   content: "";
   display: inline-block;
+  margin-left: 10px;
   width: 20px;
   height: 20px;
   padding-left: 10px;
   background-image: url(../images/logout.svg);
-
   background-repeat: no-repeat;
   background-size: contain;
 }
