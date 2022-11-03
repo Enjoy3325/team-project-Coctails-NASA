@@ -1,6 +1,7 @@
 import { templateModal } from './modal-template.js';
 import { onClickIngredient, onClickBtnIngredient } from './modal-ingredients';
 import { nosearchingRes } from './render-gallery';
+import {updateUserCocktails} from './firebase';
 
 const refs = {
   closeModalBtn: document.querySelector('[data-modal-closes]'),
@@ -79,7 +80,7 @@ function onGalleryClick(e) {
 
 function contentBtnRemovOrAdd(type = 'add') {
   if (type === 'remove') {
-    return `Remove 
+    return `Remove
             <span class="btn__icon-wrap">
             <svg class="btn__icon-fill" width="15" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M8.5 15L7.2675 13.921C2.89 10.1035 0 7.58583 0 4.49591C0 1.9782 2.057 0 4.675 0C6.154 0 7.5735 0.662125 8.5 1.70845C9.4265 0.662125 10.846 0 12.325 0C14.943 0 17 1.9782 17 4.49591C17 7.58583 14.11 10.1035 9.7325 13.9292L8.5 15Z" />
@@ -108,6 +109,7 @@ function onAddFavoriteToLocalStorage(selectedCocktail, type) {
       'favoriteCocktails',
       JSON.stringify(allFavoriteCocktails)
     );
+    updateUserCocktails()
   }
 }
 
@@ -122,7 +124,9 @@ function onRemoveFavoriteFromLocalStorage(selectedCocktail, type) {
   if (filterArr.length < 1 && type === 'favorite') {
     nosearchingRes();
   }
+
   localStorage.setItem('favoriteCocktails', JSON.stringify(filterArr));
+  updateUserCocktails()
 }
 
 function getFavoriteCocktailsFromLocalStorage() {
