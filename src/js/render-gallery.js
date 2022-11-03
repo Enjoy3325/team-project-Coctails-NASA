@@ -85,6 +85,7 @@ export function renderCocktailCards(arr, type) {
         textBtn = 'Remove';
         classBtn = 'btn__icon-fill';
       }
+
       return `
       <li class="gallery__item">
         <img
@@ -144,6 +145,9 @@ export function renderIngredientCards(arr, type) {
 // renderCocktails відмальовує галерею коктейлів
 export function renderCocktails(arr, type = 'all') {
   if (arr.length !== 0) {
+    // if(localStorage.getItem('isAuth') === "true"){
+    //   document.querySelector('.btn.btn--white').classList.remove('is-hidden')
+    // }
     renderCocktailCards(arr, type);
   } else if (arr.length === 0) {
     nosearchingRes();
