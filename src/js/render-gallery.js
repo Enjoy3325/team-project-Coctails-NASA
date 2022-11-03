@@ -70,8 +70,8 @@ export function renderCocktailCards(arr, type) {
       } else {
         cls = 'btn btn--white is-hidden';
       }
-
       console.log('isAuth', isAuth());
+
       return `
       <li class="gallery__item">
         <img
