@@ -1,7 +1,7 @@
 import { templateModal } from './modal-template.js';
 import { onClickIngredient, onClickBtnIngredient } from './modal-ingredients';
 import { nosearchingRes } from './render-gallery';
-import {updateUserCocktails} from './firebase';
+import { updateUserCocktails } from './firebase';
 
 export const refs = {
   closeModalBtn: document.querySelector('[data-modal-closes]'),
@@ -9,18 +9,10 @@ export const refs = {
   modal: document.querySelector('[data-modal]'),
   gallery: document.querySelector('.gallery'),
   backdrop: document.querySelector('.backdrop'),
-
-  // --------Ingredient_______
-  //   closeModalIngredientBtn: document.querySelector(
-  //     '[data-modal-ingredient-closes]'
-  //   ),
-  //   modalIngredient: document.querySelector('[data-modal-ingredient]'),
-  //   ingridientsList: document.querySelector('.ingridients__list'),
-  //   backdropIngredient: document.querySelector('.backdrop-ingredient'),
 };
 
 function isAuth() {
-  return localStorage.getItem('isAuth')
+  return localStorage.getItem('isAuth');
 }
 
 function modalCocktails() {
@@ -58,7 +50,7 @@ function onGalleryClick(e) {
         ...selectedCocktail,
         dataModal: action,
         type: type,
-        isAuth: isAuth()
+        isAuth: isAuth(),
       });
       onOpenModal(e);
     } else if (openModal === 'add') {
@@ -111,8 +103,11 @@ function onAddFavoriteToLocalStorage(selectedCocktail, type) {
     return;
   } else {
     allFavoriteCocktails.push({ ...selectedCocktail, dataModal: 'remove' });
-    localStorage.setItem('favoriteCocktails', JSON.stringify(allFavoriteCocktails));
-    updateUserCocktails()
+    localStorage.setItem(
+      'favoriteCocktails',
+      JSON.stringify(allFavoriteCocktails)
+    );
+    updateUserCocktails();
   }
 }
 
@@ -129,7 +124,7 @@ function onRemoveFavoriteFromLocalStorage(selectedCocktail, type) {
   }
 
   localStorage.setItem('favoriteCocktails', JSON.stringify(filterArr));
-  updateUserCocktails()
+  updateUserCocktails();
 }
 
 function getFavoriteCocktailsFromLocalStorage() {
