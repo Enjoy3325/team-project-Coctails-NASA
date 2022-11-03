@@ -1,7 +1,9 @@
 const refs = {
   authModal: document.querySelector('[data-auth-modal]'),
   openAuthModal: document.querySelector('[data-auth-modal-open]'),
+  openAuthModalMob: document.querySelector('[data-auth-modal-open-mob]'),
   closeAuthModal: document.querySelector('[data-auth-modal-close]'),
+  closeAuthModalMob: document.querySelector('[data-auth-modal-close-mob]'),
   backdrop: document.querySelector('.backdrop.auth'),
   regFormBtn: document.querySelector('.reg-form__button'),
   loginFormBtn: document.querySelector('.login-form__button'),
@@ -10,6 +12,7 @@ const refs = {
 };
 
 refs.openAuthModal.addEventListener('click', toggleModal);
+refs.openAuthModalMob.addEventListener('click', toggleModal);
 refs.closeAuthModal.addEventListener('click', toggleModal);
 refs.backdrop.addEventListener('click', onBackdropClick);
 
