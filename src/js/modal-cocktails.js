@@ -15,6 +15,7 @@ const refs = {
   //   closeModalIngredientBtn: document.querySelector(
   //     '[data-modal-ingredient-closes]'
   //   ),
+
   //   modalIngredient: document.querySelector('[data-modal-ingredient]'),
   //   ingridientsList: document.querySelector('.ingridients__list'),
 };
