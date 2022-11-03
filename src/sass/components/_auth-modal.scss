@@ -5,13 +5,14 @@
   transform: translate(-50%, -50%) scale(1);
   width: 320px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.06);
-  //border-radius: 30px;
+  border-radius: 5px;
   padding: 20px;
   background: var(--white);
   transition: transform var(--timing-function);
+  border: 1px solid var(--grapefruit);
 
   @include tablet {
-    width: 458px;
+    width: 400px;
     padding: 28px;
   }
 
@@ -46,6 +47,7 @@
 
 .modal__btn-img {
   transition: fill var(--timing-function);
+  fill: var(--black);
 
   .modal__btn:active & {
     fill: var(--grapefruit);
@@ -82,11 +84,12 @@
   line-height: 1.25;
   border-radius: 4px;
   padding: 8px;
+  color: var(--black);
   transition: border var(--timing-function);
 
-  &::placeholder {
-    color: #C4C4C4;
-  }
+  //&::placeholder {
+  //  color: var(--grey);
+  //}
 }
 
 .auth-form__input:not(:focus):not(:placeholder-shown):invalid {
@@ -135,6 +138,7 @@ input:required:invalid + .req-error-group {
   color: red;
   display: flex;
   align-items: center;
+  top: 67px
 }
 
 .error::before, .req-error::before {
@@ -157,12 +161,22 @@ input:required:invalid + .req-error-group {
 //  background-image: url(../images/icons/danger-sign.svg);
 //}
 
+.login-form__button, .reg-form__button{
+  display: block;
+  height: 30px;
+  width: 215px;
+  margin: 20px auto 10px auto;
+  color: var(--black)
+}
+
 .auth-form__button {
   margin-top: 7px;
   padding: 10px 38px;
-  background-color: var(--white);
+  background-color: var(--grapefruit);
   border: 2px solid var(--grapefruit);
   transition: background-color var(--timing-function);
+  border-radius: 5px;
+  color: var(--whiteBtn);
 
   &:active,
   &:focus {
