@@ -6,14 +6,14 @@
   width: 320px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.06);
   border-radius: 5px;
-  padding: 20px;
+  padding: 28px;
   background: var(--white);
   transition: transform var(--timing-function);
   border: 1px solid var(--grapefruit);
 
   @include tablet {
     width: 400px;
-    padding: 28px;
+    padding: 32px;
   }
 
   .is-hidden & {
@@ -114,7 +114,8 @@ input:required:invalid + .req-error-group {
   border: 1px solid var(--grapefruit);
 }
 
-.error-group, .req-error-group {
+.error-group,
+.req-error-group {
   display: none;
 }
 
@@ -129,7 +130,8 @@ input:required:invalid + .req-error-group {
 //  //height: 100px;
 //}
 
-.error, .req-error {
+.error,
+.req-error {
   position: absolute;
   padding-left: 12px;
   height: 20px;
@@ -138,11 +140,12 @@ input:required:invalid + .req-error-group {
   color: red;
   display: flex;
   align-items: center;
-  top: 67px
+  top: 67px;
 }
 
-.error::before, .req-error::before {
-  content: "";
+.error::before,
+.req-error::before {
+  content: '';
   display: inline-block;
   width: 12px;
   height: 14px;
@@ -161,12 +164,13 @@ input:required:invalid + .req-error-group {
 //  background-image: url(../images/icons/danger-sign.svg);
 //}
 
-.login-form__button, .reg-form__button{
+.login-form__button,
+.reg-form__button {
   display: block;
-  height: 30px;
+  height: 40px;
   width: 215px;
-  margin: 20px auto 10px auto;
-  color: var(--black)
+  margin: 20px auto 0px;
+  color: var(--black);
 }
 
 .auth-form__button {
@@ -188,6 +192,7 @@ input:required:invalid + .req-error-group {
   }
 }
 
-.register-markup.is-hidden, .login-markup.is-hidden {
+.register-markup.is-hidden,
+.login-markup.is-hidden {
   display: none;
 }

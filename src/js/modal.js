@@ -1,24 +1,24 @@
-export const refs = {
-  // openModalBtn: document.querySelector('[data-modal-open]'),
-  openModalBtn: document.querySelectorAll('[data-modal-open]'),
-  closeModalBtn: document.querySelector('[data-modal-close]'),
-  modal: document.querySelector('[data-modal]'),
-  modal2: document.querySelector('[data-modal-ingridients]'),
-  backdrop: document.querySelector('.backdrop'),
-  // body: document.querySelector('body'),
-  btnAddFavorie: document.querySelector('.modal-coctails__button'),
-  ingridientsItems: document.querySelectorAll('.ingridients__item'),
-  gallery: document.querySelector('.gallery'),
-  modalBody: document.querySelector('.modal-coctails'),
-};
-// console.log(refs.openModalBtn);
+// export const refs = {
+//   // openModalBtn: document.querySelector('[data-modal-open]'),
+//   openModalBtn: document.querySelectorAll('[data-modal-open]'),
+//   closeModalBtn: document.querySelector('[data-modal-close]'),
+//   modal: document.querySelector('[data-modal]'),
+//   modal2: document.querySelector('[data-modal-ingridients]'),
+//   backdrop: document.querySelector('.backdrop'),
+//   // body: document.querySelector('body'),
+//   btnAddFavorie: document.querySelector('.modal-coctails__button'),
+//   ingridientsItems: document.querySelectorAll('.ingridients__item'),
+//   gallery: document.querySelector('.gallery'),
+//   modalBody: document.querySelector('.modal-coctails'),
+// };
+// // console.log(refs.openModalBtn);
 
-let selectedObj = {
-  img: 'https://www.thecocktaildb.com/images/media/drink/rwsyyu1483388181.jpg',
-  instruction:
-    'In a shaker half-filled with ice cubes, combine all of the ingredients. Shake well. Strain into a cocktail glass.',
-  name: 'Almeria',
-};
+// let selectedObj = {
+//   img: 'https://www.thecocktaildb.com/images/media/drink/rwsyyu1483388181.jpg',
+//   instruction:
+//     'In a shaker half-filled with ice cubes, combine all of the ingredients. Shake well. Strain into a cocktail glass.',
+//   name: 'Almeria',
+// };
 // refs.gallery.addEventListener('click', e => {
 //   let selectedName = e.target.dataset.cocktail;
 //   selectedObj = JSON.parse(localStorage.getItem('cocktails')).find(
