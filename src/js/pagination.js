@@ -154,6 +154,7 @@ export function getPagination(arr, number) {
     let sliceArr = arr.slice(start, end);
     renderCocktailCards(sliceArr);
   }
+  
 
   //   оголошення слухачів кнопок ========================
   next.addEventListener('click', showNextPage);
