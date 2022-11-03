@@ -41,13 +41,9 @@ const getIngredientInfo = query => {
 };
 
 export const getRandomCocktail = () => {
-  try {
-    const favCocktNames = JSON.parse(
-      localStorage.getItem('favoriteCocktails') || '[]'
-    ).map(item => item.name);
-  } catch (e) {
-    console.log(e);
-  }
+  const favCocktNames = JSON.parse(
+    localStorage.getItem('favoriteCocktails') || '[]'
+  ).map(item => item.name);
 
   return axios
     .get('https://www.thecocktaildb.com/api/json/v1/1/random.php')
@@ -68,12 +64,12 @@ export const getRandomCocktail = () => {
       };
     })
     .then(data => {
-      //   favCocktNames.forEach(fav => {
-      //     if (fav === data.name) {
-      //       data.dataModal = 'remove';
-      //     }
-      //   });
-      //   return data;
+      favCocktNames.forEach(fav => {
+        if (fav === data.name) {
+          data.dataModal = 'remove';
+        }
+      });
+      return data;
     })
     .catch();
 };
