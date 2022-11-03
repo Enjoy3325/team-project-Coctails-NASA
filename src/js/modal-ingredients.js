@@ -1,4 +1,3 @@
-import { refs } from './modal-cocktails.js';
 import { templateModalIngredients } from './modal-template.js';
 import { requestApi } from './requests-api.js';
 import { noFavItems } from './render-gallery';
