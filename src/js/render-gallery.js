@@ -7,7 +7,7 @@ const gallery = document.querySelector('.gallery');
 
 // функція numberOfGalleryItems повертає кількість коктейлів,
 // що мають з'явитись в галереї (відповідно до ширини екрану);
-let number;
+export let number;
 export const numberOfGalleryItems = () => {
   if (window.innerWidth >= 1280) {
     return (number = 9);
@@ -24,7 +24,6 @@ function getRandCocktails(number) {
   for (let i = 1; i <= number; i += 1) {
     promiseArray.push(getRandomCocktail().then(data => data));
   }
-  console.log('promiseArray', promiseArray);
   Promise.all(promiseArray).then(cocktails => {
     localStorage.setItem('cocktails', JSON.stringify(cocktails));
     renderCocktails(cocktails);
@@ -33,28 +32,6 @@ function getRandCocktails(number) {
   });
 }
 getRandCocktails(numberOfGalleryItems());
-
-// ================================================
-
-// function checkIncoming() {
-//   const favCocktNames = JSON.parse(
-//     localStorage.getItem('favoriteCocktails')
-//   ).map(item => item.name);
-
-//   let incomingCockts = JSON.parse(localStorage.getItem('cocktails')).map(
-//     item => {
-//       favCocktNames.forEach(fav => {
-//         if (fav === item.name) {
-//           item.dataModal = 'remove';
-//         }
-//       });
-//       return item;
-//     }
-//   );
-//   localStorage.setItem('cocktails', JSON.stringify(incomingCockts));
-// }
-
-// ================================================
 
 // візуалізація "пошук не дав результату" (oops image)
 function nosearchingRes() {

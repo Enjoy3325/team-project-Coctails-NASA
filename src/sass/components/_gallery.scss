@@ -1,8 +1,11 @@
 .gallery {
   display: flex;
-  justify-content: center;
   gap: 32px;
   flex-wrap: wrap;
+  justify-content: center;
+  @include media-min($tablet) {
+    justify-content: flex-start;
+  }
 
   &__item {
     width: 280px;

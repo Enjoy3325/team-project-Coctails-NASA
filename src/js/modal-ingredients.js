@@ -89,7 +89,7 @@ function onAddIngredientToLocalStorage(ingredient) {
     allFavoriteIngredient.push({ ...ingredient, dataModal: 'remove' });
 
     localStorage.setItem(
-      'favoriteIngredients',
+      'ingredient',
       JSON.stringify(allFavoriteIngredient)
     );
   }
@@ -101,11 +101,11 @@ function onRemoveIngredientFromLocalStorage(ingredient) {
   const filterArr = allFavoriteIngredient.filter(
     drink => drink.name !== ingredient.name
   );
-  localStorage.setItem('favoriteIngredients', JSON.stringify(filterArr));
+  localStorage.setItem('ingredient', JSON.stringify(filterArr));
 }
 
 function getFavoriteIngredientFromLocalStorage() {
-  return JSON.parse(localStorage.getItem('favoriteIngredients') || '[]');
+  return JSON.parse(localStorage.getItem('ingredient') || '[]');
 }
 
 function getIngredientFromLocalStorage() {

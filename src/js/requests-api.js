@@ -105,7 +105,7 @@ const createCocktailArray = res => {
       });
       return item;
     });
-  console.log(newDrinks);
+  // console.log(newDrinks);
   localStorage.setItem('cocktails', JSON.stringify(newDrinks));
   return newDrinks;
 };
