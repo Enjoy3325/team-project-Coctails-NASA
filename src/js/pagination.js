@@ -39,11 +39,19 @@ function showDots(arr) {
         'pagination__dots-after'
       )
     );
-    if (pageNum <= 2 || pageNum >= arr.length - 1) {
-      for (let i = 3; i < arr.length - 3; i += 1) {
+    // якщо активна кнопка 1 або 2
+    if (pageNum <= 2) {
+      for (let i = 3; i < arr.length - 2; i += 1) {
         listItems[i].classList.add('visually-hidden');
       }
       listItems[2].classList.add('pagination__dots-after');
+      // якщо активна кнопка передостання або остання
+    } else if (pageNum >= arr.length - 1) {
+      for (let i = 2; i < arr.length - 3; i += 1) {
+        listItems[i].classList.add('visually-hidden');
+      }
+      listItems[arr.length - 3].classList.add('pagination__dots-before');
+      // якщо активна кнопка будь-яка крім двох з кожного краю
     } else {
       for (let i = 1; i < arr.length - 1; i += 1) {
         listItems[i].classList.add('visually-hidden');
