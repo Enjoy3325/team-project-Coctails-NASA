@@ -105,7 +105,7 @@ function onAddIngredientToLocalStorage(ingredient) {
     allFavoriteIngredient.push({ ...ingredient, dataModal: 'remove' });
 
     localStorage.setItem(
-      'favoriteIngredients',
+      'ingredient',
       JSON.stringify(allFavoriteIngredient)
     );
   }
@@ -131,7 +131,7 @@ function onEskKeyPressIngredient(e) {
 }
 
 function getFavoriteIngredientFromLocalStorage() {
-  return JSON.parse(localStorage.getItem('favoriteIngredients') || '[]');
+  return JSON.parse(localStorage.getItem('ingredient') || '[]');
 }
 
 function getIngredientFromLocalStorage() {
