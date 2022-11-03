@@ -24,11 +24,12 @@
 
   @include desktop {
     width: 200px;
-    height: 100px;
+    // height: 100px;
+    height: auto;
     padding: 10px;
     //background: transparent;
-    top: 65px;
-right: -10px;
+    top: 60px;
+    right: -10px;
   }
 }
 
@@ -143,7 +144,8 @@ right: -10px;
   color: var(--white);
 }
 
-.mob-menu-loginButton, .mob-menu-logoutButton {
+.mob-menu-loginButton,
+.mob-menu-logoutButton {
   //margin-left: 30px;
   cursor: pointer;
   border-radius: 4px;
@@ -162,7 +164,7 @@ right: -10px;
   background-color: var(--grapefruit);
   transition: background-color 250ms var(--timing-function);
   padding: 8px 16px;
- margin-top: 118px;
+  margin-top: 118px;
   text-align: center;
   @include desktop {
     display: none;
@@ -178,11 +180,10 @@ right: -10px;
   opacity: 1;
   //pointer-events: none;
   visibility: inherit;
-
 }
 
 .logoutButton__img:after {
-  content: "";
+  content: '';
   display: inline-block;
   width: 20px;
   height: 20px;
@@ -192,6 +193,6 @@ right: -10px;
   background-size: contain;
 }
 
-.is-hidden{
+.is-hidden {
   display: none;
 }
