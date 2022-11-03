@@ -1,51 +1,61 @@
 import { templateModalIngredients } from './modal-template.js';
 import { requestApi } from './requests-api.js';
+import { noFavItems } from './render-gallery';
+import { onEskKeyPress } from './modal-cocktails';
 
 const refs = {
   closeModalIngredientBtn: document.querySelector(
     '[data-modal-ingredient-closes]'
   ),
+  gallery: document.querySelector('.gallery'),
   modalIngredient: document.querySelector('[data-modal-ingredient]'),
   ingridientsList: document.querySelector('.ingridients__list'),
   backdropIngredient: document.querySelector('.backdrop-ingredient'),
 };
 
 function onClickIngredient(e) {
-  const { ingredient } = e.target.dataset;
+  const { ingredient, type } = e.target.dataset;
   refs.closeModalIngredientBtn.addEventListener(
     'click',
     onCloseIngredientModal
   );
   refs.backdropIngredient.addEventListener('click', onBackdropIngredientClick);
   refs.modalIngredient.addEventListener('click', onClickBtnIngredient);
-  renderIngredientTemplate(ingredient);
+  renderIngredientTemplate(ingredient, type);
 
   onOpenIngredientModal();
 }
 
-function renderIngredientTemplate(ingredientName) {
-  console.log('ingredientN', ingredientName);
+function renderIngredientTemplate(ingredientName, type = 'all') {
   requestApi(ingredientName, 'ingredient').then(ingredient => {
-    console.log('ingredient add', ingredient);
     document.querySelector('#modal-ingredient').innerHTML =
-      templateModalIngredients({ ...ingredient, dataModal: 'remove' });
+      // templateModalIngredients({ ...ingredient, dataModal: 'remove' });
+      templateModalIngredients(
+        type === 'favorite'
+          ? { ...ingredient, dataModal: 'remove', typeIngredient: 'favorite' }
+          : ingredient
+      );
     const arrIngredient = getIngredientFromLocalStorage();
     arrIngredient.push(ingredient);
     localStorage.setItem('ingredient', JSON.stringify(arrIngredient));
-    // onClickBtnIngredient(ingredient);
   });
 }
 
 function onClickBtnIngredient(e, type = 'modal') {
   let selectedIngredient = {};
 
-  const { modalIngredient, ingredient } = e.target.dataset;
+  const {
+    modalIngredient,
+    ingredient,
+    type: typeIngredient,
+  } = e.target.dataset;
 
   if (e.target.nodeName === 'BUTTON') {
     const data = JSON.parse(localStorage.getItem('ingredient'));
     selectedIngredient = data.find(el => el.name === ingredient);
+
     if (modalIngredient === 'add') {
-      console.log('add ingr', e.target);
+      // add ingredient to LocalStorage and rename btn
       e.target.innerHTML =
         type === 'favorite'
           ? contentBtnRemovOrAdd('remove')
@@ -53,12 +63,18 @@ function onClickBtnIngredient(e, type = 'modal') {
       e.target.dataset.modalIngredient = 'remove';
       onAddIngredientToLocalStorage(selectedIngredient);
     } else if (modalIngredient === 'remove') {
+      // remove card from gallery if remove ingredient on the favorite page
+      if (typeIngredient === 'favorite') {
+        onCloseIngredientModal();
+        refs.gallery
+          .querySelector(`[data-ingredient="${ingredient}"]`)
+          .closest('.ingredient')
+          .classList.add('is-hidden');
+      }
       e.target.innerHTML =
-        type === 'favorite'
-          ? contentBtnRemovOrAdd('add')
-          : 'Remove from favorite';
+        type === 'favorite' ? contentBtnRemovOrAdd('add') : 'Add to favorite';
       e.target.dataset.modalIngredient = 'add';
-      onRemoveIngredientFromLocalStorage(selectedIngredient);
+      onRemoveIngredientFromLocalStorage(selectedIngredient, typeIngredient);
     }
   }
 }
@@ -89,23 +105,33 @@ function onAddIngredientToLocalStorage(ingredient) {
     allFavoriteIngredient.push({ ...ingredient, dataModal: 'remove' });
 
     localStorage.setItem(
-      'favoriteIngredients',
+      'ingredient',
       JSON.stringify(allFavoriteIngredient)
     );
   }
 }
 
 // видаляємо ingredient з localStorage favorite
-function onRemoveIngredientFromLocalStorage(ingredient) {
+function onRemoveIngredientFromLocalStorage(ingredient, type = 'all') {
   const allFavoriteIngredient = getFavoriteIngredientFromLocalStorage();
   const filterArr = allFavoriteIngredient.filter(
     drink => drink.name !== ingredient.name
   );
+  if (filterArr.length < 1 && type === 'favorite') {
+    noFavItems('ingredients');
+  }
   localStorage.setItem('favoriteIngredients', JSON.stringify(filterArr));
 }
 
+// Закрытие по ЕСК
+function onEskKeyPressIngredient(e) {
+  if (e.code === 'Escape') {
+    onCloseIngredientModal();
+  }
+}
+
 function getFavoriteIngredientFromLocalStorage() {
-  return JSON.parse(localStorage.getItem('favoriteIngredients') || '[]');
+  return JSON.parse(localStorage.getItem('ingredient') || '[]');
 }
 
 function getIngredientFromLocalStorage() {
@@ -114,10 +140,13 @@ function getIngredientFromLocalStorage() {
 
 function onOpenIngredientModal() {
   refs.modalIngredient.classList.remove('is-hidden');
+  window.addEventListener('keydown', onEskKeyPressIngredient);
 }
 
 function onCloseIngredientModal(e) {
   refs.modalIngredient.classList.add('is-hidden');
+  window.removeEventListener('keydown', onEskKeyPressIngredient);
+  window.addEventListener('keydown', onEskKeyPress);
 }
 
 function onBackdropIngredientClick(e) {
@@ -127,8 +156,3 @@ function onBackdropIngredientClick(e) {
 }
 
 export { onClickIngredient, onClickBtnIngredient };
-
-// function onCloseModal() {
-//   refs.modal2.classList.add('is-hidden');
-//   document.body.classList.toggle('no-scroll');
-// }

@@ -1,8 +1,11 @@
 .gallery {
   display: flex;
-  justify-content: center;
   gap: 32px;
   flex-wrap: wrap;
+  justify-content: center;
+  @include media-min($tablet) {
+    justify-content: flex-start;
+  }
 
   &__item {
     width: 280px;
@@ -14,6 +17,9 @@
     }
     @include media-min($desktop) {
       width: calc((100% - 64px) / 3);
+    }
+    &.is-hidden {
+      display: none;
     }
   }
   &__img {
@@ -68,18 +74,22 @@
 }
 
 .ingredient {
-    padding: 20px;
-    width: 280px;
-    overflow: hidden;
-    border: 1px solid var(--grapefruit);
-    border-radius: 4px;
-    @include media-min($tablet) {
-      width: 335px;
-    }
-    @include media-min($desktop) {
-      padding: 28px;
-      width: calc((100% - 64px) / 3);
-    }
+  padding: 20px;
+  width: 280px;
+  overflow: hidden;
+  border: 1px solid var(--grapefruit);
+  border-radius: 4px;
+  @include media-min($tablet) {
+    width: 335px;
+  }
+  @include media-min($desktop) {
+    padding: 28px;
+    width: calc((100% - 64px) / 3);
+  }
+
+  &.is-hidden {
+    display: none;
+  }
 
   &__name {
     margin-bottom: 20px;
@@ -106,9 +116,9 @@
       line-height: 1.4;
     }
   }
-  
- &__btns {
+
+  &__btns {
     display: flex;
     justify-content: space-between;
-    }
+  }
 }

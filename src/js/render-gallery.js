@@ -7,7 +7,7 @@ const gallery = document.querySelector('.gallery');
 
 // функція numberOfGalleryItems повертає кількість коктейлів,
 // що мають з'явитись в галереї (відповідно до ширини екрану);
-let number;
+export let number;
 export const numberOfGalleryItems = () => {
   if (window.innerWidth >= 1280) {
     return (number = 9);
@@ -33,30 +33,8 @@ function getRandCocktails(number) {
 }
 getRandCocktails(numberOfGalleryItems());
 
-// ================================================
-
-// function checkIncoming() {
-//   const favCocktNames = JSON.parse(
-//     localStorage.getItem('favoriteCocktails')
-//   ).map(item => item.name);
-
-//   let incomingCockts = JSON.parse(localStorage.getItem('cocktails')).map(
-//     item => {
-//       favCocktNames.forEach(fav => {
-//         if (fav === item.name) {
-//           item.dataModal = 'remove';
-//         }
-//       });
-//       return item;
-//     }
-//   );
-//   localStorage.setItem('cocktails', JSON.stringify(incomingCockts));
-// }
-
-// ================================================
-
 // візуалізація "пошук не дав результату" (oops image)
-function nosearchingRes() {
+export function nosearchingRes() {
   document.querySelector('.cocktails__title').innerHTML =
     "Sorry, we didn't find any cocktail for you";
   document.querySelector(
@@ -129,8 +107,8 @@ export function renderIngredientCards(arr, type) {
         <h2 class="ingredient__name text-truncate">${ingredient.name}</h2>
         <h3 class="ingredient__type text-truncate">${ingredient.type}</h3>
         <div class="ingredient__btns">
-          <button data-favorite-ingredient="openModal" data-ingredient="${ingredient.name}" class="btn btn--orange" type="button">Learn more</button>
-          <button data-modal-ingredient="remove" data-ingredient="${ingredient.name}" class="btn btn--white" type="button">
+          <button data-favorite-ingredient="openModal" data-ingredient="${ingredient.name}" class="btn btn--orange" data-type="favorite" type="button">Learn more</button>
+          <button data-modal-ingredient="remove" data-ingredient="${ingredient.name}" data-type="favorite" class="btn btn--white" type="button">
             Remove &nbsp
             <span class="btn__icon-wrap"></span>
           </button>
