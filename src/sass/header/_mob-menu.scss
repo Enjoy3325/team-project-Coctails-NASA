@@ -21,6 +21,15 @@
   @include tablet {
     width: 500px;
   }
+
+  @include desktop {
+    width: 200px;
+    height: 100px;
+    padding: 10px;
+    //background: transparent;
+    top: 65px;
+right: -10px;
+  }
 }
 
 .mob-menu__btn {
@@ -37,6 +46,10 @@
   top: 22px;
   right: 20px;
   fill: var(--black);
+
+  @include desktop {
+    display: none;
+  }
 }
 
 .mob-menu__btn-img {
@@ -55,6 +68,10 @@
   margin-top: 40px;
   @include tablet {
     margin-top: 50px;
+  }
+
+  @include desktop {
+    display: none;
   }
 }
 
@@ -142,14 +159,14 @@
   //padding: 12px 27px;
   //min-width: 110px;
   color: var(--whiteBtn);
-  background-color: var(--auxiliary-orange);
+  background-color: var(--grapefruit);
   transition: background-color 250ms var(--timing-function);
   padding: 8px 16px;
  margin-top: 118px;
   text-align: center;
-  //@include desktop {
-  //  display: none;
-  //}
+  @include desktop {
+    display: none;
+  }
 }
 
 .mob-menu-logoutButton:hover .logoutButton__img {
@@ -157,14 +174,14 @@
   position: absolute;
   width: 160px;
   //height: 20px;
-  background-color: var(--auxiliary-orange);
+  background-color: var(--grapefruit);
   opacity: 1;
   //pointer-events: none;
   visibility: inherit;
 
 }
 
-.mob-menu-logoutButton:after {
+.logoutButton__img:after {
   content: "";
   display: inline-block;
   width: 20px;

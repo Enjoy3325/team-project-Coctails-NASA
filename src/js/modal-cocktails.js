@@ -19,6 +19,10 @@ export const refs = {
   //   backdropIngredient: document.querySelector('.backdrop-ingredient'),
 };
 
+function isAuth() {
+  return localStorage.getItem('isAuth')
+}
+
 function modalCocktails() {
   refs.gallery.addEventListener('click', onGalleryClick);
   refs.closeModalBtn.addEventListener('click', toggleModal);
@@ -54,6 +58,7 @@ function onGalleryClick(e) {
         ...selectedCocktail,
         dataModal: action,
         type: type,
+        isAuth: isAuth()
       });
       onOpenModal(e);
     } else if (openModal === 'add') {

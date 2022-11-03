@@ -37,11 +37,7 @@
       <input type="text" class="form-input" placeholder="Search" required />
     </form>
 
-    <button type="button" class="menu-btn" data-menu-open>
-      <svg width="30" height="30" aria-label="Вмикач меню">
-        <use class="menu-btn__icon" href="./images/sprite.svg#burgermenu"></use>
-      </svg>
-    </button>
+
     <div class='switcher'>
       <span class='light'>Light</span>
       <label class='switch'>
@@ -57,6 +53,15 @@
 
     <button class='logoutButton is-hidden' type='button'>
       <span class='logoutButton__img is-hidden'>LOGOUT</span>
+    </button>
+
+    <button type="button" class="menu-btn" data-menu-open>
+      <svg class="menu-btn__icon" width="30" height="30" aria-label="Вмикач меню">
+        <use href="./images/sprite.svg#burgermenu"></use>
+      </svg>
+      <svg class="settings" width="30" height="30" aria-label="Вмикач меню">
+        <use  href="./images/sprite.svg#settings"></use>
+      </svg>
     </button>
 
 
