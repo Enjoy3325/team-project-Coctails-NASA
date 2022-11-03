@@ -45,13 +45,13 @@ function showDots(arr) {
         listItems[i].classList.add('visually-hidden');
       }
       listItems[2].classList.add('pagination__dots-after');
-    // якщо активна кнопка передостання або остання
+      // якщо активна кнопка передостання або остання
     } else if (pageNum >= arr.length - 1) {
       for (let i = 2; i < arr.length - 3; i += 1) {
         listItems[i].classList.add('visually-hidden');
       }
       listItems[arr.length - 3].classList.add('pagination__dots-before');
-    // якщо активна кнопка будь-яка крім двох з кожного краю
+      // якщо активна кнопка будь-яка крім двох з кожного краю
     } else {
       for (let i = 1; i < arr.length - 1; i += 1) {
         listItems[i].classList.add('visually-hidden');
@@ -125,6 +125,9 @@ export function getPagination(arr, number) {
     pageNum = pageNum - 1;
     activeBtn = pagBtnsArr[pageNum - 1];
     activeBtn.classList.add('pagination--active');
+    if (pageNum === 1) {
+      prev.classList.add('is-hidden');
+    }
     showDots(pagBtnsArr);
     if (pagBtnsArr.length > pageNum) {
       next.classList.remove('is-hidden');
@@ -133,15 +136,15 @@ export function getPagination(arr, number) {
     let end = pageNum * number;
     let sliceArr = arr.slice(start, end);
     renderCocktailCards(sliceArr);
-    if (pageNum === 1) {
-      prev.classList.add('is-hidden');
-    }
   }
   function showNextPage(event) {
     activeBtn.classList.remove('pagination--active');
     pageNum = pageNum + 1;
-    activeBtn = pagBtnsArr[pageNum - 2];
+    activeBtn = pagBtnsArr[pageNum - 1];
     activeBtn.classList.add('pagination--active');
+    if (pageNum === pagBtnsArr.length) {
+      next.classList.add('is-hidden');
+    }
     showDots(pagBtnsArr);
     if (pagBtnsArr.length > 1) {
       prev.classList.remove('is-hidden');
@@ -150,9 +153,6 @@ export function getPagination(arr, number) {
     let end = pageNum * number;
     let sliceArr = arr.slice(start, end);
     renderCocktailCards(sliceArr);
-    if (pageNum === pagBtnsArr.length) {
-      next.classList.add('is-hidden');
-    }
   }
 
   //   оголошення слухачів кнопок ========================
