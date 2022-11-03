@@ -1,10 +1,10 @@
 .switcher {
   display: none;
-  @include desktop {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-  }
+  //@include desktop {
+  //  display: flex;
+  //  align-items: center;
+  //  margin-left: auto;
+  //}
 }
 
 .mob-menu-switcher {
@@ -12,7 +12,7 @@
   align-items: center;
   margin-left: auto;
   @include desktop {
-    display: none;
+    //display: none;
   }
 }
 
