@@ -16,7 +16,6 @@ const refs = {
   //   ),
   //   modalIngredient: document.querySelector('[data-modal-ingredient]'),
   //   ingridientsList: document.querySelector('.ingridients__list'),
-  //   backdropIngredient: document.querySelector('.backdrop-ingredient'),
 };
 
 function isAuth() {
