@@ -9,6 +9,14 @@ const refs = {
   modal: document.querySelector('[data-modal]'),
   gallery: document.querySelector('.gallery'),
   backdrop: document.querySelector('.backdrop'),
+
+  // --------Ingredient_______
+  //   closeModalIngredientBtn: document.querySelector(
+  //     '[data-modal-ingredient-closes]'
+  //   ),
+  //   modalIngredient: document.querySelector('[data-modal-ingredient]'),
+  //   ingridientsList: document.querySelector('.ingridients__list'),
+  //   backdropIngredient: document.querySelector('.backdrop-ingredient'),
 };
 
 function isAuth() {
