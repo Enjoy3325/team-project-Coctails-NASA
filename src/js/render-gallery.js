@@ -65,7 +65,7 @@ export function renderCocktailCards(arr, type) {
         classBtn = 'btn__icon-fill';
       }
       let cls = '';
-      if (isAuth()) {
+      if (isAuth() === true) {
         cls = 'btn btn--white';
       } else {
         cls = 'btn btn--white is-hidden';
