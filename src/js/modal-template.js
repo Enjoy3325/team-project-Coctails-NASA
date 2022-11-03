@@ -5,7 +5,7 @@ const templateModal = ({
   ingredients,
   dataModal,
   type,
-  isAuth
+  isAuth,
 }) => {
   let ingredientsList;
   if (ingredients.length > 0) {
@@ -17,8 +17,10 @@ const templateModal = ({
       )
       .join('');
   }
+
+  console.log(' isAuth', isAuth);
   let textBtn;
-let cls = !isAuth ? 'is-hidden': 'modal-cocktails__button'
+  let cls = !isAuth ? 'is-hidden' : 'modal-cocktails__button';
 
   if (dataModal === 'add') {
     textBtn = 'Add to favorite';
