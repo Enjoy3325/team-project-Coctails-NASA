@@ -98,10 +98,17 @@
 }
 
 .settings {
-  fill: var(--black);
-  transition: fill 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: none;
 
-  .settings:active & {
+
+  @include desktop {
+    display: block;
+    margin-left: 20px;
+    fill: var(--grapefruit);
+    transition: fill 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .menu-btn:active & {
     fill: var(--grapefruit);
   }
 }
@@ -118,11 +125,8 @@
 
     line-height: 1.7;
     display: flex;
-    font-size: 20px;
-    //line-height: 1.2;
+    font-size: 16px;
     min-width: 160px;
-    //padding: 12px 27px;
-    //min-width: 110px;
     color: var(--whiteBtn);
     background-color: var(--grapefruit);
     transition: background-color 250ms var(--timing-function);

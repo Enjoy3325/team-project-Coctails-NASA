@@ -73,8 +73,17 @@ function getUserCocktails() {
 export function updateUserCocktails() {
   const userId = localStorage.getItem('userId');
   update(ref(database, 'users/' + userId), {
-    favoriteIngredients: JSON.parse(localStorage.getItem('favoriteIngredients') || '[]'),
     favoriteCocktails: JSON.parse(localStorage.getItem('favoriteCocktails') || '[]'),
+  })
+    .then(() => {
+      Notiflix.Notify.info(`User data updated`)
+    });
+}
+
+export function updateUserIngredients() {
+  const userId = localStorage.getItem('userId');
+  update(ref(database, 'users/' + userId), {
+    favoriteIngredients: JSON.parse(localStorage.getItem('favoriteIngredients') || '[]'),
   })
     .then(() => {
       Notiflix.Notify.info(`User data updated`)

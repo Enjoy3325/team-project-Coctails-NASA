@@ -2,7 +2,7 @@ import { templateModalIngredients } from './modal-template.js';
 import { requestApi } from './requests-api.js';
 import { noFavItems } from './render-gallery';
 import { onEskKeyPress } from './modal-cocktails';
-import {updateUserCocktails} from './firebase';
+import {updateUserIngredients} from './firebase';
 
 const refs = {
   closeModalIngredientBtn: document.querySelector(
@@ -105,7 +105,7 @@ function onAddIngredientToLocalStorage(ingredient) {
   } else {
     allFavoriteIngredient.push({ ...ingredient, dataModal: 'remove' });
   localStorage.setItem('favoriteIngredients', JSON.stringify(allFavoriteIngredient));
-  updateUserCocktails()
+    updateUserIngredients()
   }
 }
 
@@ -119,7 +119,7 @@ function onRemoveIngredientFromLocalStorage(ingredient, type = 'all') {
     noFavItems('ingredients');
   }
   localStorage.setItem('favoriteIngredients', JSON.stringify(filterArr));
-  updateUserCocktails()
+  updateUserIngredients()
 }
 
 // Закрытие по ЕСК
