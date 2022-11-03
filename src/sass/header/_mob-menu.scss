@@ -142,7 +142,7 @@
   //padding: 12px 27px;
   //min-width: 110px;
   color: var(--whiteBtn);
-  background-color: var(--auxiliary-orange);
+  background-color: var(--grapefruit);
   transition: background-color 250ms var(--timing-function);
   padding: 8px 16px;
  margin-top: 118px;
@@ -157,14 +157,14 @@
   position: absolute;
   width: 160px;
   //height: 20px;
-  background-color: var(--auxiliary-orange);
+  background-color: var(--grapefruit);
   opacity: 1;
   //pointer-events: none;
   visibility: inherit;
 
 }
 
-.mob-menu-logoutButton:after {
+.logoutButton__img:after {
   content: "";
   display: inline-block;
   width: 20px;

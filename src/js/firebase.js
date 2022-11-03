@@ -32,9 +32,6 @@ let loginBtn = document.querySelector('.loginButton');
 let logoutBtn = document.querySelector('.logoutButton');
 let loginBtnMob = document.querySelector('.mob-menu-loginButton');
 let logoutBtnMob = document.querySelector('.mob-menu-logoutButton');
-let favBtn = document.querySelector('.btn .btn--white');
-
-
 
 function createUserData(name, email, userId) {
   set(ref(database, 'users/' + userId), {
@@ -76,8 +73,8 @@ function getUserCocktails() {
 export function updateUserCocktails() {
   const userId = localStorage.getItem('userId');
   update(ref(database, 'users/' + userId), {
-    favoriteCocktails: JSON.parse(localStorage.getItem('favoriteCocktails') || '[]'),
     favoriteIngredients: JSON.parse(localStorage.getItem('favoriteIngredients') || '[]'),
+    favoriteCocktails: JSON.parse(localStorage.getItem('favoriteCocktails') || '[]'),
   })
     .then(() => {
       Notiflix.Notify.info(`User data updated`)
@@ -125,7 +122,7 @@ onAuthStateChanged(auth, (user) => {
   if (user) {
     localStorage.setItem('userId', user.uid);
     getUserCocktails();
-    updateUserCocktails();
+    // updateUserCocktails();
 
     loginBtn.classList.add('is-hidden');
     loginBtnMob.classList.add('is-hidden');
@@ -134,7 +131,7 @@ onAuthStateChanged(auth, (user) => {
     logoutBtn.insertAdjacentHTML('afterbegin', user.displayName);
     logoutBtnMob.insertAdjacentHTML('afterbegin', user.displayName);
     localStorage.setItem('isAuth', 'true');
-    // favBtn.classList.remove('is-hidden')
+    document.querySelectorAll('.btn--white').forEach(item => item.classList.remove('is-hidden'))
   } else {
     // updateUserCocktails();
     logoutBtn.classList.add('is-hidden');
@@ -145,7 +142,7 @@ onAuthStateChanged(auth, (user) => {
     logoutBtnMob.innerHTML = '';
     localStorage.setItem('isAuth', 'false');
     localStorage.setItem('userId', '');
-    // favBtn.classList.add('is-hidden');
+    document.querySelectorAll('.btn--white').forEach(item => item.classList.add('is-hidden'))
   }
 });
 
