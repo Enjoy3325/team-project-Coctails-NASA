@@ -2,7 +2,7 @@ import { templateModalIngredients } from './modal-template.js';
 import { requestApi } from './requests-api.js';
 import { noFavItems } from './render-gallery';
 import { onEskKeyPress } from './modal-cocktails';
-import {updateUserIngredients} from './firebase';
+import { updateUserIngredients } from './firebase';
 
 const refs = {
   closeModalIngredientBtn: document.querySelector(
@@ -99,27 +99,38 @@ function contentBtnRemovOrAdd(type = 'add') {
 // Додає ingredient в localStorage to favorite
 function onAddIngredientToLocalStorage(ingredient) {
   const allFavoriteIngredient = getFavoriteIngredientFromLocalStorage();
-  const isFound = allFavoriteIngredient.some(el => el.name === ingredient.name);
+  const isFound = allFavoriteIngredient.some(el => {
+    console.log('el', el.name, ingredient.name);
+    return el.name === ingredient.name;
+  });
+  console.log('add ingredient', ingredient, isFound);
   if (isFound) {
     return;
   } else {
     allFavoriteIngredient.push({ ...ingredient, dataModal: 'remove' });
-  localStorage.setItem('favoriteIngredients', JSON.stringify(allFavoriteIngredient));
-    updateUserIngredients()
+    localStorage.setItem(
+      'favoriteIngredients',
+      JSON.stringify(allFavoriteIngredient)
+    );
+    updateUserIngredients();
   }
 }
 
 // видаляємо ingredient з localStorage favorite
 function onRemoveIngredientFromLocalStorage(ingredient, type = 'all') {
   const allFavoriteIngredient = getFavoriteIngredientFromLocalStorage();
-  const filterArr = allFavoriteIngredient.filter(
-    drink => drink.name !== ingredient.name
-  );
+
+  console.log('allFavoriteIngr'.allFavoriteIngredient);
+  const filterArr = allFavoriteIngredient.filter(drink => {
+    console.log('drink', drink.name, ingredient.name);
+    return drink.name !== ingredient.name;
+  });
   if (filterArr.length < 1 && type === 'favorite') {
     noFavItems('ingredients');
   }
+  console.log('filterArr', filterArr, allFavoriteIngredient);
   localStorage.setItem('favoriteIngredients', JSON.stringify(filterArr));
-  updateUserIngredients()
+  updateUserIngredients();
 }
 
 // Закрытие по ЕСК
@@ -130,7 +141,7 @@ function onEskKeyPressIngredient(e) {
 }
 
 function getFavoriteIngredientFromLocalStorage() {
-  return JSON.parse(localStorage.getItem('ingredient') || '[]');
+  return JSON.parse(localStorage.getItem('favoriteIngredients') || '[]');
 }
 
 function getIngredientFromLocalStorage() {

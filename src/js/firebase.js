@@ -61,9 +61,13 @@ function getUserCocktails() {
     if (snapshot.exists()) {
       console.log('snapshot', snapshot, snapshot.val());
 
-      const favoriteCocktails = snapshot
-        .val()
-        .favoriteCocktails?.filter(el => el.favoriteCocktailsArr !== 'qwerty');
+      const favoriteCocktails =
+        snapshot
+          .val()
+          .favoriteCocktails?.filter(
+            el => el.favoriteCocktailsArr !== 'qwerty'
+          ) || [];
+
       localStorage.setItem(
         'favoriteCocktails',
         JSON.stringify(favoriteCocktails)
