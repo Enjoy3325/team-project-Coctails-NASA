@@ -3,7 +3,7 @@ import { onClickIngredient, onClickBtnIngredient } from './modal-ingredients';
 import { nosearchingRes } from './render-gallery';
 import { updateUserCocktails } from './firebase';
 
-export const refs = {
+const refs = {
   closeModalBtn: document.querySelector('[data-modal-closes]'),
   addFavoriteBtn: document.querySelector('[data-add-favorite]'),
   modal: document.querySelector('[data-modal]'),
