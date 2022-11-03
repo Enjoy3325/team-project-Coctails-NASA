@@ -117,6 +117,7 @@ registerForm.addEventListener('submit', e => {
     .then(userCredential => {
       const userId = userCredential.user.uid;
       createUserData(name, email, userId);
+      localStorage.setItem('user', name);
     })
     .then(() =>
       document.querySelector('[data-auth-modal]').classList.add('is-hidden')
@@ -147,16 +148,14 @@ loginForm.addEventListener('submit', e => {
 
 onAuthStateChanged(auth, user => {
   if (user) {
-    localStorage.setItem('userId', user.uid);
-    getUserCocktails();
-    // updateUserCocktails();
-
+    let userName = user.displayName || 'LOGIN';
     loginBtn.classList.add('is-hidden');
     loginBtnMob.classList.add('is-hidden');
     logoutBtn.classList.remove('is-hidden');
     logoutBtnMob.classList.remove('is-hidden');
-    logoutBtn.insertAdjacentHTML('afterbegin', user.displayName);
+    logoutBtn.insertAdjacentHTML('afterbegin', userName);
     logoutBtnMob.insertAdjacentHTML('afterbegin', user.displayName);
+    document.querySelector('body').classList.remove('no-scroll');
     localStorage.setItem('isAuth', 'true');
     document
       .querySelectorAll('.btn--white')
