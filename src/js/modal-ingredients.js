@@ -2,7 +2,7 @@ import { templateModalIngredients } from './modal-template.js';
 import { requestApi } from './requests-api.js';
 import { noFavItems } from './render-gallery';
 import { onEskKeyPress } from './modal-cocktails';
-import {updateUserCocktails} from './firebase';
+import { updateUserCocktails } from './firebase';
 
 const refs = {
   closeModalIngredientBtn: document.querySelector(
@@ -44,6 +44,7 @@ function renderIngredientTemplate(ingredientName, type = 'all') {
 
 function onClickBtnIngredient(e, type = 'modal') {
   let selectedIngredient = {};
+  console.log(' onClickBtn', e, type, e.target.dataset);
 
   const {
     modalIngredient,
@@ -57,6 +58,8 @@ function onClickBtnIngredient(e, type = 'modal') {
 
     if (modalIngredient === 'add') {
       // add ingredient to LocalStorage and rename btn
+      console.log('adding', modalIngredient, ingredient, typeIngredient);
+      console.log('a selectedIngredient', selectedIngredient);
       e.target.innerHTML =
         type === 'favorite'
           ? contentBtnRemovOrAdd('remove')
@@ -65,6 +68,8 @@ function onClickBtnIngredient(e, type = 'modal') {
       onAddIngredientToLocalStorage(selectedIngredient);
     } else if (modalIngredient === 'remove') {
       // remove card from gallery if remove ingredient on the favorite page
+      console.log('remove', modalIngredient, ingredient, typeIngredient);
+      console.log(' remove selectedIngredient', selectedIngredient);
       if (typeIngredient === 'favorite') {
         onCloseIngredientModal();
         refs.gallery
@@ -99,18 +104,26 @@ function contentBtnRemovOrAdd(type = 'add') {
 // Додає ingredient в localStorage to favorite
 function onAddIngredientToLocalStorage(ingredient) {
   const allFavoriteIngredient = getFavoriteIngredientFromLocalStorage();
-  const isFound = allFavoriteIngredient.some(el => el.name === ingredient.name);
+  const isFound = allFavoriteIngredient.some(el => {
+    console.log('el');
+    el.name === ingredient.name;
+  });
+  console.log('onAddIngredientToLo', ingredient, isFound);
   if (isFound) {
     return;
   } else {
     allFavoriteIngredient.push({ ...ingredient, dataModal: 'remove' });
-  localStorage.setItem('favoriteIngredients', JSON.stringify(allFavoriteIngredient));
-  updateUserCocktails()
+    localStorage.setItem(
+      'favoriteIngredients',
+      JSON.stringify(allFavoriteIngredient)
+    );
+    updateUserCocktails();
   }
 }
 
 // видаляємо ingredient з localStorage favorite
 function onRemoveIngredientFromLocalStorage(ingredient, type = 'all') {
+  console.log('onRemoveIngredientToLo', ingredient, type);
   const allFavoriteIngredient = getFavoriteIngredientFromLocalStorage();
   const filterArr = allFavoriteIngredient.filter(
     drink => drink.name !== ingredient.name
@@ -119,7 +132,7 @@ function onRemoveIngredientFromLocalStorage(ingredient, type = 'all') {
     noFavItems('ingredients');
   }
   localStorage.setItem('favoriteIngredients', JSON.stringify(filterArr));
-  updateUserCocktails()
+  updateUserCocktails();
 }
 
 // Закрытие по ЕСК
