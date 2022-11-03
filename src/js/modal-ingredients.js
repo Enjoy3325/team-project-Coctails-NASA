@@ -103,12 +103,11 @@ function onAddIngredientToLocalStorage(ingredient) {
     return;
   } else {
     allFavoriteIngredient.push({ ...ingredient, dataModal: 'remove' });
-
-    localStorage.setItem(
-      'ingredient',
-      JSON.stringify(allFavoriteIngredient)
-    );
   }
+  localStorage.setItem(
+    'favoriteIngredients',
+    JSON.stringify(allFavoriteIngredient)
+  );
 }
 
 // видаляємо ingredient з localStorage favorite
@@ -131,7 +130,7 @@ function onEskKeyPressIngredient(e) {
 }
 
 function getFavoriteIngredientFromLocalStorage() {
-  return JSON.parse(localStorage.getItem('ingredient') || '[]');
+  return JSON.parse(localStorage.getItem('favoriteIngredients') || '[]');
 }
 
 function getIngredientFromLocalStorage() {
