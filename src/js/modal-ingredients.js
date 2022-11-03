@@ -105,12 +105,11 @@ function onAddIngredientToLocalStorage(ingredient) {
     return;
   } else {
     allFavoriteIngredient.push({ ...ingredient, dataModal: 'remove' });
-
-    localStorage.setItem(
-      'favoriteIngredients',
-      JSON.stringify(allFavoriteIngredient)
-    );
   }
+  localStorage.setItem(
+    'favoriteIngredients',
+    JSON.stringify(allFavoriteIngredient)
+  );
 }
 
 // видаляємо ingredient з localStorage favorite

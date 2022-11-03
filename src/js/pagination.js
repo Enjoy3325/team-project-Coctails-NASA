@@ -1,105 +1,153 @@
-import { renderCocktailCards } from './render-gallery';
+import { renderCocktailCards, number } from './render-gallery';
 // функція додає кнопки пагінації внизу галареї.
 // приймає масив коктейлів для рендера (arr)
 // і кількість коктейлів на одній сторінці (number)
 
+const box = document.querySelector('.pagination');
+const list = document.querySelector('.pagination__list');
+const prev = document.querySelector('.pagination__previous');
+const next = document.querySelector('.pagination__next');
+
+let pageNum;
+let activeBtn;
+let pagBtnsArr = [];
+let paginationArr = [];
+
+// ця функія визначає масив для пагінації залежно від сторінки, яку ми відкрили
+function getArrToPagination(event) {
+  let key = 'cocktails';
+  if (event.target.innerHTML === 'Favorite cocktails') {
+    key = 'favoriteCocktails';
+  }
+  if (event.target.innerHTML === 'Favorite ingredients') {
+    key = 'favoriteIngredients';
+  }
+  let paginationArr = JSON.parse(localStorage.getItem(`${key}`));
+  return paginationArr;
+}
+// ця функція додає truncate, якщо в пагінації більше шести сторінок
+function showDots(arr) {
+  if (arr.length <= 6) {
+    return;
+  } else {
+    pageNum = Number(document.querySelector('.pagination--active').innerHTML);
+    const listItems = document.querySelectorAll('.pagination__item');
+    listItems.forEach(li =>
+      li.classList.remove(
+        'visually-hidden',
+        'pagination__dots-before',
+        'pagination__dots-after'
+      )
+    );
+    if (pageNum <= 2 || pageNum >= arr.length - 1) {
+      for (let i = 3; i < arr.length - 3; i += 1) {
+        listItems[i].classList.add('visually-hidden');
+      }
+      listItems[2].classList.add('pagination__dots-after');
+    } else {
+      for (let i = 1; i < arr.length - 1; i += 1) {
+        listItems[i].classList.add('visually-hidden');
+      }
+      listItems[pageNum - 2].classList.remove('visually-hidden');
+      listItems[pageNum - 1].classList.remove('visually-hidden');
+      listItems[pageNum].classList.remove('visually-hidden');
+      if (pageNum - 2 > 1) {
+        listItems[pageNum - 2].classList.add('pagination__dots-before');
+      }
+      if (pageNum + 2 < arr.length) {
+        listItems[pageNum].classList.add('pagination__dots-after');
+      }
+    }
+  }
+}
+// ця функція виконує пагінацію і логіку кнопок.
 export function getPagination(arr, number) {
-    let key = 'cocktails';
-    if (event.target.innerHTML === 'Favorite cocktails') {
-        key = 'favoriteCocktails';
-    }
-    if (event.target.innerHTML === 'Favorite ingredients') {
-      key = 'favoriteIngredients';
-    }
-  let lclStorCocktails = JSON.parse(localStorage.getItem(`${key}`));
-  const pagRefs = {
-    box: document.querySelector('.pagination'),
-    list: document.querySelector('.pagination__list'),
-    prev: document.querySelector('.pagination__previous'),
-    next: document.querySelector('.pagination__next'),
-  };
+  paginationArr = getArrToPagination(event);
+
   if (arr.length <= number) {
-    pagRefs.box.classList.add('visually-hidden');
+    box.classList.add('visually-hidden');
     return;
   }
-  pagRefs.box.classList.remove('visually-hidden');
-  const numOfItems = Math.ceil(arr.length / number);
+  box.classList.remove('visually-hidden');
+  const pagesCount = Math.ceil(paginationArr.length / number);
   let markup = [];
-  for (let i = 1; i <= numOfItems; i += 1) {
-    markup.push(`<li class="pagination__item">${i}</li>`);
+  for (let i = 1; i <= pagesCount; i += 1) {
+    markup.push(
+      `<li class="pagination__item" data-name="pageBtn${i}"><span class="pagination__num">${i}</span></li>`
+    );
   }
-  pagRefs.list.innerHTML = markup.join('');
-  const pagBtnsArr = document.querySelectorAll('.pagination__item');
-  let activeBtn = pagBtnsArr[0];
-    activeBtn.classList.add('pagination--active');
-
-  // функції кнопок ====================================
-  function showThisPage(event) {
-    activeBtn.classList.remove('pagination--active');
-    this.classList.add('pagination--active');
-    activeBtn = this;
-    let pageNum = Number(this.innerHTML);
-    let start = (pageNum - 1) * number;
-    let end = pageNum * number;
-    let sliceArr = lclStorCocktails.slice(start, end);
-    renderCocktailCards(sliceArr);
-    if (pagBtnsArr.length === Number(activeBtn.innerHTML)) {
-      pagRefs.next.classList.add('is-hidden');
-    }
-    if (pagBtnsArr.length > Number(activeBtn.innerHTML)) {
-      pagRefs.next.classList.remove('is-hidden');
-    }
-    if (Number(activeBtn.innerHTML) === 1) {
-      pagRefs.prev.classList.add('is-hidden');
-    }
-    if (Number(activeBtn.innerHTML) > 1) {
-      pagRefs.prev.classList.remove('is-hidden');
-    }
-  }
-  function showPrevPage(event) {
-    let prevPage = Number(activeBtn.innerHTML) - 1;
-    activeBtn.classList.remove('pagination--active');
-    activeBtn = pagBtnsArr[prevPage - 1];
-    activeBtn.classList.add('pagination--active');
-    if (pagBtnsArr.length > Number(activeBtn.innerHTML)) {
-      pagRefs.next.classList.remove('is-hidden');
-    }
-    let start = (prevPage - 1) * number;
-    let end = prevPage * number;
-    let sliceArr = lclStorCocktails.slice(start, end);
-    renderCocktailCards(sliceArr);
-    if (Number(activeBtn.innerHTML) === 1) {
-      pagRefs.prev.classList.add('is-hidden');
-    }
-  }
-  function showNextPage(event) {
-    let pageNum = Number(activeBtn.innerHTML);
-    activeBtn.classList.remove('pagination--active');
-    activeBtn = pagBtnsArr[pageNum];
-    activeBtn.classList.add('pagination--active');
-    if (Number(activeBtn.innerHTML) > 1) {
-      pagRefs.prev.classList.remove('is-hidden');
-    }
-    let start = pageNum * number;
-    let end = (pageNum + 1) * number;
-    let sliceArr = lclStorCocktails.slice(start, end);
-    renderCocktailCards(sliceArr);
-    if (pagBtnsArr.length === Number(activeBtn.innerHTML)) {
-      pagRefs.next.classList.add('is-hidden');
-    }
-  }
-
-  //  ця функція додає три крапки (truncate) в пагінацію
-
-//   function getTruncate() {
-//     console.log('activeBtn: ', activeBtn);
-//     activeBtn.classList.add('pagination__dots');
-//   }
-
-  // оголошення слухачів кнопок ========================
+  list.innerHTML = markup.join('');
+  pagBtnsArr = document.querySelectorAll('.pagination__num');
   for (const btn of pagBtnsArr) {
     btn.addEventListener('click', showThisPage);
   }
-  pagRefs.next.addEventListener('click', showNextPage);
-  pagRefs.prev.addEventListener('click', showPrevPage);
+  pageNum = 1;
+  activeBtn = pagBtnsArr[pageNum - 1];
+  activeBtn.classList.add('pagination--active');
+  showDots(pagBtnsArr);
+
+  //   // функції кнопок ====================================
+  function showThisPage() {
+    activeBtn.classList.remove('pagination--active');
+    pageNum = Number(this.innerHTML);
+    console.log('pageNum', pageNum);
+    activeBtn = pagBtnsArr[pageNum - 1];
+    activeBtn.classList.add('pagination--active');
+    console.log('activeBtn', activeBtn);
+    showDots(pagBtnsArr);
+    let start = (pageNum - 1) * number;
+    let end = pageNum * number;
+    let sliceArr = arr.slice(start, end);
+    renderCocktailCards(sliceArr);
+    if (pagBtnsArr.length === Number(activeBtn.innerHTML)) {
+      next.classList.add('is-hidden');
+    }
+    if (pagBtnsArr.length > Number(activeBtn.innerHTML)) {
+      next.classList.remove('is-hidden');
+    }
+    if (Number(activeBtn.innerHTML) === 1) {
+      prev.classList.add('is-hidden');
+    }
+    if (Number(activeBtn.innerHTML) > 1) {
+      prev.classList.remove('is-hidden');
+    }
+  }
+  function showPrevPage(event) {
+    activeBtn.classList.remove('pagination--active');
+    pageNum = pageNum - 1;
+    activeBtn = pagBtnsArr[pageNum - 1];
+    activeBtn.classList.add('pagination--active');
+    showDots(pagBtnsArr);
+    if (pagBtnsArr.length > pageNum) {
+      next.classList.remove('is-hidden');
+    }
+    start = (pageNum - 1) * number;
+    end = pageNum * number;
+    sliceArr = arr.slice(start, end);
+    renderCocktailCards(sliceArr);
+    if (pageNum === 1) {
+      prev.classList.add('is-hidden');
+    }
+  }
+  function showNextPage(event) {
+    activeBtn.classList.remove('pagination--active');
+    pageNum = pageNum + 1;
+    activeBtn = pagBtnsArr[pageNum - 1];
+    activeBtn.classList.add('pagination--active');
+    showDots(pagBtnsArr);
+    if (pagBtnsArr.length > 1) {
+      prev.classList.remove('is-hidden');
+    }
+    start = (pageNum - 1) * number;
+    end = pageNum * number;
+    sliceArr = arr.slice(start, end);
+    renderCocktailCards(sliceArr);
+    if (pageNum === pagBtnsArr.length) {
+      next.classList.add('is-hidden');
+    }
+  }
+
+  //   оголошення слухачів кнопок ========================
+  next.addEventListener('click', showNextPage);
+  prev.addEventListener('click', showPrevPage);
 }
