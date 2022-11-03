@@ -36,7 +36,7 @@ let cls = !isAuth ? 'is-hidden': 'modal-cocktails__button'
       <div class="ingredients">
         <h3 class="ingredients__subtitle">INGREDIENTS</h3>
         <p class="ingredients__subtext">Per cocktail</p>
-        <ul class="ingredients__list">
+        <ul data-modal-open class="ingredients__list">
         ${ingredientsList}
         </ul>
       </div>
@@ -54,7 +54,7 @@ let cls = !isAuth ? 'is-hidden': 'modal-cocktails__button'
             <div class="ingredients">
             <h3 class="ingredients__subtitle">INGREDIENTS</h3>
             <p class="ingredients__subtext">Per cocktail</p>
-            <ul class="ingredients__list">
+            <ul data-modal-open class="ingredients__list">
             ${ingredientsList}
             </ul>
             </div>
@@ -93,30 +93,36 @@ const templateModalIngredients = ({
   <div class="modal-ingredient__section-first">
   <h2 class="modal-ingredient__header">${name}</h2>
 
-       <b class="modal-ingredient__title">${type}</b>
+       <b class="modal-ingredient__title">${
+         type !== null ? type : 'no information'
+       }</b>
        </div>
        <div class="modal-ingredient__line"></div>
        <div class="modal-ingredient__section-last">
        <div class="modal-ingredient__description">
-      <p class="modal-ingredient__text">${description}</p>
+      <p class="modal-ingredient__text">${
+        description !== null ? description : 'no information'
+      }</p>
       </div>
       <div class="ingredients">
-        <ul data-modal-open class="ingredients__list">
-        <li class="ingredients__item">
-            <span>Type: ${type !== null ? type : 'no information'} </span>
+        <ul class="ingredients__list-elements">
+        <li class="ingredients__item-element">
+            <span  class="no-hover">Type: ${
+              type !== null ? type : 'no information'
+            } </span>
           </li>
-          <li class="ingredients__item">
-            <span>Alcohol by volume: ${
+          <li class="ingredients__item-element">
+            <span  class="no-hover">Alcohol by volume: ${
               alcoholValue !== null ? alcoholValue : 'no information'
             }</span>
           </li>
-          <li class="ingredients__item">
-            <span>Alcohol: ${
+          <li class="ingredients__item-element">
+            <span  class="no-hover">Alcohol: ${
               alcohol !== null ? alcohol : 'no information'
             }</span>
           </li>
-          <li class="ingredients__item">
-            <span>Ingredients: ${
+          <li class="ingredients__item-element">
+            <span class="no-hover">Ingredients: ${
               ingredients !== null ? ingredients : 'no information'
             }</span>
           </li>
