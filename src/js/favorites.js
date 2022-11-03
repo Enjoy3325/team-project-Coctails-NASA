@@ -2,8 +2,9 @@ import {
   renderCocktailCards,
   renderIngredientCards,
   noFavItems,
-  numberOfGalleryItems,
+  numberOfGalleryItems
 } from './render-gallery';
+
 import { getPagination } from './pagination';
 
 const refs = {

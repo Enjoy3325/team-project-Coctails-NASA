@@ -80,8 +80,8 @@
   border: 1px solid var(--grapefruit);
   font-size: 16px;
   line-height: 1.25;
-  border-radius: 5px;
-  padding: 14px 12px;
+  border-radius: 4px;
+  padding: 8px;
   transition: border var(--timing-function);
 
   &::placeholder {
@@ -100,7 +100,7 @@ form:invalid .auth-form__button {
 }
 
 form:valid .auth-form__button {
-  background: #BBF330;
+  background: var(--grapefruit);
 }
 
 input:required:invalid + .req-error-group {
