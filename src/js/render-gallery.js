@@ -1,7 +1,7 @@
 import { getRandomCocktail } from './requests-api';
 import { getPagination } from './pagination';
 import { modalCocktails } from './modal-cocktails';
-import { INSPECT_MAX_BYTES } from 'buffer';
+import { isAuth } from './modal-cocktails';
 
 const gallery = document.querySelector('.gallery');
 
@@ -56,6 +56,7 @@ export function renderCocktailCards(arr, type) {
     .map(cocktail => {
       let textBtn;
       let classBtn;
+
       if (cocktail.dataModal === 'add') {
         textBtn = 'Add to';
         classBtn = 'btn__icon';
@@ -63,7 +64,14 @@ export function renderCocktailCards(arr, type) {
         textBtn = 'Remove';
         classBtn = 'btn__icon-fill';
       }
+      let cls = '';
+      if (isAuth()) {
+        cls = 'btn btn--white';
+      } else {
+        cls = 'btn btn--white is-hidden';
+      }
 
+      console.log('isAuth', isAuth());
       return `
       <li class="gallery__item">
         <img
@@ -77,7 +85,7 @@ export function renderCocktailCards(arr, type) {
         <div class="gallery__btns">
           <button class="btn btn--orange" data-open-modal="open" data-type="${type}" data-action="${cocktail.dataModal}" data-cocktail="${cocktail.name}" type="button">Learn more</button>
       
-          <button class="btn btn--white " data-open-modal="${cocktail.dataModal}" data-type="${type}" data-cocktail="${cocktail.name}" type="button">
+          <button class="${cls}" data-open-modal="${cocktail.dataModal}" data-type="${type}" data-cocktail="${cocktail.name}" type="button">
             ${textBtn}
             <span class="btn__icon-wrap">
             <svg class="${classBtn}" width="15" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
