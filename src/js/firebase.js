@@ -136,7 +136,7 @@ onAuthStateChanged(auth, (user) => {
     localStorage.setItem('isAuth', 'true');
     // favBtn.classList.remove('is-hidden')
   } else {
-    updateUserCocktails();
+    // updateUserCocktails();
     logoutBtn.classList.add('is-hidden');
     logoutBtnMob.classList.add('is-hidden');
     loginBtn.classList.remove('is-hidden');

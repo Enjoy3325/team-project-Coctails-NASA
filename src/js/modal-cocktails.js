@@ -105,10 +105,7 @@ function onAddFavoriteToLocalStorage(selectedCocktail, type) {
     return;
   } else {
     allFavoriteCocktails.push({ ...selectedCocktail, dataModal: 'remove' });
-    localStorage.setItem(
-      'favoriteCocktails',
-      JSON.stringify(allFavoriteCocktails)
-    );
+    localStorage.setItem('favoriteCocktails', JSON.stringify(allFavoriteCocktails));
     updateUserCocktails()
   }
 }
