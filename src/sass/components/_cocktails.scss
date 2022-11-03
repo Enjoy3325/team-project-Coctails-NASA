@@ -67,11 +67,9 @@
     display: flex;
     gap: 8px;
     justify-content: center;
-    width: 270px;
-    padding: 0 6px;
+    padding: 0 8px;
     @include media-min($tablet) {
       gap: 12px;
-      width: 350px;
       padding: 0 12px;
     }
   }
@@ -82,8 +80,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     font-size: 12px;
     line-height: 1.2;
     font-family: 'Montserrat', sans-serif;
