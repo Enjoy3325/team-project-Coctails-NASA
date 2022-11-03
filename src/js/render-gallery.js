@@ -34,7 +34,7 @@ function getRandCocktails(number) {
 getRandCocktails(numberOfGalleryItems());
 
 // візуалізація "пошук не дав результату" (oops image)
-function nosearchingRes() {
+export function nosearchingRes() {
   document.querySelector('.cocktails__title').innerHTML =
     "Sorry, we didn't find any cocktail for you";
   document.querySelector(
@@ -63,6 +63,7 @@ export function renderCocktailCards(arr, type) {
         textBtn = 'Remove';
         classBtn = 'btn__icon-fill';
       }
+
       return `
       <li class="gallery__item">
         <img
@@ -76,7 +77,7 @@ export function renderCocktailCards(arr, type) {
         <div class="gallery__btns">
           <button class="btn btn--orange" data-open-modal="open" data-type="${type}" data-action="${cocktail.dataModal}" data-cocktail="${cocktail.name}" type="button">Learn more</button>
           <button class="btn btn--white" data-open-modal="${cocktail.dataModal}" data-type="${type}" data-cocktail="${cocktail.name}" type="button">
-            ${textBtn} 
+            ${textBtn}
             <span class="btn__icon-wrap">
             <svg class="${classBtn}" width="15" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M8.5 15L7.2675 13.921C2.89 10.1035 0 7.58583 0 4.49591C0 1.9782 2.057 0 4.675 0C6.154 0 7.5735 0.662125 8.5 1.70845C9.4265 0.662125 10.846 0 12.325 0C14.943 0 17 1.9782 17 4.49591C17 7.58583 14.11 10.1035 9.7325 13.9292L8.5 15Z" />
@@ -106,8 +107,8 @@ export function renderIngredientCards(arr, type) {
         <h2 class="ingredient__name text-truncate">${ingredient.name}</h2>
         <h3 class="ingredient__type text-truncate">${ingredient.type}</h3>
         <div class="ingredient__btns">
-          <button data-favorite-ingredient="openModal" data-ingredient="${ingredient.name}" class="btn btn--orange" type="button">Learn more</button>
-          <button data-modal-ingredient="remove" data-ingredient="${ingredient.name}" class="btn btn--white" type="button">
+          <button data-favorite-ingredient="openModal" data-ingredient="${ingredient.name}" class="btn btn--orange" data-type="favorite" type="button">Learn more</button>
+          <button data-modal-ingredient="remove" data-ingredient="${ingredient.name}" data-type="favorite" class="btn btn--white" type="button">
             Remove &nbsp
             <span class="btn__icon-wrap"></span>
           </button>
@@ -122,6 +123,9 @@ export function renderIngredientCards(arr, type) {
 // renderCocktails відмальовує галерею коктейлів
 export function renderCocktails(arr, type = 'all') {
   if (arr.length !== 0) {
+    // if(localStorage.getItem('isAuth') === "true"){
+    //   document.querySelector('.btn.btn--white').classList.remove('is-hidden')
+    // }
     renderCocktailCards(arr, type);
   } else if (arr.length === 0) {
     nosearchingRes();
