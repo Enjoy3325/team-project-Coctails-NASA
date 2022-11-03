@@ -39,8 +39,9 @@ function showDots(arr) {
         'pagination__dots-after'
       )
     );
-    if (pageNum <= 2 || pageNum >= arr.length - 1) {
-      for (let i = 3; i < arr.length - 3; i += 1) {
+    // якщо активна кнопка 1 або 2
+    if (pageNum <= 2) {
+      for (let i = 3; i < arr.length - 2; i += 1) {
         listItems[i].classList.add('visually-hidden');
       }
       listItems[2].classList.add('pagination__dots-after');
