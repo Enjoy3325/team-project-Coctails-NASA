@@ -9,15 +9,6 @@ const refs = {
   modal: document.querySelector('[data-modal]'),
   gallery: document.querySelector('.gallery'),
   backdrop: document.querySelector('.backdrop'),
-
-  // --------Ingredient_______
-
-  //   closeModalIngredientBtn: document.querySelector(
-  //     '[data-modal-ingredient-closes]'
-  //   ),
-
-  //   modalIngredient: document.querySelector('[data-modal-ingredient]'),
-  //   ingridientsList: document.querySelector('.ingridients__list'),
 };
 
 function isAuth() {
@@ -49,7 +40,6 @@ function onGalleryClick(e) {
         type === 'favorite' ? 'favoriteCocktails' : 'cocktails'
       )
     );
-    console.log('---> data', data);
     const btnLearMore = document.querySelector('[data-open-modal="open"]');
     selectedCocktail = data?.find(el => el.name === cocktail);
 

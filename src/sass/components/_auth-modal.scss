@@ -6,7 +6,7 @@
   width: 320px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.06);
   border-radius: 5px;
-  padding: 20px;
+  padding: 28px;
   background: var(--white);
   transition: transform var(--timing-function);
   border: 1px solid var(--grapefruit);
@@ -86,10 +86,6 @@
   padding: 8px;
   color: var(--black);
   transition: border var(--timing-function);
-
-  //&::placeholder {
-  //  color: var(--grey);
-  //}
 }
 
 .auth-form__input:not(:focus):not(:placeholder-shown):invalid {
@@ -97,7 +93,7 @@
 }
 
 form:invalid .auth-form__button {
-  //border: 1px solid $error;
+  border: 1px solid red;
   opacity: 0.5;
   pointer-events: none;
 }
@@ -122,13 +118,6 @@ input:required:invalid + .req-error-group {
   display: block;
 }
 
-//.order-form__input:not(:focus):not(:placeholder-shown):invalid + .error-group + .req-error-group {
-//  display: block;
-//  //opacity: 1;
-//  //background-color: #e30d0d;
-//  //height: 100px;
-//}
-
 .error, .req-error {
   position: absolute;
   padding-left: 12px;
@@ -151,21 +140,11 @@ input:required:invalid + .req-error-group {
   background-image: url(../images/danger-sign.svg);
 }
 
-//.error::after, .req-error::after {
-//  content: "";
-//  display: inline-block;
-//  width: 12px;
-//  height: 14px;
-//  background-repeat: no-repeat;
-//  margin-right: 4px;
-//  background-image: url(../images/icons/danger-sign.svg);
-//}
-
 .login-form__button, .reg-form__button{
   display: block;
-  height: 30px;
+  height: 40px;
   width: 215px;
-  margin: 20px auto 10px auto;
+  margin: 20px auto 0 auto;
   color: var(--black)
 }
 

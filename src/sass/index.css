@@ -874,7 +874,7 @@ main {
 .footer-developers {
   font-size: 14px;
   text-align: center;
-  color: var(--black);
+  color: var(--whiteBtn);
   margin-top: 74px;
 }
 
@@ -1406,7 +1406,7 @@ main {
   width: 320px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.06);
   border-radius: 5px;
-  padding: 20px;
+  padding: 28px;
   background: var(--white);
   transition: transform var(--timing-function);
   border: 1px solid var(--grapefruit);
@@ -1492,6 +1492,7 @@ main {
 }
 
 form:invalid .auth-form__button {
+  border: 1px solid red;
   opacity: 0.5;
   pointer-events: none;
 }
@@ -1540,9 +1541,9 @@ input:required:invalid + .req-error-group {
 
 .login-form__button, .reg-form__button {
   display: block;
-  height: 30px;
+  height: 40px;
   width: 215px;
-  margin: 20px auto 10px auto;
+  margin: 20px auto 0 auto;
   color: var(--black);
 }
 

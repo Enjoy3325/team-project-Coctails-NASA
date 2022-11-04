@@ -17,8 +17,6 @@ const templateModal = ({
       )
       .join('');
   }
-
-  console.log(' isAuth', isAuth);
   let textBtn;
   let cls = !isAuth ? 'is-hidden' : 'modal-cocktails__button';
 
