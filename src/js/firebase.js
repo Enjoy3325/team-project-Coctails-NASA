@@ -160,6 +160,8 @@ onAuthStateChanged(auth, user => {
     document
       .querySelectorAll('.btn--white')
       .forEach(item => item.classList.remove('is-hidden'));
+    document.querySelector('#favorites').classList.remove('is-hidden');
+    document.querySelector('#favorites-mob').classList.remove('is-hidden');
   } else {
     // updateUserCocktails();
     logoutBtn.classList.add('is-hidden');
@@ -173,6 +175,8 @@ onAuthStateChanged(auth, user => {
     document
       .querySelectorAll('.btn--white')
       .forEach(item => item.classList.add('is-hidden'));
+    document.querySelector('#favorites').classList.add('is-hidden');
+    document.querySelector('#favorites-mob').classList.add('is-hidden');
   }
 });
 
