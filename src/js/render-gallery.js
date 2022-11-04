@@ -1,7 +1,6 @@
 import { getRandomCocktail } from './requests-api';
 import { getPagination } from './pagination';
 import { modalCocktails } from './modal-cocktails';
-import { INSPECT_MAX_BYTES } from 'buffer';
 import { isAuth } from './modal-cocktails';
 
 const gallery = document.querySelector('.gallery');
@@ -12,7 +11,7 @@ export let number;
 export const numberOfGalleryItems = () => {
   if (window.innerWidth >= 1280) {
     return (number = 9);
-  } else if ((window.innerWidth < 1280) & (window.innerWidth >= 480)) {
+  } else if ((window.innerWidth < 1280) && (window.innerWidth >= 768)) {
     return (number = 6);
   } else {
     return (number = 3);
@@ -71,8 +70,6 @@ export function renderCocktailCards(arr, type) {
       } else {
         cls = 'btn btn--white is-hidden';
       }
-      console.log('isAuth', isAuth());
-
       return `
       <li class="gallery__item">
         <img
@@ -85,7 +82,7 @@ export function renderCocktailCards(arr, type) {
           <h3 class="gallery__subtitle text-truncate">${cocktail.name}</h3>
         <div class="gallery__btns">
           <button class="btn btn--orange" data-open-modal="open" data-type="${type}" data-action="${cocktail.dataModal}" data-cocktail="${cocktail.name}" type="button">Learn more</button>
-      
+
           <button class="${cls}" data-open-modal="${cocktail.dataModal}" data-type="${type}" data-cocktail="${cocktail.name}" type="button">
             ${textBtn}
             <span class="btn__icon-wrap">
@@ -133,9 +130,6 @@ export function renderIngredientCards(arr, type) {
 // renderCocktails відмальовує галерею коктейлів
 export function renderCocktails(arr, type = 'all') {
   if (arr.length !== 0) {
-    // if(localStorage.getItem('isAuth') === "true"){
-    //   document.querySelector('.btn.btn--white').classList.remove('is-hidden')
-    // }
     renderCocktailCards(arr, type);
   } else if (arr.length === 0) {
     nosearchingRes();
