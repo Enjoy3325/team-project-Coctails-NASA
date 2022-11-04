@@ -218,4 +218,5 @@ export {
   contentBtnRemovOrAdd,
   onAddFavoriteToLocalStorage,
   onRemoveFavoriteFromLocalStorage,
+  isAuth,
 };
